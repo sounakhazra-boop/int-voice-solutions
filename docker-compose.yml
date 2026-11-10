@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  int-landing-page:
+    container_name: int-voice-solutions-landing-page
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4020:3000"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
