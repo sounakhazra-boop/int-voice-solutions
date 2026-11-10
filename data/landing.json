@@ -1,0 +1,138 @@
+{
+  "navbar": {
+    "logo": "/int_logo.png",
+    "brandName": "INT Voice Solutions",
+    "links": [
+      { "id": "home", "label": "Home", "isActive": true },
+      { "id": "solutions", "label": "Solutions" },
+      { "id": "use-cases", "label": "Use Cases" },
+      { "id": "demos", "label": "Demos" },
+      { "id": "resources", "label": "Resources" }
+    ],
+    "cta": "Request a Demo"
+  },
+  "hero": {
+    "title": "INT Voice Solutions",
+    "subtitle": "AI-Powered Voice & Conversational Solutions for Customer, Workforce and Enterprise Automation",
+    "benefits": [
+      "Automate Conversations",
+      "Improve Accuracy",
+      "Drive Business Impact",
+      "Enterprise Ready & Scalable"
+    ]
+  },
+  "initiatives": {
+    "sectionTitle": "Our Voice AI Initiatives",
+    "sectionSubtitle": "A unified portfolio of voice and conversational AI products, POCs and accelerators.",
+    "cards": [
+      {
+        "id": "vyom",
+        "title": "VYOM",
+        "description": "Enterprise Voice AI Platform for Outbound, Inbound & Automation",
+        "//tag": "Flagship",
+        "iconType": "purple",
+        "url": "https://internal-vyom.indusnettechnologies.com/"
+      },
+      {
+        "id": "voicebot",
+        "title": "VoiceBot",
+        "description": "AI Voice Agent for Leads, Support and Operations",
+        "iconType": "blue",
+        "url": null
+      },
+      {
+        "id": "chatbot",
+        "title": "Chatbot",
+        "description": "Intelligent Text & Voice Conversational Agent",
+        "iconType": "blue",
+        "url": null
+      },
+      {
+        "id": "agui",
+        "title": "AGUI",
+        "description": "Agentic & Generative UI for Voice-first Experiences",
+        "iconType": "blue",
+        "url": " https://agui.indusnettechnologies.com/landing"
+      },
+      {
+        "id": "vaani",
+        "title": "VAANI",
+        "description": "Multilingual Voice Assistant (Indian & Global Languages)",
+        "iconType": "blue",
+        "url": null
+      },
+      {
+        "id": "offline-recording",
+        "title": "Offline Recording",
+        "description": "Call / Meeting Recording, Transcription & Summarization",
+        "iconType": "blue",
+        "url": null
+      },
+      {
+        "id": "voice-biometric",
+        "title": "Voice Biometric",
+        "description": "Speaker Verification & Fraud Prevention",
+        "iconType": "purple",
+        "url": null
+      },
+      {
+        "id": "conversations-analyst",
+        "title": "Conversations Analyst",
+        "description": "AI Insights from Calls - Intent, Sentiment, Quality & Compliance",
+        "iconType": "blue",
+        "url": null
+      }
+    ]
+  },
+  "useCases": {
+    "sectionTitle": "Key Use Cases Across Industries",
+    "industries": [
+      {
+        "id": "recruitment",
+        "label": "Recruitment & Hiring"
+      },
+      {
+        "id": "real-estate",
+        "label": "Real Estate & Property"
+      },
+      {
+        "id": "insurance",
+        "label": "Insurance & BFSI"
+      },
+      {
+        "id": "ecommerce",
+        "label": "E-commerce & Retail"
+      },
+      {
+        "id": "manufacturing",
+        "label": "Manufacturing & Supply Chain"
+      },
+      {
+        "id": "healthcare",
+        "label": "Healthcare & Pharma"
+      },
+      {
+        "id": "customer-service",
+        "label": "Customer Service"
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": "95%+",
+      "label": "Call Quality (Target)"
+    },
+    {
+      "value": "1000+",
+      "label": "Calls Scale (Baseline)"
+    },
+    {
+      "value": "10+",
+      "label": "Languages"
+    },
+    {
+      "value": "Multiple",
+      "label": "Industry-ready Use Cases"
+    }
+  ]
+}
