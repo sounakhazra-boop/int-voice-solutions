@@ -15,4 +15,4 @@ docker compose up --build -d
 echo "Cleaning up old unused, dangling images to save disk space..."
 docker image prune -f
 
-echo "Deployment successful! App is live on port 4020."
+echo "Deployment successful! App is live on port 4030."
