@@ -3,11 +3,27 @@
     "logo": "/int_logo.png",
     "brandName": "INT Voice Solutions",
     "links": [
-      { "id": "home", "label": "Home", "isActive": true },
-      { "id": "solutions", "label": "Solutions" },
-      { "id": "use-cases", "label": "Use Cases" },
-      { "id": "demos", "label": "Demos" },
-      { "id": "resources", "label": "Resources" }
+      {
+        "id": "home",
+        "label": "Home",
+        "isActive": true
+      },
+      {
+        "id": "solutions",
+        "label": "Solutions"
+      },
+      {
+        "id": "use-cases",
+        "label": "Use Cases"
+      },
+      {
+        "id": "demos",
+        "label": "Demos"
+      },
+      {
+        "id": "resources",
+        "label": "Resources"
+      }
     ],
     "cta": "Request a Demo"
   },
@@ -81,6 +97,13 @@
         "description": "AI Insights from Calls - Intent, Sentiment, Quality & Compliance",
         "iconType": "blue",
         "url": null
+      },
+      {
+        "id": "avatar-ai",
+        "title": "Avatar AI",
+        "description": "Interactive Executive AI Avatar - Digital Transformation & Enterprise Tech Assistant",
+        "iconType": "blue",
+        "url": "http://13.232.78.99:4029/"
       }
     ]
   },
