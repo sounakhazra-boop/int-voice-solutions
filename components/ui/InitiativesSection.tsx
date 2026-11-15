@@ -1,12 +1,69 @@
 // src/components/ui/InitiativesSection.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import content from "../../data/landing.json";
 import { InitiativeCard } from "../Cards";
 import { IconMap } from "./IconMap";
+import {
+  PERMISSIONS_EXPIRY_STORAGE_KEY,
+  PERMISSIONS_STORAGE_KEY,
+  type CardPermissions,
+} from "@/lib/permissions";
+
+function isCardPermissions(value: unknown): value is CardPermissions {
+  return (
+    Array.isArray(value) &&
+    value.every((permission) => {
+      if (!permission || typeof permission !== "object") {
+        return false;
+      }
+
+      const entry = permission as Record<string, unknown>;
+      return (
+        typeof entry.token === "string" &&
+        entry.token.length > 0 &&
+        Object.entries(entry).some(
+          ([key, flag]) => key !== "token" && typeof flag === "boolean",
+        )
+      );
+    })
+  );
+}
 
 export const InitiativesSection: React.FC = () => {
+  const [permissions, setPermissions] = useState<CardPermissions>([]);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const expiresAt = Number(
+        localStorage.getItem(PERMISSIONS_EXPIRY_STORAGE_KEY),
+      );
+
+      if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
+        localStorage.removeItem(PERMISSIONS_STORAGE_KEY);
+        localStorage.removeItem(PERMISSIONS_EXPIRY_STORAGE_KEY);
+        return;
+      }
+
+      try {
+        const storedPermissions = JSON.parse(
+          localStorage.getItem(PERMISSIONS_STORAGE_KEY) ?? "null",
+        );
+
+        if (isCardPermissions(storedPermissions)) {
+          setPermissions(storedPermissions);
+        }
+      } catch (error) {
+        console.warn("Unable to read stored card permissions.", error);
+        localStorage.removeItem(PERMISSIONS_STORAGE_KEY);
+        localStorage.removeItem(PERMISSIONS_EXPIRY_STORAGE_KEY);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
   return (
     <section id="solutions" className="section section-light my-3 sm:my-5">
       <div className="section-container">
@@ -28,7 +85,17 @@ export const InitiativesSection: React.FC = () => {
               tag={card.tag}
               iconType={card.iconType as "purple" | "blue" | "gray"}
               icon={<IconMap name={card.id} className="h-6 w-6" />}
-              url={card.url}
+              url={
+                permissions.some(
+                  (permission) =>
+                    permission[card.id] === true &&
+                    typeof permission.token === "string" &&
+                    permission.token.length > 0,
+                ) && card.inhouseUrl
+                  ? card.inhouseUrl
+                  : card.url
+              }
+              inhouseUrl={card.inhouseUrl}
             />
           ))}
         </div>

@@ -1,0 +1,83 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormEvent, useState } from "react";
+
+export function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (!result || result.error) {
+      setError("Invalid email or password.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    router.push(searchParams.get("callbackUrl") || "/");
+    router.refresh();
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full max-w-md flex-col gap-5 rounded-2xl border border-brand-100 bg-white p-8 shadow-xl"
+    >
+      <div>
+        <h1 className="text-2xl font-semibold text-brand-900">Sign in</h1>
+        <p className="mt-2 text-sm text-gray-600">
+          Use your INT Voice Solutions account to continue.
+        </p>
+      </div>
+
+      <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+        Email
+        <input
+          required
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          autoComplete="email"
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm font-medium text-gray-700">
+        Password
+        <input
+          required
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          autoComplete="current-password"
+        />
+      </label>
+
+      {error && <p className="text-sm text-red-600">{error}</p>}
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="rounded-lg bg-brand-600 px-4 py-2.5 font-medium text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {isSubmitting ? "Signing in..." : "Sign in"}
+      </button>
+    </form>
+  );
+}

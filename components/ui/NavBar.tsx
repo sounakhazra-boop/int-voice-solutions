@@ -3,12 +3,16 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { signOut } from "next-auth/react";
 import { List, X } from "@phosphor-icons/react";
 import content from "../../data/landing.json";
 import { IconMap } from "./IconMap";
+import { useAuth } from "../providers/AuthProvider";
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { isAuthenticated, isLoading, user } = useAuth();
 
   return (
     <nav className="nav-shell">
@@ -45,11 +49,26 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* 3. Right: CTA Button */}
-        <div className="hidden shrink-0 lg:block">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <button type="button" className="nav-cta">
             <IconMap name="play" className="nav-cta-icon" />
             {content.navbar.cta}
           </button>
+          {!isLoading &&
+            (isAuthenticated ? (
+              <button
+                type="button"
+                className="site-nav-item"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                title={user?.email ?? undefined}
+              >
+                Sign out
+              </button>
+            ) : (
+              <Link href="/login" className="site-nav-item">
+                Log in
+              </Link>
+            ))}
         </div>
 
         <button
@@ -89,6 +108,24 @@ export const Navbar: React.FC = () => {
               <IconMap name="play" className="nav-cta-icon" />
               {content.navbar.cta}
             </button>
+            {!isLoading &&
+              (isAuthenticated ? (
+                <button
+                  type="button"
+                  className="site-nav-item mt-1 w-full justify-center"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  Sign out
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className="site-nav-item mt-1 w-full justify-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Log in
+                </Link>
+              ))}
           </div>
         </div>
       )}

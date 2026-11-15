@@ -21,6 +21,7 @@ export interface InitiativeCardProps {
   iconType: "purple" | "blue" | "gray";
   icon: React.ReactNode;
   url?: string | null;
+  inhouseUrl?: string | null;
 }
 
 export const InitiativeCard: React.FC<InitiativeCardProps> = ({
@@ -30,8 +31,10 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
   iconType,
   icon,
   url,
+  inhouseUrl,
 }) => {
   const normalizedUrl = url?.trim();
+  const normalizedInhouseUrl = inhouseUrl?.trim();
   const cardClassName = "group initiative-card relative w-full text-left";
 
   const cardContent = (
@@ -77,6 +80,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
           href={normalizedUrl}
           target="_blank"
           rel="noreferrer"
+          data-inhouse-url={normalizedInhouseUrl ?? undefined}
           className={cardClassName}
         >
           {cardContent}

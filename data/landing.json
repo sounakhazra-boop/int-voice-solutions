@@ -47,63 +47,72 @@
         "description": "Enterprise Voice AI Platform for Outbound, Inbound & Automation",
         "tag": "Flagship",
         "iconType": "purple",
-        "url": "https://internal-vyom.indusnettechnologies.com/"
+        "url": "https://internal-vyom.indusnettechnologies.com/",
+        "inhouseUrl": "/vyom"
       },
       {
         "id": "voicebot",
         "title": "VoiceBot",
         "description": "AI Voice Agent for Leads, Support and Operations",
         "iconType": "blue",
-        "url": "https://internal-vyom.indusnettechnologies.com/livekit/tour"
+        "url": "https://internal-vyom.indusnettechnologies.com/livekit/tour",
+        "inhouseUrl": "/voicebot"
       },
       {
         "id": "chatbot",
         "title": "Chatbot",
         "description": "Intelligent Text & Voice Conversational Agent",
         "iconType": "blue",
-        "url": " https://internal-vyom.indusnettechnologies.com/livekit/bandhan_banking"
+        "url": " https://internal-vyom.indusnettechnologies.com/livekit/bandhan_banking",
+        "inhouseUrl": "/chatbot"
       },
       {
         "id": "agui",
         "title": "AGUI",
         "description": "Agentic & Generative UI for Voice-first Experiences",
         "iconType": "blue",
-        "url": " https://agui.indusnettechnologies.com/landing"
+        "url": " https://agui.indusnettechnologies.com/landing",
+        "inhouseUrl": "/agui"
       },
       {
         "id": "vaani",
         "title": "VAANI",
         "description": "Multilingual Voice Assistant (Indian & Global Languages)",
         "iconType": "blue",
-        "url": "https://vaani.indusnettechnologies.com/"
+        "url": "https://vaani.indusnettechnologies.com/",
+        "inhouseUrl": "/vaani"
       },
       {
         "id": "offline-recording",
         "title": "Offline Recording",
         "description": "Call / Meeting Recording, Transcription & Summarization",
         "iconType": "blue",
-        "url": "https://detailed-fonts-like-ashley.trycloudflare.com"
+        "url": "https://detailed-fonts-like-ashley.trycloudflare.com",
+        "inhouseUrl": "/offline-recording"
       },
       {
         "id": "voice-biometric",
         "title": "Voice Biometric",
         "description": "Speaker Verification & Fraud Prevention",
         "iconType": "purple",
-        "url": null
+        "url": null,
+        "inhouseUrl": "/voice-biometric"
       },
       {
         "id": "conversations-analyst",
         "title": "Conversations Analyst",
         "description": "AI Insights from Calls - Intent, Sentiment, Quality & Compliance",
         "iconType": "blue",
-        "url": null
+        "url": null,
+        "inhouseUrl": "/conversations-analyst"
       },
       {
         "id": "avatar-ai",
         "title": "Avatar AI",
         "description": "Interactive Executive AI Avatar - Digital Transformation & Enterprise Tech Assistant",
         "iconType": "blue",
-        "url": "http://13.232.78.99:4029/"
+        "url": "http://13.232.78.99:4029/",
+        "inhouseUrl": "/avatar-ai"
       }
     ]
   },

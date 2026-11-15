@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // Reverse proxy to bypass Cloudflare iframe/cookie restrictions
+  async rewrites() {
+    return [
+      {
+        source: "/tunnel/:path*",
+        destination: "https://agui.indusnettechnologies.com/landing",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
