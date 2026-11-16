@@ -77,10 +77,12 @@ export function useContextSync(
 
     const encoder = new TextEncoder();
     console.log("--- SYNCING UI CONTEXT (SNAPSHOT) ---", context);
-    localParticipant.publishData(encoder.encode(JSON.stringify(context)), {
-      reliable: true,
-      topic: "ui.context",
-    });
+    localParticipant
+      .publishData(encoder.encode(JSON.stringify(context)), {
+        reliable: true,
+        topic: "ui.context",
+      })
+      .catch((err) => console.error("Failed to publish UI context:", err));
 
     // [NEW] Separate User Context Sync
     const userContext = {
@@ -90,10 +92,12 @@ export function useContextSync(
     };
 
     console.log("--- SYNCING USER CONTEXT ---", userContext);
-    localParticipant.publishData(encoder.encode(JSON.stringify(userContext)), {
-      reliable: true,
-      topic: "user.context",
-    });
+    localParticipant
+      .publishData(encoder.encode(JSON.stringify(userContext)), {
+        reliable: true,
+        topic: "user.context",
+      })
+      .catch((err) => console.error("Failed to publish user context:", err));
   }, [localParticipant, room, messagesRef]);
 
   // Keep syncRef updated for event listeners
@@ -135,7 +139,7 @@ export function useContextSync(
       }
 
       // Sync on resize (debounced)
-      let timeout: NodeJS.Timeout;
+      let timeout: ReturnType<typeof setTimeout>;
       const handleResize = () => {
         clearTimeout(timeout);
         timeout = setTimeout(syncUIContext, 1000);

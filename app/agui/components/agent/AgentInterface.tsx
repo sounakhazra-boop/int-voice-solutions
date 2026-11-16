@@ -268,7 +268,11 @@ export const AgentInterface: React.FC<AgentInterfaceProps> = ({
 
     const publishLocation = (payload: object) => {
       const encoded = new TextEncoder().encode(JSON.stringify(payload));
-      localParticipant.publishData(encoded, { topic: "user.location" });
+      localParticipant
+        .publishData(encoded, { topic: "user.location" })
+        .catch((err) =>
+          console.error("--- GEOLOCATION: Failed to publish ---", err),
+        );
       console.log("--- GEOLOCATION: Sent to backend ---", payload);
     };
 

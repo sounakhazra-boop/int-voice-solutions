@@ -85,7 +85,9 @@ export const VoiceDock: React.FC<VoiceDockProps> = ({
     if (!localParticipant) return;
     try {
       const encoded = new TextEncoder().encode(JSON.stringify({ type }));
-      localParticipant.publishData(encoded, { topic: type });
+      localParticipant
+        .publishData(encoded, { topic: type })
+        .catch((err) => console.warn("Failed to publish pause packet:", err));
     } catch {
       /* ignore */
     }

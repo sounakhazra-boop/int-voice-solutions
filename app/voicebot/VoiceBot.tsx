@@ -32,12 +32,12 @@ function ConnectedVoiceBot({
   const [muted, setMuted] = useState(false);
 
   useEffect(() => {
-    localParticipant?.setMicrophoneEnabled(true);
+    localParticipant?.setMicrophoneEnabled(true).catch(console.error);
   }, [localParticipant]);
 
   const toggleMute = () => {
     const nextMuted = !muted;
-    localParticipant?.setMicrophoneEnabled(!nextMuted);
+    localParticipant?.setMicrophoneEnabled(!nextMuted).catch(console.error);
     setMuted(nextMuted);
   };
 

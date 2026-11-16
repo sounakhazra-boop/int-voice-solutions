@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import {
   AgentEventsEnum,
   LiveAvatarSession,
+  SessionDisconnectReason,
   SessionEvent,
   VoiceChatEvent,
 } from "@heygen/liveavatar-web-sdk";
@@ -71,15 +72,23 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
 
       const session_token = body?.session_token;
       if (!res.ok || !session_token) {
+        const exactMessage =
+          body?.error ||
+          (body?.details &&
+            typeof body.details === "object" &&
+            ((body.details as any)?.message || (body.details as any)?.error)) ||
+          `Token request failed with status ${res.status}`;
+
         const details =
           typeof body.details === "string"
             ? body.details
             : body.details
-              ? JSON.stringify(body.details)
+              ? JSON.stringify(body.details, null, 2)
               : undefined;
-        const message =
-          body.error || `Token server request failed (HTTP ${res.status})`;
-        throw new Error(details ? `${message}: ${details}` : message);
+
+        const customErr = new Error(exactMessage);
+        (customErr as any).details = details;
+        throw customErr;
       }
 
       const session = new LiveAvatarSession(session_token, {
@@ -120,12 +129,32 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
 
       let latestTranscript = "";
 
-      session.on(SessionEvent.SESSION_DISCONNECTED, (reason) => {
+      session.on(SessionEvent.SESSION_DISCONNECTED, (reason: any) => {
         console.info("[Session] disconnected", reason);
-        if (reason) {
+        if (reason && reason !== SessionDisconnectReason.CLIENT_INITIATED) {
+          let reasonMsg = "Avatar session disconnected by server.";
+          let detailsText: string | undefined = undefined;
+
+          if (typeof reason === "string") {
+            if (reason === SessionDisconnectReason.SESSION_START_FAILED) {
+              reasonMsg = "Avatar session start failed on the server.";
+            } else if (reason === SessionDisconnectReason.SERVER_INITIATED) {
+              reasonMsg = "Session was terminated by the avatar server.";
+            } else {
+              reasonMsg = reason;
+            }
+          } else if (typeof reason === "object" && reason !== null) {
+            reasonMsg =
+              reason.message ||
+              reason.error ||
+              reason.reason ||
+              "Avatar session disconnected.";
+            detailsText = JSON.stringify(reason, null, 2);
+          }
+
           setConnectionError({
-            message: "The Avatar connection was closed by the server.",
-            details: formatErrorDetails(reason),
+            message: reasonMsg,
+            details: detailsText,
           });
         }
         if (timerRef.current) {
@@ -200,6 +229,41 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
         session.on(evt as any, (data: any) => {
           const eventName = String(evt).toLowerCase();
 
+          // Catch server stop events
+          if (evt === AgentEventsEnum.SESSION_STOPPED) {
+            console.warn("[Avatar session stopped by server]:", data);
+            const stopReason =
+              data?.stop_reason ||
+              data?.message ||
+              "Session was stopped by the avatar server.";
+            setConnectionError({
+              message: stopReason,
+              details: data ? JSON.stringify(data, null, 2) : undefined,
+            });
+            return;
+          }
+
+          // Catch agent errors
+          if (evt === AgentEventsEnum.ELEVENLABS_AGENT_EVENT) {
+            if (
+              data?.elevenlabs_event_type === "error" ||
+              data?.elevenlabs_event_type === "agent_error" ||
+              data?.data?.is_error
+            ) {
+              console.error("[Avatar Agent Error]:", data);
+              const agentErrMsg =
+                data?.data?.message ||
+                data?.data?.error ||
+                data?.data?.description ||
+                "Error encountered in the avatar voice agent.";
+              setConnectionError({
+                message: agentErrMsg,
+                details: JSON.stringify(data, null, 2),
+              });
+              return;
+            }
+          }
+
           // Filter out interim lip-sync chunks so text doesn't print word-by-word
           if (
             eventName.includes("chunk") ||
@@ -223,12 +287,29 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
 
       await session.start();
       console.info("[Session] started");
-    } catch (error) {
+    } catch (error: any) {
       console.error("[Session] failed to start", error);
       sessionRef.current = null;
+
+      const exactMessage =
+        error?.message ||
+        (typeof error === "string" ? error : "Avatar connection failed.");
+
+      let detailsText: string | undefined = undefined;
+      if (error?.details) {
+        detailsText =
+          typeof error.details === "string"
+            ? error.details
+            : JSON.stringify(error.details, null, 2);
+      } else if (error?.errorCode || error?.code) {
+        detailsText = `Code: ${error.errorCode || error.code}${error.status ? ` | Status: ${error.status}` : ""}`;
+      } else if (error?.stack && error.stack !== exactMessage) {
+        detailsText = formatErrorDetails(error);
+      }
+
       setConnectionError({
-        message: "Avatar connection failed.",
-        details: formatErrorDetails(error),
+        message: exactMessage,
+        details: detailsText !== exactMessage ? detailsText : undefined,
       });
       setIsLoading(false);
     } finally {

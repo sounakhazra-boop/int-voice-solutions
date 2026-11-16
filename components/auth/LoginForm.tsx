@@ -17,20 +17,32 @@ export function LoginForm() {
     setError("");
     setIsSubmitting(true);
 
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-    if (!result || result.error) {
-      setError("Invalid email or password.");
+      if (!result || result.error) {
+        setError("Invalid email or password.");
+        return;
+      }
+
+      // Guard against open-redirect: only follow relative paths.
+      const rawCallback = searchParams.get("callbackUrl") ?? "";
+      const safePath =
+        rawCallback.startsWith("/") && !rawCallback.startsWith("//")
+          ? rawCallback
+          : "/";
+
+      router.push(safePath);
+      router.refresh();
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    router.push(searchParams.get("callbackUrl") || "/");
-    router.refresh();
   }
 
   return (

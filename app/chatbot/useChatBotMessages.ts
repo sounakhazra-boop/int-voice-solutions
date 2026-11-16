@@ -21,23 +21,27 @@ export function useChatBotMessages(): ChatBotMessage[] {
           : "assistant";
       let text = "";
 
-      for await (const chunk of reader) {
-        text += chunk;
-        if (!text.trim()) continue;
+      try {
+        for await (const chunk of reader) {
+          text += chunk;
+          if (!text.trim()) continue;
 
-        setMessages((current) => {
-          const nextMessage: ChatBotMessage = {
-            id,
-            role,
-            text,
-            timestamp: Date.now(),
-          };
-          const index = current.findIndex((message) => message.id === id);
-          if (index === -1) return [...current, nextMessage];
-          const next = [...current];
-          next[index] = nextMessage;
-          return next;
-        });
+          setMessages((current) => {
+            const nextMessage: ChatBotMessage = {
+              id,
+              role,
+              text,
+              timestamp: Date.now(),
+            };
+            const index = current.findIndex((message) => message.id === id);
+            if (index === -1) return [...current, nextMessage];
+            const next = [...current];
+            next[index] = nextMessage;
+            return next;
+          });
+        }
+      } catch (err) {
+        console.error("[useChatBotMessages] stream error:", err);
       }
     };
 

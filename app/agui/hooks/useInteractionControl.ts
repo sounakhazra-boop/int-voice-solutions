@@ -14,11 +14,11 @@ export function useInteractionControl(
   useEffect(() => {
     if (!localParticipant) return;
 
-    if (mode === "voice") {
-      localParticipant.setMicrophoneEnabled(true);
-    } else {
-      localParticipant.setMicrophoneEnabled(false);
-    }
+    localParticipant
+      .setMicrophoneEnabled(mode === "voice")
+      .catch((err) =>
+        console.error("[useInteractionControl] mic toggle failed:", err),
+      );
   }, [localParticipant, mode]);
 
   const toggleMic = useCallback(
@@ -47,7 +47,12 @@ export function useInteractionControl(
         setInteractionMode("text");
       }
 
-      await localParticipant.sendText(text, { topic: "lk.chat" });
+      try {
+        await localParticipant.sendText(text, { topic: "lk.chat" });
+      } catch (err) {
+        console.error("[useInteractionControl] sendText failed:", err);
+        return;
+      }
 
       if (!isSystemHint) {
         // Optimistically add to UI

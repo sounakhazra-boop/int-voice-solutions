@@ -59,6 +59,33 @@ export default function AvatarAI() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 md:px-8 pb-12 gap-8">
+        {/* Active Session Error Banner */}
+        {isReady && connectionError && (
+          <div className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-sm">
+            <div className="flex items-center gap-2">
+              <svg
+                className="w-5 h-5 text-red-400 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span className="font-medium">{connectionError.message}</span>
+            </div>
+            {connectionError.details && (
+              <span className="text-xs text-red-300/80 font-mono hidden md:inline max-w-md truncate">
+                {connectionError.details}
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Theater / Video Container */}
         <div className="relative w-full aspect-video bg-black/50 rounded-2xl md:rounded-[2rem] overflow-hidden ring-1 ring-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group transition-all duration-700">
           {/* Subtle background glow when inactive */}
@@ -100,17 +127,35 @@ export default function AvatarAI() {
                 </div>
               ) : connectionError ? (
                 <div className="w-full max-w-xl px-6 text-center">
-                  <p className="text-sm font-medium text-red-300">
+                  <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 text-red-400 ring-1 ring-red-500/20">
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-red-400">
+                    Avatar Error
+                  </h3>
+                  <p className="mt-2 text-base font-medium text-slate-100">
                     {connectionError.message}
                   </p>
                   {connectionError.details && (
-                    <pre className="mt-3 max-h-32 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-red-950/40 p-3 text-left text-xs text-red-200 ring-1 ring-red-400/20">
+                    <pre className="mt-3 max-h-36 overflow-auto whitespace-pre-wrap break-words rounded-xl bg-red-950/40 p-3 text-left font-mono text-xs text-red-300 ring-1 ring-red-500/20">
                       {connectionError.details}
                     </pre>
                   )}
                   <button
                     onClick={() => startSession()}
-                    className="mt-5 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-slate-200 transition-colors"
+                    className="mt-5 px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-slate-200 transition-colors shadow-lg"
                   >
                     Try Again
                   </button>

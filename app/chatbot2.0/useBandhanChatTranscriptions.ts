@@ -25,24 +25,28 @@ export function useBandhanChatTranscriptions(): BandhanChatMessage[] {
         participantInfo.identity !== room.localParticipant.identity;
       let text = "";
 
-      for await (const chunk of reader) {
-        text += chunk;
-        setMessages((previous) => {
-          if (!text.trim()) return previous;
+      try {
+        for await (const chunk of reader) {
+          text += chunk;
+          setMessages((previous) => {
+            if (!text.trim()) return previous;
 
-          const message: BandhanChatMessage = {
-            id: messageId,
-            sender: isAgent ? "agent" : "user",
-            text,
-            timestamp: Date.now(),
-          };
-          const index = previous.findIndex((item) => item.id === messageId);
-          if (index === -1) return [...previous, message];
+            const message: BandhanChatMessage = {
+              id: messageId,
+              sender: isAgent ? "agent" : "user",
+              text,
+              timestamp: Date.now(),
+            };
+            const index = previous.findIndex((item) => item.id === messageId);
+            if (index === -1) return [...previous, message];
 
-          const next = [...previous];
-          next[index] = message;
-          return next;
-        });
+            const next = [...previous];
+            next[index] = message;
+            return next;
+          });
+        }
+      } catch (err) {
+        console.error("[useBandhanChatTranscriptions] stream error:", err);
       }
     };
 

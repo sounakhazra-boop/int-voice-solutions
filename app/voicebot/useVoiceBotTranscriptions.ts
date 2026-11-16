@@ -10,6 +10,8 @@ export function useVoiceBotTranscriptions(): VoiceBotMessage[] {
   const [messages, setMessages] = useState<VoiceBotMessage[]>([]);
 
   useEffect(() => {
+    if (!room) return;
+
     const handler = async (
       reader: TextStreamReader,
       participantInfo: { identity: string },
@@ -21,23 +23,27 @@ export function useVoiceBotTranscriptions(): VoiceBotMessage[] {
           : "agent";
       let text = "";
 
-      for await (const chunk of reader) {
-        text += chunk;
-        if (!text.trim()) continue;
+      try {
+        for await (const chunk of reader) {
+          text += chunk;
+          if (!text.trim()) continue;
 
-        setMessages((current) => {
-          const message = {
-            id,
-            sender,
-            text,
-            timestamp: Date.now(),
-          } satisfies VoiceBotMessage;
-          const index = current.findIndex((item) => item.id === id);
-          if (index === -1) return [...current, message];
-          const next = [...current];
-          next[index] = message;
-          return next;
-        });
+          setMessages((current) => {
+            const message = {
+              id,
+              sender,
+              text,
+              timestamp: Date.now(),
+            } satisfies VoiceBotMessage;
+            const index = current.findIndex((item) => item.id === id);
+            if (index === -1) return [...current, message];
+            const next = [...current];
+            next[index] = message;
+            return next;
+          });
+        }
+      } catch (err) {
+        console.error("[useVoiceBotTranscriptions] stream error:", err);
       }
     };
 

@@ -50,12 +50,17 @@ const LottieIcon = ({
 
   useEffect(() => {
     // Dynamic import to avoid SSR issues with some Lottie libs
-    import("lottie-react").then((mod) => setLottie(() => mod.default));
+    import("lottie-react")
+      .then((mod: any) => setLottie(() => mod.default || mod.Lottie || mod))
+      .catch((err) => console.error("Failed to load lottie-react:", err));
 
     // If src is a URL, fetch it. If it's a slug, map it (mock implementation)
     if (src.startsWith("http")) {
       fetch(src)
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
         .then((data) => setAnimationData(data))
         .catch((err) => console.error("Failed to load Lottie:", err));
     } else {

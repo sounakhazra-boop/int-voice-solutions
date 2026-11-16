@@ -39,6 +39,7 @@ import {
   type ApiUseCase,
   type PersonalizedPrompt,
   type VoiceConfig,
+  type CallPayload,
 } from "./api";
 import {
   DEFAULT_VOICE_CONFIG as DEFAULT_CONFIG,
@@ -162,29 +163,35 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
     company: string,
     personalizedPromptId?: string,
     voiceConfig: VoiceConfig = config,
-  ) => ({
-    usecaseId: selectedUseCase!.id,
-    platform: voiceConfig.callService,
-    companyName: company,
-    candidateName: recipient,
-    phoneNumber: phone,
-    trunkId: voiceConfig.trunkId,
-    personalizedPromptId,
-    initiatedBy,
-    initiatedByName,
-    ttsProvider: voiceConfig.voiceProvider,
-    ttsVoice: voiceConfig.voiceId,
-    ...(voiceConfig.callService === "livekit"
-      ? {
-          assistant_tts_model:
-            voiceConfig.payloadProvider || voiceConfig.voiceProvider,
-          assistant_tts_config:
-            voiceConfig.voiceProvider === "sarvam"
-              ? { speaker: voiceConfig.voiceId, target_language_code: "en-IN" }
-              : { voice_id: voiceConfig.voiceId },
-        }
-      : { provider: voiceConfig.voiceProvider, voiceId: voiceConfig.voiceId }),
-  });
+  ): CallPayload => {
+    const payload: CallPayload = {
+      usecaseId: selectedUseCase!.id,
+      platform: voiceConfig.callService,
+      companyName: company,
+      candidateName: recipient,
+      phoneNumber: phone,
+      trunkId: voiceConfig.trunkId,
+      personalizedPromptId,
+      initiatedBy,
+      initiatedByName,
+      ttsProvider: voiceConfig.voiceProvider,
+      ttsVoice: voiceConfig.voiceId,
+    };
+
+    if (voiceConfig.callService === "livekit") {
+      payload.assistant_tts_model =
+        voiceConfig.payloadProvider || voiceConfig.voiceProvider;
+      payload.assistant_tts_config =
+        voiceConfig.voiceProvider === "sarvam"
+          ? { speaker: voiceConfig.voiceId, target_language_code: "en-IN" }
+          : { voice_id: voiceConfig.voiceId };
+    } else {
+      payload.provider = voiceConfig.voiceProvider;
+      payload.voiceId = voiceConfig.voiceId;
+    }
+
+    return payload;
+  };
 
   // ── trigger outbound call ──
   const handleStartCall = async () => {

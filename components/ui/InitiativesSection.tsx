@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import content from "../../data/landing.json";
 import { InitiativeCard } from "../Cards";
 import { IconMap } from "./IconMap";
+import { useAuth } from "../providers/AuthProvider";
 import {
   PERMISSIONS_EXPIRY_STORAGE_KEY,
   PERMISSIONS_STORAGE_KEY,
@@ -32,7 +33,13 @@ function isCardPermissions(value: unknown): value is CardPermissions {
 }
 
 export const InitiativesSection: React.FC = () => {
+  const { permissions: sessionPermissions } = useAuth();
   const [permissions, setPermissions] = useState<CardPermissions>([]);
+
+  const activePermissions =
+    sessionPermissions && sessionPermissions.length > 0
+      ? sessionPermissions
+      : permissions;
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -86,7 +93,7 @@ export const InitiativesSection: React.FC = () => {
               iconType={card.iconType as "purple" | "blue" | "gray"}
               icon={<IconMap name={card.id} className="h-6 w-6" />}
               url={
-                permissions.some(
+                activePermissions.some(
                   (permission) =>
                     permission[card.id] === true &&
                     typeof permission.token === "string" &&
