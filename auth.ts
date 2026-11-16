@@ -91,6 +91,27 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.user.permissions = createCardPermissions(session.user.token);
       return session;
     },
+    redirect({ url, baseUrl }) {
+      const frontendUrl = process.env.FRONTEND_URL?.trim();
+
+      if (!frontendUrl) {
+        return url;
+      }
+
+      const targetUrl = new URL(url, baseUrl);
+      const appOrigin = new URL(baseUrl).origin;
+
+      if (
+        targetUrl.origin === appOrigin &&
+        targetUrl.pathname === "/" &&
+        !targetUrl.search &&
+        !targetUrl.hash
+      ) {
+        return new URL(frontendUrl).toString();
+      }
+
+      return url;
+    },
   },
   providers: [
     Credentials({

@@ -9,5 +9,7 @@ services:
     ports:
       - "4030:3000"
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production

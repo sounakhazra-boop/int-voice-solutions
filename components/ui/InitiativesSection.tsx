@@ -33,15 +33,20 @@ function isCardPermissions(value: unknown): value is CardPermissions {
 }
 
 export const InitiativesSection: React.FC = () => {
-  const { permissions: sessionPermissions } = useAuth();
+  const { permissions: sessionPermissions, isAuthenticated } = useAuth();
   const [permissions, setPermissions] = useState<CardPermissions>([]);
 
-  const activePermissions =
-    sessionPermissions && sessionPermissions.length > 0
+  const activePermissions = isAuthenticated
+    ? sessionPermissions.length > 0
       ? sessionPermissions
-      : permissions;
+      : permissions
+    : [];
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
     const timeoutId = window.setTimeout(() => {
       const expiresAt = Number(
         localStorage.getItem(PERMISSIONS_EXPIRY_STORAGE_KEY),
@@ -69,7 +74,7 @@ export const InitiativesSection: React.FC = () => {
     }, 0);
 
     return () => window.clearTimeout(timeoutId);
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <section id="solutions" className="section section-light my-3 sm:my-5">
