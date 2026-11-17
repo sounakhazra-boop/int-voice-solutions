@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 className="site-nav-item"
-                onClick={() => signOut({ callbackUrl: "/" })}
+                onClick={() => signOut({ redirectTo: "/" })}
                 title={user?.email ?? undefined}
               >
                 Sign out
@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   className="site-nav-item mt-1 w-full justify-center"
-                  onClick={() => signOut({ callbackUrl: "/" })}
+                  onClick={() => signOut({ redirectTo: "/" })}
                 >
                   Sign out
                 </button>
