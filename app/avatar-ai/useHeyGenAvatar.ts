@@ -21,10 +21,29 @@ function formatErrorDetails(error: unknown) {
   return error instanceof Error ? error.message : String(error);
 }
 
+function getRecord(value: unknown): Record<string, unknown> | undefined {
+  return typeof value === "object" && value !== null
+    ? (value as Record<string, unknown>)
+    : undefined;
+}
+
+function getString(value: unknown, key: string): string | undefined {
+  const record = getRecord(value);
+  return typeof record?.[key] === "string" ? record[key] : undefined;
+}
+
+function isNoCreditsError(error: unknown): boolean {
+  return error instanceof Error && /no credits available/i.test(error.message);
+}
+
 export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sessionRef = useRef<LiveAvatarSession | null>(null);
   const startingRef = useRef(false);
+  const startSessionRef = useRef<() => Promise<void>>(() => Promise.resolve());
+  const retryingRef = useRef(false);
+  const retryAttemptsRef = useRef(0);
+  const keyCountRef = useRef(1);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSentRef = useRef({ text: "", time: 0 });
 
@@ -47,6 +66,13 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
 
   const startSession = useCallback(async () => {
     if (startingRef.current || sessionRef.current) return;
+    const isRetry = retryingRef.current;
+    retryingRef.current = false;
+    if (!isRetry) {
+      retryAttemptsRef.current = 0;
+      keyCountRef.current = 1;
+    }
+
     startingRef.current = true;
     setIsLoading(true);
     setIsMuted(true);
@@ -71,12 +97,18 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       }
 
       const session_token = body?.session_token;
+      const configuredKeyCount = Number(
+        res.headers.get("X-LiveAvatar-Key-Count"),
+      );
+      if (Number.isInteger(configuredKeyCount) && configuredKeyCount > 0) {
+        keyCountRef.current = configuredKeyCount;
+      }
+
       if (!res.ok || !session_token) {
         const exactMessage =
           body?.error ||
-          (body?.details &&
-            typeof body.details === "object" &&
-            ((body.details as any)?.message || (body.details as any)?.error)) ||
+          getString(body.details, "message") ||
+          getString(body.details, "error") ||
           `Token request failed with status ${res.status}`;
 
         const details =
@@ -87,8 +119,7 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
               : undefined;
 
         const customErr = new Error(exactMessage);
-        (customErr as any).details = details;
-        throw customErr;
+        throw Object.assign(customErr, { details });
       }
 
       const session = new LiveAvatarSession(session_token, {
@@ -129,8 +160,9 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
 
       let latestTranscript = "";
 
-      session.on(SessionEvent.SESSION_DISCONNECTED, (reason: any) => {
+      session.on(SessionEvent.SESSION_DISCONNECTED, (reason) => {
         console.info("[Session] disconnected", reason);
+        const reasonRecord = getRecord(reason);
         if (reason && reason !== SessionDisconnectReason.CLIENT_INITIATED) {
           let reasonMsg = "Avatar session disconnected by server.";
           let detailsText: string | undefined = undefined;
@@ -143,11 +175,11 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
             } else {
               reasonMsg = reason;
             }
-          } else if (typeof reason === "object" && reason !== null) {
+          } else if (reasonRecord) {
             reasonMsg =
-              reason.message ||
-              reason.error ||
-              reason.reason ||
+              getString(reasonRecord, "message") ||
+              getString(reasonRecord, "error") ||
+              getString(reasonRecord, "reason") ||
               "Avatar session disconnected.";
             detailsText = JSON.stringify(reason, null, 2);
           }
@@ -169,8 +201,8 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       });
 
       // ---- speech: debounce & overwrite instead of appending ----
-      session.on(AgentEventsEnum.USER_TRANSCRIPTION, (data: any) => {
-        const text = (data?.text || "").trim();
+      session.on(AgentEventsEnum.USER_TRANSCRIPTION, (data) => {
+        const text = data.text.trim();
         if (!text) return;
 
         if (!manualReply) {
@@ -226,84 +258,106 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       Object.values(AgentEventsEnum).forEach((evt) => {
         if (evt === AgentEventsEnum.USER_TRANSCRIPTION) return;
 
-        session.on(evt as any, (data: any) => {
-          const eventName = String(evt).toLowerCase();
+        session.on(
+          evt as never,
+          ((data: unknown) => {
+            const eventName = String(evt).toLowerCase();
+            const dataRecord = getRecord(data);
 
-          // Catch server stop events
-          if (evt === AgentEventsEnum.SESSION_STOPPED) {
-            console.warn("[Avatar session stopped by server]:", data);
-            const stopReason =
-              data?.stop_reason ||
-              data?.message ||
-              "Session was stopped by the avatar server.";
-            setConnectionError({
-              message: stopReason,
-              details: data ? JSON.stringify(data, null, 2) : undefined,
-            });
-            return;
-          }
-
-          // Catch agent errors
-          if (evt === AgentEventsEnum.ELEVENLABS_AGENT_EVENT) {
-            if (
-              data?.elevenlabs_event_type === "error" ||
-              data?.elevenlabs_event_type === "agent_error" ||
-              data?.data?.is_error
-            ) {
-              console.error("[Avatar Agent Error]:", data);
-              const agentErrMsg =
-                data?.data?.message ||
-                data?.data?.error ||
-                data?.data?.description ||
-                "Error encountered in the avatar voice agent.";
+            // Catch server stop events
+            if (evt === AgentEventsEnum.SESSION_STOPPED) {
+              console.warn("[Avatar session stopped by server]:", data);
+              const stopReason =
+                getString(dataRecord, "stop_reason") ||
+                getString(dataRecord, "message") ||
+                "Session was stopped by the avatar server.";
               setConnectionError({
-                message: agentErrMsg,
-                details: JSON.stringify(data, null, 2),
+                message: stopReason,
+                details: data ? JSON.stringify(data, null, 2) : undefined,
               });
               return;
             }
-          }
 
-          // Filter out interim lip-sync chunks so text doesn't print word-by-word
-          if (
-            eventName.includes("chunk") ||
-            eventName.includes("interim") ||
-            eventName.includes("partial")
-          ) {
-            return;
-          }
+            // Catch agent errors
+            if (evt === AgentEventsEnum.ELEVENLABS_AGENT_EVENT) {
+              if (
+                getString(dataRecord, "elevenlabs_event_type") === "error" ||
+                getString(dataRecord, "elevenlabs_event_type") ===
+                  "agent_error" ||
+                getRecord(dataRecord?.data)?.is_error
+              ) {
+                console.error("[Avatar Agent Error]:", data);
+                const agentData = getRecord(dataRecord?.data);
+                const agentErrMsg =
+                  getString(agentData, "message") ||
+                  getString(agentData, "error") ||
+                  getString(agentData, "description") ||
+                  "Error encountered in the avatar voice agent.";
+                setConnectionError({
+                  message: agentErrMsg,
+                  details: JSON.stringify(data, null, 2),
+                });
+                return;
+              }
+            }
 
-          console.log("[EVENT]", evt, data);
+            // Filter out interim lip-sync chunks so text doesn't print word-by-word
+            if (
+              eventName.includes("chunk") ||
+              eventName.includes("interim") ||
+              eventName.includes("partial")
+            ) {
+              return;
+            }
 
-          // Only log the final finalized avatar speech
-          if (
-            eventName.startsWith("avatar") &&
-            typeof data?.text === "string"
-          ) {
-            addLine("avatar", data.text);
-          }
-        });
+            console.log("[EVENT]", evt, data);
+
+            // Only log the final finalized avatar speech
+            if (
+              eventName.startsWith("avatar") &&
+              typeof dataRecord?.text === "string"
+            ) {
+              addLine("avatar", dataRecord.text);
+            }
+          }) as never,
+        );
       });
 
       await session.start();
       console.info("[Session] started");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("[Session] failed to start", error);
       sessionRef.current = null;
+      const errorRecord = getRecord(error);
 
       const exactMessage =
-        error?.message ||
+        getString(errorRecord, "message") ||
         (typeof error === "string" ? error : "Avatar connection failed.");
 
+      if (
+        isNoCreditsError(error) &&
+        retryAttemptsRef.current + 1 < keyCountRef.current
+      ) {
+        retryAttemptsRef.current += 1;
+        retryingRef.current = true;
+        setConnectionError(null);
+        setIsLoading(true);
+        setTimeout(() => {
+          void startSessionRef.current();
+        }, 0);
+        return;
+      }
+
+      retryAttemptsRef.current = 0;
       let detailsText: string | undefined = undefined;
-      if (error?.details) {
+      if (errorRecord?.details) {
         detailsText =
-          typeof error.details === "string"
-            ? error.details
-            : JSON.stringify(error.details, null, 2);
-      } else if (error?.errorCode || error?.code) {
-        detailsText = `Code: ${error.errorCode || error.code}${error.status ? ` | Status: ${error.status}` : ""}`;
-      } else if (error?.stack && error.stack !== exactMessage) {
+          typeof errorRecord.details === "string"
+            ? errorRecord.details
+            : JSON.stringify(errorRecord.details, null, 2);
+      } else if (errorRecord?.errorCode || errorRecord?.code) {
+        detailsText = `Code: ${String(errorRecord.errorCode || errorRecord.code)}${errorRecord.status ? ` | Status: ${String(errorRecord.status)}` : ""}`;
+      } else if (errorRecord?.stack && errorRecord.stack !== exactMessage) {
         detailsText = formatErrorDetails(error);
       }
 
@@ -316,6 +370,10 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       startingRef.current = false;
     }
   }, [addLine, manualReply]);
+
+  useEffect(() => {
+    startSessionRef.current = startSession;
+  }, [startSession]);
 
   const toggleMic = useCallback(async () => {
     const vc = sessionRef.current?.voiceChat;

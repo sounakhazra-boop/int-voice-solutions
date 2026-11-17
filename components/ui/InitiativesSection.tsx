@@ -97,6 +97,10 @@ export const InitiativesSection: React.FC = () => {
               tag={card.tag}
               iconType={card.iconType as "purple" | "blue" | "gray"}
               icon={<IconMap name={card.id} className="h-6 w-6" />}
+              referanceUrl={card.referenceUrl}
+              referanceImage={card.referenceImage}
+              demoType={card.demoType}
+              demoLinks={card.demoLinks}
               url={
                 activePermissions.some(
                   (permission) =>
