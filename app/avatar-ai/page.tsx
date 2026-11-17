@@ -165,7 +165,7 @@ export default function AvatarAI() {
                   onClick={() => startSession()}
                   className="px-8 py-4 bg-white text-black text-sm font-medium rounded-full hover:scale-105 hover:bg-slate-200 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
-                  Connect Avatar
+                  Start Session
                 </button>
               )}
             </div>

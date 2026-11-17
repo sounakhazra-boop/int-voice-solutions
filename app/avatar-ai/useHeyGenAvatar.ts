@@ -163,32 +163,40 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       session.on(SessionEvent.SESSION_DISCONNECTED, (reason) => {
         console.info("[Session] disconnected", reason);
         const reasonRecord = getRecord(reason);
-        if (reason && reason !== SessionDisconnectReason.CLIENT_INITIATED) {
-          let reasonMsg = "Avatar session disconnected by server.";
-          let detailsText: string | undefined = undefined;
 
-          if (typeof reason === "string") {
-            if (reason === SessionDisconnectReason.SESSION_START_FAILED) {
-              reasonMsg = "Avatar session start failed on the server.";
-            } else if (reason === SessionDisconnectReason.SERVER_INITIATED) {
-              reasonMsg = "Session was terminated by the avatar server.";
-            } else {
-              reasonMsg = reason;
-            }
-          } else if (reasonRecord) {
-            reasonMsg =
-              getString(reasonRecord, "message") ||
-              getString(reasonRecord, "error") ||
-              getString(reasonRecord, "reason") ||
-              "Avatar session disconnected.";
-            detailsText = JSON.stringify(reason, null, 2);
-          }
-
-          setConnectionError({
-            message: reasonMsg,
-            details: detailsText,
-          });
+        // Stop video/audio stream cleanly
+        if (videoRef.current) {
+          videoRef.current.srcObject = null;
         }
+
+        // Only display an error if the session explicitly failed to start
+        if (reason === SessionDisconnectReason.SESSION_START_FAILED) {
+          setConnectionError({
+            message: "Avatar session start failed on the server.",
+          });
+        } else if (
+          reason &&
+          reason !== SessionDisconnectReason.CLIENT_INITIATED &&
+          reason !== SessionDisconnectReason.SERVER_INITIATED
+        ) {
+          const reasonMsg =
+            getString(reasonRecord, "message") ||
+            getString(reasonRecord, "error") ||
+            getString(reasonRecord, "reason");
+
+          if (reasonMsg) {
+            setConnectionError({
+              message: reasonMsg,
+              details: JSON.stringify(reason, null, 2),
+            });
+          } else {
+            setConnectionError(null);
+          }
+        } else {
+          // Normal stop, idle timeout, or server-initiated closure: return cleanly to landing state
+          setConnectionError(null);
+        }
+
         if (timerRef.current) {
           clearTimeout(timerRef.current);
           timerRef.current = null;
@@ -264,17 +272,13 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
             const eventName = String(evt).toLowerCase();
             const dataRecord = getRecord(data);
 
-            // Catch server stop events
+            // Catch server stop events (e.g. idle timeout, max duration reached)
             if (evt === AgentEventsEnum.SESSION_STOPPED) {
-              console.warn("[Avatar session stopped by server]:", data);
-              const stopReason =
-                getString(dataRecord, "stop_reason") ||
-                getString(dataRecord, "message") ||
-                "Session was stopped by the avatar server.";
-              setConnectionError({
-                message: stopReason,
-                details: data ? JSON.stringify(data, null, 2) : undefined,
-              });
+              console.info("[Avatar session stopped by server]:", data);
+              if (videoRef.current) {
+                videoRef.current.srcObject = null;
+              }
+              setConnectionError(null);
               return;
             }
 
@@ -409,8 +413,12 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
     }
     const session = sessionRef.current;
     sessionRef.current = null;
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
     setIsReady(false);
     setIsMuted(true);
+    setConnectionError(null);
     try {
       await session?.stop();
     } catch (error) {
@@ -423,6 +431,9 @@ export function useHeyGenAvatar({ manualReply = true }: Options = {}) {
       if (timerRef.current) clearTimeout(timerRef.current);
       const session = sessionRef.current;
       sessionRef.current = null;
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
+      }
       session?.stop().catch(() => {});
     };
   }, []);

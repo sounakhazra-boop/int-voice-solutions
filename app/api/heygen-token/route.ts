@@ -67,6 +67,10 @@ export async function POST() {
             context_id: process.env.LIVEAVATAR_CONTEXT_ID,
             language: "en",
           },
+          video_settings: {
+            quality: "medium",
+            encoding: "H264",
+          },
         }),
       });
 
