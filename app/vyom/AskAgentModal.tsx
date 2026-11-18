@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * AskAgentModal.tsx — the floating robot button + agent-select + LiveKit call modal.
  *
@@ -21,7 +23,7 @@ import {
   RoomAudioRenderer,
   VoiceAssistantControlBar,
 } from "@livekit/components-react";
-import { Bot, X, Mic, MicOff, Loader2 } from "lucide-react";
+import { Bot, X, Mic, MicOff } from "lucide-react";
 import {
   fetchAssistants,
   getWebCallToken,
@@ -37,27 +39,53 @@ type Step = "select" | "connecting" | "active";
 // ---------------------------------------------------------------------------
 // AskAgentModal — the full popup card
 // ---------------------------------------------------------------------------
-const AskAgentModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
+interface AskAgentModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  initialAssistantId?: string;
+  initialAssistantName?: string;
+}
+
+const AskAgentModal: React.FC<AskAgentModalProps> = ({
   isOpen,
   onClose,
+  initialAssistantId,
+  initialAssistantName,
 }) => {
   const [step, setStep] = useState<Step>("select");
   const [assistants, setAssistants] = useState<Assistant[]>([]);
   const [loadingAgents, setLoadingAgents] = useState(false);
-  const [selectedId, setSelectedId] = useState("");
-  const [selectedName, setSelectedName] = useState("");
+  const [selectedId, setSelectedId] = useState(initialAssistantId || "");
+  const [selectedName, setSelectedName] = useState(initialAssistantName || "");
   const [liveKitToken, setLiveKitToken] = useState("");
   const [error, setError] = useState("");
 
   // Load assistant list when modal opens
   useEffect(() => {
     if (!isOpen) return;
-    setLoadingAgents(true);
+    if (initialAssistantId) {
+      return;
+    }
+
     fetchAssistants()
-      .then(setAssistants)
-      .catch((e) => setError(e.message))
+      .then((list) => {
+        setAssistants(list);
+        const initialAssistant = list.find(
+          (assistant) => assistant.assistant_id === initialAssistantId,
+        );
+
+        if (initialAssistant) {
+          setSelectedId(initialAssistant.assistant_id);
+          setSelectedName(initialAssistant.assistant_name);
+        }
+      })
+      .catch((error: unknown) => {
+        setError(
+          error instanceof Error ? error.message : "Failed to load agents",
+        );
+      })
       .finally(() => setLoadingAgents(false));
-  }, [isOpen]);
+  }, [initialAssistantId, initialAssistantName, isOpen]);
 
   const handleStartCall = async () => {
     if (!selectedId) return;
@@ -67,8 +95,10 @@ const AskAgentModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
       const token = await getWebCallToken(selectedId);
       setLiveKitToken(token);
       setStep("active");
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(
+        error instanceof Error ? error.message : "Token generation failed",
+      );
       setStep("select");
     }
   };
@@ -76,8 +106,8 @@ const AskAgentModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   const handleDisconnect = () => {
     setLiveKitToken("");
     setStep("select");
-    setSelectedId("");
-    setSelectedName("");
+    setSelectedId(initialAssistantId || "");
+    setSelectedName(initialAssistantName || "");
   };
 
   const handleClose = () => {
@@ -149,17 +179,22 @@ const AskAgentModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                         ?.assistant_name || "",
                     );
                   }}
-                  disabled={loadingAgents}
+                  disabled={loadingAgents || Boolean(initialAssistantId)}
                   style={styles.select}
                 >
-                  <option value="">
-                    {loadingAgents ? "Loading agents…" : "Select an agent…"}
+                  <option value={initialAssistantId || ""}>
+                    {initialAssistantId
+                      ? selectedName
+                      : loadingAgents
+                        ? "Loading agents…"
+                        : "Select an agent…"}
                   </option>
-                  {assistants.map((a) => (
-                    <option key={a.assistant_id} value={a.assistant_id}>
-                      {a.assistant_name} [{a.assistant_tts_model}]
-                    </option>
-                  ))}
+                  {!initialAssistantId &&
+                    assistants.map((a) => (
+                      <option key={a.assistant_id} value={a.assistant_id}>
+                        {a.assistant_name} [{a.assistant_tts_model}]
+                      </option>
+                    ))}
                 </select>
 
                 {/* Selected agent preview */}
@@ -278,13 +313,26 @@ const AskAgentModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
 // ---------------------------------------------------------------------------
 // RobotFAB — the floating bot button (bottom-right)
 // ---------------------------------------------------------------------------
-export const RobotFAB: React.FC = () => {
+interface RobotFABProps {
+  assistantId?: string;
+  assistantName?: string;
+}
+
+export const RobotFAB: React.FC<RobotFABProps> = ({
+  assistantId,
+  assistantName,
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       {/* Modal */}
-      <AskAgentModal isOpen={open} onClose={() => setOpen(false)} />
+      <AskAgentModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        initialAssistantId={assistantId}
+        initialAssistantName={assistantName}
+      />
 
       {/* Floating button */}
       {!open && (

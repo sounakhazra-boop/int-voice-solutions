@@ -255,7 +255,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
           )}
 
           {/* Demo Links Section */}
-          {normalizedDemoLinks.length > 0 && (
+          {/* {normalizedDemoLinks.length > 0 && (
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-medium text-slate-400">
@@ -295,7 +295,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
                 ))}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>

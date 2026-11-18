@@ -1,0 +1,2805 @@
+{
+  "invoice": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/invoice",
+    "route": "/livekit/invoice",
+    "agent_type": "invoice",
+    "function": "chat-and-voice",
+    "page_title": "Shree Packaging Solutions - Invoice & Accounts Dashboard",
+    "brand_name": "Shree Packaging Solutions",
+    "assistant_id": "b83bafe0-ebdb-43a8-883d-123782382826",
+    "hover_tooltip": "Ask Vyom (Invoice)",
+    "theme": {
+      "primary": "indigo-600",
+      "secondary": "slate-800",
+      "accent": "rose-600",
+      "background": "slate-50",
+      "layout": "dashboard"
+    },
+    "assistant_info": {
+      "name": "Vyom (Invoice Agent)",
+      "assistant_id": "b83bafe0-ebdb-43a8-883d-123782382826",
+      "hover_tooltip": "Ask Vyom (Invoice)",
+      "role": "Billing & Accounts Management Assistant",
+      "description": "Professional billing & accounts management assistant for checking outstanding balances, due dates, credit limits, and invoice clearance.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Receipt",
+      "status_text": "Online • Ready to assist with billing",
+      "suggested_prompts": [
+        "Why is invoice #ITC88 marked overdue?",
+        "What is my remaining credit limit?",
+        "Generate an account statement for December 2025",
+        "Help me clear my overdue balance of ₹1,24,500"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Shree Packaging Solutions",
+        "subtitle": "B2B Accounts & Billing Portal",
+        "logo_icon": "PackageCheck",
+        "user": {
+          "name": "Rahul Sharma",
+          "initials": "RS",
+          "role": "Procurement Head • ITC Packaging Div.",
+          "greeting": "Welcome back, Rahul Sharma"
+        },
+        "notifications": {
+          "unread": true,
+          "count": 2
+        },
+        "nav_links": [
+          { "label": "Home", "icon": "LayoutDashboard", "active": true },
+          { "label": "Orders", "icon": "ShoppingBag", "active": false },
+          { "label": "Invoices", "icon": "FileText", "active": false },
+          { "label": "Pay", "icon": "CreditCard", "active": false },
+          { "label": "Help", "icon": "HelpCircle", "active": false }
+        ]
+      },
+      "alert_banners": [
+        {
+          "id": "alert-itc88",
+          "type": "Payment Overdue",
+          "severity": "CRITICAL",
+          "badge_color": "bg-rose-100 text-rose-700 border-rose-200",
+          "icon": "AlertTriangle",
+          "invoice_id": "#ITC88",
+          "issue_date": "28 Dec 2025",
+          "days_overdue": 9,
+          "amount": "₹ 1,24,500",
+          "message": "Invoice #ITC88 is overdue by 9 days. Clear immediately to avoid credit hold on upcoming corrugated box dispatches.",
+          "cta": {
+            "label": "Pay Now",
+            "variant": "danger",
+            "icon": "ArrowUpRight"
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "id": "total-outstanding",
+          "label": "Total Outstanding",
+          "value": "₹ 1,24,500",
+          "subtext": "Due: 04 Jan 2026",
+          "status": "overdue",
+          "badge_color": "text-rose-600 bg-rose-50",
+          "icon": "AlertCircle"
+        },
+        {
+          "id": "available-credit",
+          "label": "Available Credit",
+          "value": "₹ 4,50,000",
+          "subtext": "Total Limit: ₹ 10,00,000",
+          "status": "active",
+          "badge_color": "text-emerald-600 bg-emerald-50",
+          "icon": "Wallet"
+        },
+        {
+          "id": "last-payment",
+          "label": "Last Payment Received",
+          "value": "₹ 45,200",
+          "subtext": "Cleared on 15 Dec 2025 (#ITC82)",
+          "status": "paid",
+          "badge_color": "text-slate-600 bg-slate-100",
+          "icon": "CheckCircle2"
+        },
+        {
+          "id": "pending-orders",
+          "label": "In-Transit Shipments",
+          "value": "2 Dispatches",
+          "subtext": "Est. Arrival: 14 Jan 2026",
+          "status": "in_transit",
+          "badge_color": "text-blue-600 bg-blue-50",
+          "icon": "Truck"
+        }
+      ],
+      "quick_actions": [
+        {
+          "id": "new-order",
+          "label": "New Order",
+          "icon": "PlusCircle",
+          "color": "blue",
+          "description": "Place bulk packaging order"
+        },
+        {
+          "id": "invoices",
+          "label": "All Invoices",
+          "icon": "FileSpreadsheet",
+          "color": "indigo",
+          "description": "Download GST tax invoices"
+        },
+        {
+          "id": "pay-now",
+          "label": "Pay Now",
+          "icon": "IndianRupee",
+          "color": "emerald",
+          "description": "Settle via NEFT / RTGS / UPI"
+        },
+        {
+          "id": "credit-note",
+          "label": "Credit Notes",
+          "icon": "FileCheck2",
+          "color": "amber",
+          "description": "View adjustments & rebates"
+        },
+        {
+          "id": "support",
+          "label": "Support",
+          "icon": "Headphones",
+          "color": "violet",
+          "description": "Raise billing dispute"
+        }
+      ],
+      "recent_invoices": [
+        {
+          "id": "ITC88",
+          "po_number": "PO-2025-991",
+          "description": "5-Ply Corrugated Master Cartons (12,000 Units)",
+          "date": "28 Dec 2025",
+          "due_date": "04 Jan 2026",
+          "amount": "₹ 1,24,500",
+          "gst_amount": "₹ 22,410",
+          "status": "Overdue",
+          "status_badge": "bg-rose-100 text-rose-700",
+          "download_url": "#download-ITC88"
+        },
+        {
+          "id": "ITC82",
+          "po_number": "PO-2025-845",
+          "description": "Printed Mono Cartons - Food Grade (8,500 Units)",
+          "date": "15 Dec 2025",
+          "due_date": "22 Dec 2025",
+          "amount": "₹ 45,200",
+          "gst_amount": "₹ 8,136",
+          "status": "Paid",
+          "status_badge": "bg-emerald-100 text-emerald-700",
+          "download_url": "#download-ITC82"
+        },
+        {
+          "id": "ITC75",
+          "po_number": "PO-2025-790",
+          "description": "BOPP Laminated Packaging Rolls (450 Kg)",
+          "date": "01 Dec 2025",
+          "due_date": "08 Dec 2025",
+          "amount": "₹ 82,100",
+          "gst_amount": "₹ 14,778",
+          "status": "Paid",
+          "status_badge": "bg-emerald-100 text-emerald-700",
+          "download_url": "#download-ITC75"
+        },
+        {
+          "id": "ITC69",
+          "po_number": "PO-2025-712",
+          "description": "Die-Cut Partition Inserts & Stretch Film",
+          "date": "18 Nov 2025",
+          "due_date": "25 Nov 2025",
+          "amount": "₹ 63,800",
+          "gst_amount": "₹ 11,484",
+          "status": "Paid",
+          "status_badge": "bg-emerald-100 text-emerald-700",
+          "download_url": "#download-ITC69"
+        }
+      ],
+      "widget": {
+        "title": "Vyom Billing Assistant",
+        "greeting": "Hi Rahul! Need help clearing Invoice #ITC88 or checking your credit ledger?",
+        "cta_primary": "Start Voice Call",
+        "cta_secondary": "Open Chat",
+        "modes": ["voice", "chat"]
+      }
+    }
+  },
+  "bank": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/bank",
+    "route": "/livekit/bank",
+    "agent_type": "bank",
+    "function": "chat-and-voice",
+    "page_title": "Lakshmi Bank (लक्ष्मी बैंक) - Personal Banking & Wealth Management",
+    "brand_name": "Lakshmi Bank (लक्ष्मी बैंक)",
+    "assistant_id": "bd02e83c-95af-450b-a19a-3e00f0900695",
+    "hover_tooltip": "Ask Vyom",
+    "theme": {
+      "primary": "amber-600",
+      "secondary": "slate-900",
+      "accent": "emerald-600",
+      "background": "amber-50/30",
+      "layout": "banking-dashboard"
+    },
+    "assistant_info": {
+      "name": "Vyom (Wealth Advisor)",
+      "assistant_id": "bd02e83c-95af-450b-a19a-3e00f0900695",
+      "hover_tooltip": "Ask Vyom",
+      "role": "Wealth Advisor & Financial Consultant",
+      "description": "Check balances, recent transactions, utility bills, and receive secure financial advice.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Landmark",
+      "status_text": "256-Bit Encrypted Wealth Session",
+      "suggested_prompts": [
+        "Pay my upcoming CESC Electricity Bill of ₹1,840",
+        "What is my spending breakdown for December?",
+        "Compare Gold Loan at 8.5% vs Personal Loan",
+        "Open a tax-saver Fixed Deposit of ₹20,000"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "लक्ष्मी बैंक (Laxmi Bank)",
+        "badge": "VYOM ASSISTANT",
+        "logo_icon": "Landmark",
+        "user": {
+          "name": "Priya Sharma",
+          "initials": "PS",
+          "account_summary": "Savings ...3812",
+          "greeting": "Hello, Priya! 👋",
+          "date_overview": "Jan 2, 2026 • Personal Wealth Overview"
+        },
+        "notifications": { "unread": true, "count": 1 },
+        "help_support": true,
+        "sidebar_nav": [
+          { "label": "Dashboard", "icon": "LayoutGrid", "active": true },
+          { "label": "Accounts", "icon": "Wallet", "active": false },
+          { "label": "Cards", "icon": "CreditCard", "active": false },
+          { "label": "Transfers", "icon": "ArrowLeftRight", "active": false },
+          { "label": "Investments", "icon": "TrendingUp", "active": false },
+          { "label": "Bill Pay", "icon": "Receipt", "active": false }
+        ]
+      },
+      "accounts": [
+        {
+          "id": "sav-3812",
+          "account_name": "Privilege Savings Account",
+          "account_number": "XX3812",
+          "ifsc": "LAXM0000142",
+          "available_balance": "₹ 42,650.75",
+          "ledger_balance": "₹ 43,210.75",
+          "interest_rate": "4.25% p.a.",
+          "actions": [
+            { "label": "Send Money", "icon": "Send", "variant": "primary" },
+            { "label": "View History", "icon": "History", "variant": "outline" }
+          ]
+        },
+        {
+          "id": "fd-9041",
+          "account_name": "Active Fixed Deposit",
+          "account_number": "FD-XX9041",
+          "available_balance": "₹ 1,50,000.00",
+          "maturity_value": "₹ 1,61,450.00",
+          "maturity_date": "14 Aug 2026",
+          "interest_rate": "7.60% p.a.",
+          "actions": [
+            { "label": "Manage FD", "icon": "PieChart", "variant": "secondary" }
+          ]
+        }
+      ],
+      "quick_actions": [
+        {
+          "id": "transfer",
+          "label": "Transfer",
+          "icon": "IndianRupee",
+          "color": "amber"
+        },
+        {
+          "id": "pay-bills",
+          "label": "Pay Bills",
+          "icon": "Receipt",
+          "color": "blue"
+        },
+        {
+          "id": "recharge",
+          "label": "Recharge",
+          "icon": "Smartphone",
+          "color": "emerald"
+        },
+        {
+          "id": "dcb-card",
+          "label": "Debit Card",
+          "icon": "CreditCard",
+          "color": "violet"
+        },
+        {
+          "id": "fds",
+          "label": "Book FD",
+          "icon": "PieChart",
+          "color": "indigo"
+        },
+        { "id": "loans", "label": "Loans", "icon": "Home", "color": "rose" }
+      ],
+      "recent_activity": [
+        {
+          "id": "txn-1",
+          "title": "Electricity Bill (CESC)",
+          "amount": "₹ 1,840",
+          "subtitle": "Consumer: XX7712",
+          "date": "Due Jan 10",
+          "category": "Utility Bill",
+          "icon": "Zap",
+          "is_debit": false,
+          "is_bill": true,
+          "status_badge": "bg-amber-100 text-amber-800",
+          "cta_label": "Pay Bill"
+        },
+        {
+          "id": "txn-2",
+          "title": "Swiggy",
+          "amount": "- ₹ 487",
+          "subtitle": "Food & Dining • UPI",
+          "date": "Jan 1, 8:42 PM",
+          "category": "Dining",
+          "icon": "Utensils",
+          "is_debit": true,
+          "is_bill": false,
+          "status_badge": "bg-slate-100 text-slate-700"
+        },
+        {
+          "id": "txn-3",
+          "title": "Amazon India",
+          "amount": "- ₹ 2,349",
+          "subtitle": "Shopping • Debit Card XX4410",
+          "date": "Dec 29",
+          "category": "Shopping",
+          "icon": "ShoppingBag",
+          "is_debit": true,
+          "is_bill": false,
+          "status_badge": "bg-slate-100 text-slate-700"
+        },
+        {
+          "id": "txn-4",
+          "title": "Jio Fiber",
+          "amount": "- ₹ 1,179",
+          "subtitle": "Broadband Bill Payment",
+          "date": "Dec 28",
+          "category": "Utilities",
+          "icon": "Wifi",
+          "is_debit": true,
+          "is_bill": false,
+          "status_badge": "bg-slate-100 text-slate-700"
+        },
+        {
+          "id": "txn-5",
+          "title": "Salary Credit - TechCorp India",
+          "amount": "+ ₹ 68,500",
+          "subtitle": "NEFT Inward Credit",
+          "date": "Dec 27",
+          "category": "Income",
+          "icon": "ArrowDownLeft",
+          "is_debit": false,
+          "is_bill": false,
+          "status_badge": "bg-emerald-100 text-emerald-700"
+        }
+      ],
+      "promotions": [
+        {
+          "id": "promo-gold",
+          "title": "Gold Loan @ 8.5% p.a.",
+          "description": "Instant approval in seconds with zero foreclosure charges.",
+          "badge": "Pre-Approved",
+          "icon": "Sparkles",
+          "cta": "Apply Now"
+        },
+        {
+          "id": "promo-sip",
+          "title": "Tax-Saver ELSS SIP",
+          "description": "Save up to ₹46,800 in taxes under Section 80C.",
+          "badge": "Wealth Pick",
+          "icon": "TrendingUp",
+          "cta": "Explore Funds"
+        }
+      ]
+    }
+  },
+  "tour": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/tour",
+    "route": "/livekit/tour",
+    "agent_type": "tour",
+    "function": "chat-and-voice",
+    "page_title": "Jharkhand Tourism - Nature, Culture, Discovery",
+    "brand_name": "Jharkhand Tourism",
+    "assistant_id": "43cedf45-e778-486a-9544-9e69dc96b469",
+    "hover_tooltip": "Speak with Pratiksha",
+    "theme": {
+      "primary": "emerald-700",
+      "secondary": "amber-600",
+      "accent": "teal-500",
+      "background": "stone-50",
+      "layout": "destination-landing"
+    },
+    "assistant_info": {
+      "name": "Pratiksha (Tour Concierge)",
+      "assistant_id": "43cedf45-e778-486a-9544-9e69dc96b469",
+      "hover_tooltip": "Speak with Pratiksha",
+      "role": "Bespoke Travel Planning & Tour Concierge",
+      "description": "Provides customized travel guidance, hotel recommendations, itinerary planning, and local cultural insights across Jharkhand.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Compass",
+      "status_text": "Jharkhand Tourism Official AI Concierge",
+      "suggested_prompts": [
+        "Plan a 3-day Ranchi & Netarhat waterfall itinerary",
+        "Recommend JTDC eco-resorts near Betla National Park",
+        "When is the best time to visit Hundru and Dassam Falls?",
+        "Tell me about Sohrai tribal art and Deoghar temple timings"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Jharkhand Tourism",
+        "tagline": "The Land of Forests",
+        "weather": {
+          "location": "Ranchi",
+          "temperature": "27°C",
+          "condition": "Cloudy",
+          "icon": "CloudSun"
+        },
+        "nav_links": [
+          { "label": "Explore", "href": "#explore" },
+          { "label": "Destinations", "href": "#destinations" },
+          { "label": "Book Hotel", "href": "#hotels" },
+          { "label": "Tribal Heritage", "href": "#culture" }
+        ],
+        "actions": [
+          { "label": "Trip Planner", "icon": "Map", "variant": "primary" },
+          { "label": "Language: EN", "icon": "Globe", "variant": "ghost" }
+        ]
+      },
+      "hero": {
+        "badge": "WELCOME TO INDIA'S GREEN HEARTLAND",
+        "headline": "NATURE, CULTURE, DISCOVERY",
+        "description": "Discover mist-covered plateaus, thundering waterfalls, wildlife sanctuaries, and living tribal traditions across Jharkhand.",
+        "ctas": [
+          {
+            "label": "Plan Your Trip",
+            "icon": "Compass",
+            "variant": "primary"
+          },
+          {
+            "label": "Download Brochure",
+            "icon": "Download",
+            "variant": "secondary"
+          }
+        ]
+      },
+      "featured_destinations": [
+        {
+          "id": "hundru-falls",
+          "name": "Hundru & Dassam Falls",
+          "region": "Ranchi Plateau",
+          "category": "Waterfalls & Nature",
+          "rating": "4.8",
+          "best_season": "Jul – Feb",
+          "highlight": "320-foot cascading drop on the Subarnarekha River"
+        },
+        {
+          "id": "netarhat",
+          "name": "Netarhat Hill Station",
+          "region": "Latehar District",
+          "category": "Hill Station",
+          "rating": "4.9",
+          "best_season": "Oct – Mar",
+          "highlight": "Known as the 'Queen of Chotanagpur' for Magnolia Point sunsets"
+        },
+        {
+          "id": "betla-national-park",
+          "name": "Betla National Park",
+          "region": "Palamu",
+          "category": "Wildlife & Safari",
+          "rating": "4.7",
+          "best_season": "Nov – Apr",
+          "highlight": "Tiger reserve, wild elephants, and 16th-century Palamu Forts"
+        },
+        {
+          "id": "baidyanath-dham",
+          "name": "Baba Baidyanath Dham",
+          "region": "Deoghar",
+          "category": "Spiritual Heritage",
+          "rating": "4.9",
+          "best_season": "All Year",
+          "highlight": "One of the twelve sacred Jyotirlingas in India"
+        }
+      ],
+      "officials": [
+        {
+          "name": "Shri Hemant Soren",
+          "title": "Hon'ble Chief Minister",
+          "org": "Govt. of Jharkhand"
+        },
+        {
+          "name": "Shri Sudivya Kumar",
+          "title": "Hon'ble Minister (Tourism)",
+          "org": "Dept. of Tourism"
+        },
+        {
+          "name": "Shri Manoj Kumar",
+          "title": "Principal Secretary (Tourism)",
+          "org": "Govt. of Jharkhand"
+        },
+        {
+          "name": "Shri Prem Ranjan",
+          "title": "Managing Director, JTDC",
+          "org": "Jharkhand Tourism Dev. Corp."
+        }
+      ],
+      "standby_dialog": {
+        "header": "Pratiksha is ready to help!",
+        "greeting": "Johar & Hello there! 👋",
+        "subtext": "Start a voice or chat session to build your custom Jharkhand itinerary or book JTDC stays.",
+        "cta": "Start Conversation"
+      },
+      "social_links": [
+        { "platform": "Facebook", "icon": "Facebook", "url": "#facebook" },
+        { "platform": "Twitter", "icon": "Twitter", "url": "#twitter" },
+        { "platform": "Instagram", "icon": "Instagram", "url": "#instagram" },
+        { "platform": "YouTube", "icon": "Youtube", "url": "#youtube" }
+      ]
+    }
+  },
+  "bandhan_banking": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/bandhan_banking",
+    "route": "/livekit/bandhan_banking",
+    "agent_type": "bandhan_banking",
+    "function": "chat-and-voice",
+    "page_title": "Bandhan Bank - Digital Banking & Savings Portal",
+    "brand_name": "Bandhan Bank",
+    "assistant_id": "fa598b51-25a5-406e-8e69-7c7ae17d687f",
+    "hover_tooltip": "Ask Bandhan Assistant",
+    "theme": {
+      "primary": "red-700",
+      "secondary": "blue-950",
+      "accent": "amber-500",
+      "background": "slate-50",
+      "layout": "enterprise-banking-portal"
+    },
+    "assistant_info": {
+      "name": "Bandhan Assistant (Bandhan Elite)",
+      "assistant_id": "fa598b51-25a5-406e-8e69-7c7ae17d687f",
+      "hover_tooltip": "Ask Bandhan Assistant",
+      "role": "Bandhan Elite Banking Assistant",
+      "description": "Exclusive premium banking experience supporting real-time voice and text chat sessions for accounts, cards, and customer queries.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "ShieldCheck",
+      "status_text": "Bandhan Elite Concierge • 24x7 Priority Desk",
+      "suggested_prompts": [
+        "What are the benefits of the Bandhan Elite Savings Account?",
+        "Tell me about Airport Lounge access on the World Elite Card",
+        "What are the current Fixed Deposit interest rates for senior citizens?",
+        "How do I open a 100% digital savings account with Video KYC?"
+      ]
+    },
+    "ui": {
+      "utility_bar": {
+        "skip_link": "Skip to Main Content",
+        "font_controls": ["A-", "A", "A+"],
+        "contrast_modes": ["dark", "light"],
+        "helpline": "1800-258-8181"
+      },
+      "header": {
+        "brand": "Bandhan Bank",
+        "tagline": "Aapka Bhala, Sabki Bhalai",
+        "nav_links": [
+          { "label": "Home", "active": true },
+          { "label": "Personal", "active": false },
+          { "label": "Business", "active": false },
+          { "label": "NRI", "active": false },
+          { "label": "Rewards", "active": false }
+        ],
+        "actions": [
+          { "label": "Search", "icon": "Search" },
+          { "label": "ATM/Branch Locator", "icon": "MapPin" },
+          { "label": "Reach Us", "icon": "PhoneCall" },
+          { "label": "Pay", "icon": "QrCode" },
+          { "label": "Login", "icon": "Lock", "variant": "primary" }
+        ]
+      },
+      "hero": {
+        "headline": "Start banking with us!",
+        "subheadline": "Open a Zero-Hassle Digital Savings Account in 4 minutes via Video KYC.",
+        "cta": "Open Now",
+        "trust_indicator": "Fast, Secure & 100% Digital Process",
+        "highlights": [
+          "Up to 7.00% p.a. interest on Savings balance",
+          "Unlimited free NEFT, RTGS & IMPS transactions",
+          "Dedicated Relationship Manager for Elite members"
+        ]
+      },
+      "card_showcase": {
+        "card_type": "Bandhan Bank World Elite Premium Card",
+        "card_number": "4520 •••• •••• 8842",
+        "card_holder": "VALUED CUSTOMER",
+        "expiry": "09/29",
+        "network": "World Elite Mastercard / Visa Infinite",
+        "perks": [
+          "Complimentary Domestic & International Airport Lounge Access",
+          "Low Forex Markup of 1.5% on international spends",
+          "5X Reward Points on dining, travel, and luxury retail"
+        ]
+      },
+      "product_grid": [
+        {
+          "id": "elite-savings",
+          "title": "Elite Savings Account",
+          "rate": "Up to 7.0% p.a.",
+          "description": "Tailored wealth privileges, family banking, and free locker rentals.",
+          "icon": "Crown"
+        },
+        {
+          "id": "premium-fd",
+          "title": "Tax Saver & Advantage FD",
+          "rate": "Up to 8.35% p.a.",
+          "description": "Guaranteed high returns with flexible monthly or quarterly payouts.",
+          "icon": "PiggyBank"
+        },
+        {
+          "id": "home-loans",
+          "title": "Suvidha Home Loans",
+          "rate": "Starting 8.65% p.a.",
+          "description": "Quick doorstep document pickup and minimal processing fees.",
+          "icon": "Home"
+        }
+      ],
+      "quick_actions_sidebar": [
+        { "label": "Contact", "icon": "Phone" },
+        { "label": "ATM/Branch", "icon": "MapPin" },
+        { "label": "Security", "icon": "ShieldAlert" }
+      ],
+      "standby_dialog": {
+        "title": "Bandhan Assistant",
+        "subtitle": "Choose how you would like to connect with Bandhan Elite Support",
+        "modes": [
+          { "id": "voice", "label": "Voice Call", "icon": "Mic" },
+          { "id": "chat", "label": "Chat Only", "icon": "MessageSquare" }
+        ]
+      }
+    }
+  },
+  "ambuja": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/ambuja",
+    "route": "/livekit/ambuja",
+    "agent_type": "ambuja",
+    "function": "chat-and-voice",
+    "page_title": "Ambuja Neotia - Luxury Living & Real Estate",
+    "brand_name": "Ambuja Neotia",
+    "assistant_id": "594122ba-6b82-4b68-8550-fd088b8141cd",
+    "hover_tooltip": "Ask Ambuja Assistant",
+    "theme": {
+      "primary": "stone-900",
+      "secondary": "amber-700",
+      "accent": "emerald-800",
+      "background": "stone-50",
+      "layout": "luxury-showcase"
+    },
+    "assistant_info": {
+      "name": "Ambuja Neotia Concierge",
+      "assistant_id": "594122ba-6b82-4b68-8550-fd088b8141cd",
+      "hover_tooltip": "Ask Ambuja Assistant",
+      "role": "Luxury Residential & Lifestyle Support Concierge",
+      "description": "Assists prospective buyers and residents with exclusive property inquiries, villa tours, architectural details, and luxury lifestyle amenities.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Building2",
+      "status_text": "Private Property Concierge Available",
+      "suggested_prompts": [
+        "Tell me about 4BHK Golf Villas at Utalika Luxury in Kolkata",
+        "Schedule a private chauffeur-driven site visit this weekend",
+        "What sustainability and IGBC green features are included?",
+        "Share pricing and payment milestones for Urvisha and Ujjaan"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Ambuja Neotia",
+        "nav_links": [
+          "About Us",
+          "Our Business",
+          "Residential",
+          "Hospitality",
+          "Sustainability",
+          "Investors",
+          "Gallery",
+          "Contact"
+        ]
+      },
+      "hero": {
+        "badge": "ARCHITECTURAL EXCELLENCE SINCE 1995",
+        "headline": "Crafting Memorable Experiences",
+        "subheadline": "Discover a world where luxury meets nature. Explore our exclusive properties designed for those who appreciate the finer things in life.",
+        "cta_primary": { "label": "Enquire Now", "icon": "Sparkles" },
+        "cta_secondary": { "label": "View Gallery", "icon": "Image" }
+      },
+      "featured_projects": [
+        {
+          "id": "utalika",
+          "name": "Utalika Luxury Phase II",
+          "location": "EM Bypass, Mukundapur, Kolkata",
+          "configuration": "3, 4 & 5 BHK Sky Residences & Duplexes",
+          "price_range": "₹ 2.85 Cr Onwards",
+          "status": "Ready-to-Move & Under Construction",
+          "highlight": "Overlooking a 7-acre natural waterbody & 50,000 sq.ft. Club"
+        },
+        {
+          "id": "raichak",
+          "name": "Raichak on Ganges - Golf Villas",
+          "location": "Raichak, South 24 Parganas",
+          "configuration": "Luxury Riverfront Weekend Villas",
+          "price_range": "₹ 1.95 Cr Onwards",
+          "status": "Limited Inventory",
+          "highlight": "Private plunge pools, Ffort Raichak club access & riverside promenade"
+        },
+        {
+          "id": "altius",
+          "name": "Ambuja Ujjaan & Urvisha",
+          "location": "New Town Action Area II, Kolkata",
+          "configuration": "3 & 4 BHK Biophilic Smart Homes",
+          "price_range": "₹ 1.65 Cr Onwards",
+          "status": "New Launch",
+          "highlight": "IGBC Gold Pre-Certified with landscaped sky-decks"
+        }
+      ],
+      "floating_tab": {
+        "label": "Enquire Now",
+        "orientation": "vertical",
+        "icon": "PhoneOutgoing"
+      }
+    }
+  },
+  "hirebot": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/hirebot",
+    "route": "/livekit/hirebot",
+    "agent_type": "hirebot",
+    "function": "chat-and-voice",
+    "page_title": "Hirebot - Multilingual Recruitment & Interview Assistant",
+    "brand_name": "Hirebot",
+    "assistant_id": "323e0fdd-faca-49fe-bc42-43c449951a6c",
+    "hover_tooltip": "Hirebot - Your Spanish Agent",
+    "theme": {
+      "primary": "violet-600",
+      "secondary": "slate-900",
+      "accent": "emerald-500",
+      "background": "slate-950",
+      "layout": "interview-studio"
+    },
+    "assistant_info": {
+      "name": "Hirebot Assistant",
+      "assistant_id": "323e0fdd-faca-49fe-bc42-43c449951a6c",
+      "hover_tooltip": "Hirebot - Your Spanish Agent",
+      "role": "Spanish Recruitment & Candidate Evaluation Assistant",
+      "description": "Conducts automated conversational Spanish interviews, evaluates candidate proficiency, and provides candidate screening via web or telephone calls.",
+      "connection_type": "web_or_phone_outbound",
+      "function": "chat-and-voice",
+      "avatar_icon": "UserCheck",
+      "status_text": "Bilingual Screening Engine (ES / EN)",
+      "suggested_prompts": [
+        "Hola, estoy listo para comenzar mi entrevista en español",
+        "What criteria will be evaluated during this screening?",
+        "Can we switch to a roleplay scenario for customer support?",
+        "Summarize my CEFR fluency score at the end of the call"
+      ]
+    },
+    "ui": {
+      "landing": {
+        "headline": "Hirebot Multilingual AI Interviewer",
+        "tagline": "Choose your preferred connection method to begin your 10-minute automated Spanish proficiency & role-fit assessment.",
+        "connection_options": [
+          {
+            "id": "web-call",
+            "type": "Web Call",
+            "title": "Connect Directly in Browser",
+            "description": "Use your laptop/mobile microphone via WebRTC with live transcript & audio visualizer.",
+            "route": "/livekit/hirebot/web",
+            "icon": "Globe",
+            "badge": "Recommended"
+          },
+          {
+            "id": "phone-call",
+            "type": "Phone Call",
+            "title": "Receive a Call on Your Mobile",
+            "description": "Get an instant automated outbound phone call powered by Exotel & Twilio.",
+            "provider_support": ["exotel", "twilio"],
+            "icon": "PhoneIncoming",
+            "badge": "Low Bandwidth"
+          }
+        ]
+      },
+      "evaluation_rubric": [
+        {
+          "metric": "Spoken Fluency & CEFR Level",
+          "weight": "35%",
+          "target": "B2 / C1 Native-like"
+        },
+        {
+          "metric": "Problem Solving & Situational Judgment",
+          "weight": "30%",
+          "target": "STAR Framework"
+        },
+        {
+          "metric": "Domain & Technical Vocabulary",
+          "weight": "20%",
+          "target": "Role-Specific"
+        },
+        {
+          "metric": "Communication Clarity & Empathy",
+          "weight": "15%",
+          "target": "High"
+        }
+      ],
+      "web_room": {
+        "header": "Hirebot Assistant - Live Session",
+        "status": "SECURE CONNECTION",
+        "status_color": "emerald-500",
+        "features": [
+          "Real-time audio visualizer",
+          "Voice Assistant speech-to-text transcript",
+          "Mute/Unmute microphone controls",
+          "End call control"
+        ]
+      }
+    }
+  },
+  "gs1": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/gs1",
+    "route": "/livekit/gs1",
+    "agent_type": "gs1",
+    "function": "chat-and-voice",
+    "page_title": "GS1 India - The Global Language of Business",
+    "brand_name": "GS1 India",
+    "assistant_id": "57a22dc4-a12a-4396-9dc8-9c15bd2c553d",
+    "hover_tooltip": "Chat with us",
+    "theme": {
+      "primary": "orange-600",
+      "secondary": "blue-950",
+      "accent": "sky-600",
+      "background": "white",
+      "layout": "standards-portal"
+    },
+    "assistant_info": {
+      "name": "GS1 India Assistant",
+      "assistant_id": "57a22dc4-a12a-4396-9dc8-9c15bd2c553d",
+      "hover_tooltip": "Chat with us",
+      "role": "GS1 Standards & Supply Chain Traceability Assistant",
+      "description": "Expert guidance on barcodes, GTIN issuance, DataKart, 2D DataMatrix barcodes, EPCIS traceability, and healthcare global standards.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "ScanBarcode",
+      "status_text": "GS1 Standards & GTIN Helpdesk",
+      "suggested_prompts": [
+        "How do I register for new GTIN-13 barcodes in India?",
+        "What is the difference between 1D EAN/UPC and 2D GS1 DataMatrix?",
+        "How do I upload product attributes to GS1 DataKart?",
+        "Explain track-and-trace compliance for pharmaceutical exports"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "GS1 India",
+        "tagline": "The Global Language of Business",
+        "nav_links": [
+          "Standards",
+          "Services",
+          "Industries",
+          "Implementation",
+          "DataKart",
+          "About Us"
+        ]
+      },
+      "hero_slides": [
+        {
+          "id": "slide-1",
+          "badge": "HEALTHCARE BREAKTHROUGH",
+          "headline": "GS1 brings trusted medical product information to smartphones through collaboration with Google",
+          "sub": "Launch of smartphone camera scanning of GS1 DataMatrix barcodes marks a global breakthrough for patient safety.",
+          "cta": "Know More"
+        },
+        {
+          "id": "slide-2",
+          "badge": "GLOBAL INTEROPERABILITY",
+          "headline": "The Global Language of Business",
+          "sub": "Facilitating seamless collaboration, standardisation, interoperability, and transparency across industries globally.",
+          "cta": "Know More"
+        },
+        {
+          "id": "slide-3",
+          "badge": "STRATEGY",
+          "headline": "GS1 Vision 2030",
+          "sub": "Our new global strategy to help businesses grow and lead with trusted data in a digital-first world.",
+          "cta": "Learn More"
+        },
+        {
+          "id": "slide-4",
+          "badge": "SUNRISE 2027",
+          "headline": "The Next-Generation of 2D Barcodes",
+          "sub": "Discover the power of 2D barcodes (GS1 Digital Link & DataMatrix) for an advanced, consumer-centric supply chain.",
+          "cta": "Learn More"
+        }
+      ],
+      "core_services": [
+        {
+          "id": "gtin-barcodes",
+          "title": "GTIN & Barcode Allocation",
+          "description": "Get globally unique GTIN-13 / GTIN-14 identifiers for retail, e-commerce, and export packaging.",
+          "icon": "Barcode"
+        },
+        {
+          "id": "datakart",
+          "title": "National Product Repository (DataKart)",
+          "description": "Manage SKU master data, nutritional facts, GST slabs, and sync seamlessly with major retailers & ONDC.",
+          "icon": "Database"
+        },
+        {
+          "id": "2d-barcodes",
+          "title": "2D DataMatrix & Digital Link",
+          "description": "Embed batch numbers, expiry dates, serials, and consumer URLs in a single scannable symbol.",
+          "icon": "QrCode"
+        },
+        {
+          "id": "epcis",
+          "title": "EPCIS Supply Chain Traceability",
+          "description": "Real-time visibility of physical movements from factory floor to retail shelf.",
+          "icon": "Truck"
+        }
+      ],
+      "trigger_pill": {
+        "label": "Chat with us",
+        "icon": "MessageCircle"
+      },
+      "standby_card": {
+        "title": "GS1 Assistant",
+        "prompt_hint": "Ask me about barcodes, GTIN, DataKart, traceability, or any GS1 standard.",
+        "modes": ["Voice Call", "Chat Only"]
+      }
+    }
+  },
+  "case_manager": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/case_manager",
+    "route": "/livekit/case_manager",
+    "agent_type": "case_manager",
+    "function": "chat-and-voice",
+    "page_title": "CaseManager - Active Case Oversight & Legal Intelligence",
+    "brand_name": "CaseManager",
+    "assistant_id": "78c72414-f03d-4afe-9bd1-b6a6b3b293ad",
+    "hover_tooltip": "Assistance",
+    "theme": {
+      "primary": "slate-900",
+      "secondary": "blue-700",
+      "accent": "amber-600",
+      "background": "slate-100",
+      "layout": "legal-workspace"
+    },
+    "assistant_info": {
+      "name": "Case Manager Assistant",
+      "assistant_id": "78c72414-f03d-4afe-9bd1-b6a6b3b293ad",
+      "hover_tooltip": "Assistance",
+      "role": "Legal & Case File Management Specialist",
+      "description": "Assists legal teams and case officers in reviewing documents, tracking active cases, updating client statuses, and compiling case summaries.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "Scale",
+      "status_text": "Privileged Legal Copilot • Ready",
+      "suggested_prompts": [
+        "Summarize the latest discovery filings in Case #CM-2026-104",
+        "Which cases have court filing deadlines in the next 7 days?",
+        "Update the status of Apex Logistics arbitration to 'Settlement Review'",
+        "Draft a client status update memo for the Mehta IP dispute"
+      ]
+    },
+    "ui": {
+      "sidebar": {
+        "brand": "CaseManager",
+        "logo_icon": "Scale",
+        "menu_items": [
+          {
+            "label": "Dashboard",
+            "icon": "LayoutDashboard",
+            "selected": false
+          },
+          {
+            "label": "Active Cases",
+            "icon": "Briefcase",
+            "selected": true,
+            "badge": "14"
+          },
+          {
+            "label": "Filings & Docket",
+            "icon": "FileCheck",
+            "selected": false
+          },
+          { "label": "Reports", "icon": "BarChart3", "selected": false },
+          { "label": "Clients", "icon": "Users", "selected": false },
+          { "label": "Settings", "icon": "Settings", "selected": false }
+        ]
+      },
+      "header": {
+        "title": "Active Case Oversight",
+        "subtitle": "Litigation, Arbitration & Compliance Docket",
+        "user": {
+          "initials": "JD",
+          "name": "Jaydev Deshmukh",
+          "role": "Senior Managing Partner"
+        }
+      },
+      "metrics": [
+        {
+          "label": "Active Dockets",
+          "value": "14",
+          "trend": "3 hearings this week",
+          "color": "blue"
+        },
+        {
+          "label": "Pending Discovery",
+          "value": "5 Files",
+          "trend": "2 require partner sign-off",
+          "color": "amber"
+        },
+        {
+          "label": "Urgent Deadlines",
+          "value": "2",
+          "trend": "Next due in 48 hrs",
+          "color": "rose"
+        }
+      ],
+      "active_cases": [
+        {
+          "case_id": "CM-2026-104",
+          "title": "Apex Logistics Pvt. Ltd. v. Meridian Freight",
+          "practice_area": "Commercial Arbitration",
+          "lead_counsel": "J. Deshmukh",
+          "next_hearing": "12 Jan 2026",
+          "priority": "High",
+          "status": "Discovery Phase",
+          "status_badge": "bg-amber-100 text-amber-800"
+        },
+        {
+          "case_id": "CM-2025-889",
+          "title": "Mehta Biopharma Patent Infringement",
+          "practice_area": "Intellectual Property",
+          "lead_counsel": "A. Sen",
+          "next_hearing": "19 Jan 2026",
+          "priority": "Critical",
+          "status": "Injunction Hearing",
+          "status_badge": "bg-rose-100 text-rose-800"
+        },
+        {
+          "case_id": "CM-2025-742",
+          "title": "Zenith Infra NCLT Resolution Plan",
+          "practice_area": "Insolvency & Restructuring",
+          "lead_counsel": "R. Kulkarni",
+          "next_hearing": "28 Jan 2026",
+          "priority": "Medium",
+          "status": "Committee Review",
+          "status_badge": "bg-blue-100 text-blue-800"
+        }
+      ],
+      "main_card": {
+        "title": "Case Support Intelligence",
+        "description": "Access your automated Case Manager Assistant to review legal documents, cross-examine depositions, update client statuses, or generate case summaries via voice or chat.",
+        "trigger_button": {
+          "label": "Assistance",
+          "icon": "MessageCircle"
+        }
+      }
+    }
+  },
+  "abbakus_funds": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/abbakus_funds",
+    "route": "/livekit/abbakus_funds",
+    "agent_type": "abbakus_funds",
+    "function": "voice",
+    "page_title": "Abbakus Asset Manager - Investor Portfolio App",
+    "brand_name": "Abbakus Asset Manager",
+    "assistant_id": "55ba8410-bfd1-4d6a-a892-78e12ad2ae74",
+    "hover_tooltip": "Abby (Your Investment Assistant)",
+    "theme": {
+      "primary": "indigo-900",
+      "secondary": "emerald-600",
+      "accent": "amber-500",
+      "background": "slate-900",
+      "layout": "mobile-wealth-app"
+    },
+    "assistant_info": {
+      "name": "Abby",
+      "assistant_id": "55ba8410-bfd1-4d6a-a892-78e12ad2ae74",
+      "hover_tooltip": "Abby (Your Investment Assistant)",
+      "role": "Investment & Portfolio Assistant",
+      "description": "Assists investors with portfolio overview, AUM updates, SIP tracking, fund returns, and investment product explanations.",
+      "connection_type": "livekit_voice_with_video",
+      "function": "voice",
+      "avatar_type": "Abby Video Avatar",
+      "avatar_icon": "Video",
+      "status_text": "Live Interactive Video & Voice Advisor",
+      "suggested_prompts": [
+        "How is my Abbakus Emerging Opportunities PMS performing?",
+        "Switch view to my father Sunil Sharma's PAN portfolio",
+        "What is our combined family XIRR and total gain?",
+        "Explain the difference between your Category III AIF and PMS"
+      ]
+    },
+    "ui": {
+      "phone_preview": {
+        "time": "9:41",
+        "battery": "100%",
+        "signal": "Full"
+      },
+      "pan_selector": [
+        {
+          "id": "all",
+          "label": "All PANs (Family View)",
+          "pan_masked": "2 Linked PANs",
+          "invested_value": "₹ 1,20,00,000",
+          "current_value": "₹ 1,64,80,000",
+          "total_gain": "+ ₹ 44,80,000",
+          "xirr": "21.4% p.a.",
+          "active": true
+        },
+        {
+          "id": "sunita",
+          "label": "Sunita Sharma (You)",
+          "pan_masked": "ABCPS•••4K",
+          "invested_value": "₹ 75,00,000",
+          "current_value": "₹ 1,03,50,000",
+          "total_gain": "+ ₹ 28,50,000",
+          "xirr": "22.1% p.a.",
+          "active": false
+        },
+        {
+          "id": "sunil",
+          "label": "Sunil Sharma (Father)",
+          "pan_masked": "AAJPS•••9M",
+          "invested_value": "₹ 45,00,000",
+          "current_value": "₹ 61,30,000",
+          "total_gain": "+ ₹ 16,30,000",
+          "xirr": "20.2% p.a.",
+          "active": false
+        }
+      ],
+      "quick_links": [
+        { "label": "Start Investing", "icon": "TrendingUp" },
+        { "label": "Link Other Folios", "icon": "Link" },
+        { "label": "Account Statements", "icon": "FileSpreadsheet" },
+        { "label": "Manage SIPs & More", "icon": "CalendarClock" },
+        { "label": "Goal Planner", "icon": "Target" },
+        { "label": "Calculate Returns", "icon": "Calculator" },
+        { "label": "Investors Club", "icon": "Award" },
+        { "label": "Investor Services", "icon": "ShieldCheck" }
+      ],
+      "products": [
+        {
+          "id": "pms",
+          "label": "Portfolio Management Services (PMS)",
+          "min_ticket": "₹ 50 Lakhs",
+          "cagr_3yr": "24.8%",
+          "tag": "Flagship Equity"
+        },
+        {
+          "id": "aif",
+          "label": "Alternative Investment Funds (AIF)",
+          "min_ticket": "₹ 1 Crore",
+          "cagr_3yr": "26.2%",
+          "tag": "Cat III Long-Only"
+        },
+        {
+          "id": "pe",
+          "label": "Private Equity (PE)",
+          "min_ticket": "₹ 1 Crore",
+          "cagr_3yr": "Pre-IPO Growth",
+          "tag": "Unlisted"
+        },
+        {
+          "id": "ria",
+          "label": "Registered Investment Advisor (RIA)",
+          "min_ticket": "Bespoke",
+          "cagr_3yr": "Multi-Asset",
+          "tag": "Advisory"
+        }
+      ]
+    }
+  },
+  "blue_cross": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/blue_cross",
+    "route": "/livekit/blue_cross",
+    "agent_type": "blue_cross",
+    "function": "chat",
+    "page_title": "Blue Cross Laboratories - Pharmaceutical & Healthcare Solutions",
+    "brand_name": "Blue Cross Laboratories",
+    "assistant_id": "627aea4b-b44d-4567-8ef0-64a879f5ee77",
+    "hover_tooltip": "Chat with Pratiksha",
+    "theme": {
+      "primary": "blue-700",
+      "secondary": "sky-900",
+      "accent": "teal-500",
+      "background": "slate-50",
+      "layout": "pharma-corporate"
+    },
+    "assistant_info": {
+      "name": "Pratiksha (Blue Cross AI)",
+      "assistant_id": "627aea4b-b44d-4567-8ef0-64a879f5ee77",
+      "hover_tooltip": "Chat with Pratiksha",
+      "role": "Pharmaceutical Information & Healthcare Assistant",
+      "description": "Provides information on pharmaceutical products, therapy areas, dosage guidelines, international formulations, and global healthcare operations.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat",
+      "avatar_icon": "Stethoscope",
+      "status_text": "Medical & Formulation Information Desk",
+      "suggested_prompts": [
+        "What are the primary formulations under the Meftal therapy range?",
+        "Which therapeutic segments does Blue Cross Laboratories specialize in?",
+        "Tell me about Blue Cross WHO-GMP manufacturing facilities in Nashik and Goa",
+        "Provide product information on TusQ and Extacef"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Blue Cross Laboratories",
+        "tagline": "Dedicated to Quality Healthcare Since 1980",
+        "nav_links": [
+          "About Us",
+          "Therapy Areas",
+          "Products",
+          "Global Footprint",
+          "Quality",
+          "Contact"
+        ]
+      },
+      "therapy_areas": [
+        {
+          "id": "pain-spasm",
+          "name": "Pain, Pyrexia & Antispasmodics",
+          "key_brands": ["Meftal-Spas", "Meftal-P", "Meftal-Forte"],
+          "icon": "Activity"
+        },
+        {
+          "id": "respiratory",
+          "name": "Cough & Cold Management",
+          "key_brands": ["TusQ-DX", "TusQ-X", "TusQ Lozenges"],
+          "icon": "Wind"
+        },
+        {
+          "id": "anti-infectives",
+          "name": "Anti-Infectives & Cephalosporins",
+          "key_brands": ["Extacef-XL", "Cefspan", "Blumox-CA"],
+          "icon": "ShieldPlus"
+        },
+        {
+          "id": "cardio-diabeto",
+          "name": "Cardiology & Diabetology",
+          "key_brands": ["Korandil", "Lipicard", "Cedon"],
+          "icon": "HeartPulse"
+        }
+      ],
+      "global_stats": [
+        { "label": "Years of Healthcare Excellence", "value": "45+ Years" },
+        {
+          "label": "Manufacturing Plants",
+          "value": "5 State-of-the-Art Units"
+        },
+        { "label": "Global Exports", "value": "40+ Countries" }
+      ],
+      "standby_card": {
+        "title": "Pratiksha · Blue Cross AI",
+        "greeting": "Hello! I'm Pratiksha 👋",
+        "subtext": "Your Blue Cross Laboratories pharmaceutical assistant. Ask me about products, therapy areas, or global operations.",
+        "trigger_button": {
+          "label": "Chat with Pratiksha",
+          "icon": "Cross"
+        }
+      }
+    }
+  },
+  "employ_agent": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/employ_agent",
+    "route": "/livekit/employ_agent",
+    "agent_type": "employ_agent",
+    "function": "chat-and-voice",
+    "page_title": "Wilbur-Ellis EMPLOY® Plant Health - Agronomy Intelligence",
+    "brand_name": "Wilbur-Ellis EMPLOY®",
+    "assistant_id": "8a25050a-960b-4a47-98af-3ca6e209064a",
+    "hover_tooltip": "Speak with Agronomist",
+    "theme": {
+      "primary": "green-700",
+      "secondary": "emerald-950",
+      "accent": "lime-600",
+      "background": "stone-50",
+      "layout": "agronomy-portal"
+    },
+    "assistant_info": {
+      "name": "EMPLOY® Agronomist Assistant",
+      "assistant_id": "8a25050a-960b-4a47-98af-3ca6e209064a",
+      "hover_tooltip": "Speak with Agronomist",
+      "role": "Agronomy Specialist & Crop Health Consultant",
+      "description": "Answers agronomy questions on application rates, tank-mix compatibility, crop growth stages, yield enhancement, and EMPLOY® harpin protein technology.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Sprout",
+      "status_text": "Certified Agronomy AI • Harpin αβ Specialist",
+      "suggested_prompts": [
+        "What is the foliar application rate of EMPLOY® for corn at V4–V6 stage?",
+        "Can I tank-mix EMPLOY® with glyphosate and foliar fungicides?",
+        "How does Harpin αβ protein activate plant growth and stress defense?",
+        "Show field trial yield gains on soybeans and tree nuts"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Wilbur-Ellis EMPLOY® Plant Health",
+        "nav_sections": [
+          { "label": "Crop Guides", "route": "#crop-guides" },
+          { "label": "Field Trials", "route": "#field-trials" },
+          { "label": "Application Rates", "route": "#rates" },
+          { "label": "Compatibility Matrix", "route": "#compatibility" },
+          { "label": "Transcript History", "route": "/employ/transcript" }
+        ]
+      },
+      "crop_guides": [
+        {
+          "crop": "Corn & Soybeans",
+          "application_rate": "1.0 – 2.0 oz/acre",
+          "growth_stage": "V3–V6 & R1 (Early Silking / Bloom)",
+          "key_benefit": "Boosts root mass, nutrient uptake, and kernel weight (+6.4 bu/ac avg)."
+        },
+        {
+          "crop": "Almonds, Walnuts & Citrus",
+          "application_rate": "2.0 oz/acre",
+          "growth_stage": "Pink Bud, Full Bloom & Petal Fall",
+          "key_benefit": "Enhances calcium mobility, nut set, and abiotic heat-stress resilience."
+        },
+        {
+          "crop": "Potatoes & Row Vegetables",
+          "application_rate": "1.5 – 2.0 oz/acre",
+          "growth_stage": "Tuber Initiation & Bulking",
+          "key_benefit": "Uniform tuber sizing and improved skin set quality."
+        }
+      ],
+      "standby_card": {
+        "headline": "Speak with EMPLOY® Agronomist",
+        "prompt_hint": "Ask me about application rates, crop benefits, compatibility, or timing for EMPLOY® plant health products.",
+        "trigger_button": {
+          "label": "Speak with Agronomist",
+          "tooltip": "Speak with Agronomist",
+          "icon": "Sprout"
+        }
+      }
+    }
+  },
+  "insideout-mental": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/insideout",
+    "route": "/livekit/insideout",
+    "agent_type": "insideout_agent",
+    "function": "voice",
+    "page_title": "InsideOut Wellness - Mental & Physical Health Diagnostic Coaches",
+    "brand_name": "InsideOut Wellness",
+    "assistant_id": "30e091f9-66a9-4143-b0f3-3850168e12c1",
+    "hover_tooltip": "Jessica (Mental Well Being) & Kiara (Physical Well Being)",
+    "theme": {
+      "primary": "violet-600",
+      "secondary": "purple-950",
+      "accent": "fuchsia-500",
+      "background": "violet-50/40",
+      "layout": "wellness-coach"
+    },
+    "assistant_info": {
+      "name": "InsideOut Diagnostic Assistants",
+      "active_coach": "Jessica",
+      "assistant_id": "30e091f9-66a9-4143-b0f3-3850168e12c1",
+      "hover_tooltip": "Jessica (Mental Well Being) & Kiara (Physical Well Being)",
+      "role": "Mental Well Being Counsellor",
+      "description": "Find your inner peace. Talk about stress, anxiety, sleep quality, emotional burnout, or just unwind.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "voice",
+      "avatar_icon": "Brain",
+      "status_text": "Confidential Safe Space • Jessica is Online",
+      "suggested_prompts": [
+        "I've been feeling overwhelmed with work deadlines lately",
+        "Guide me through a 3-minute box breathing exercise to calm anxiety",
+        "Help me build an evening wind-down routine for better sleep",
+        "Let's do a quick daily mood and stress check-in"
+      ],
+      "assistants": {
+        "mental": {
+          "name": "Jessica",
+          "assistant_id": "30e091f9-66a9-4143-b0f3-3850168e12c1",
+          "role": "Mental Well Being Counsellor",
+          "tagline": "Find your inner peace. Talk about stress, anxiety, or just unwind."
+        }
+      }
+    },
+    "ui": {
+      "header": {
+        "brand": "InsideOut Health & Diagnostics",
+        "session_timer": "4-hour session access for authorized accounts",
+        "badge": "HIPAA & Privacy Compliant"
+      },
+      "coaching_modules": [
+        {
+          "id": "mental",
+          "coach_name": "Jessica",
+          "title": "Mental Well Being",
+          "badge": "Counsellor",
+          "theme_color": "#8B5CF6",
+          "selected": true,
+          "tagline": "Find your inner peace. Talk about stress, anxiety, or just unwind.",
+          "specialties": [
+            "Stress & Burnout",
+            "Guided Mindfulness",
+            "Cognitive Reframing",
+            "Sleep Hygiene"
+          ]
+        },
+        {
+          "id": "physical",
+          "coach_name": "Kiara",
+          "title": "Physical Well Being",
+          "badge": "Wellness Coach",
+          "theme_color": "#3B82F6",
+          "selected": false,
+          "tagline": "Get fit, stay healthy. Discuss nutrition, exercise, and lifestyle.",
+          "specialties": [
+            "Metabolic Nutrition",
+            "Strength & Mobility",
+            "Daily Habits",
+            "Recovery"
+          ]
+        }
+      ]
+    }
+  },
+  "insideout-physical": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/insideout",
+    "route": "/livekit/insideout",
+    "agent_type": "insideout_agent",
+    "function": "voice",
+    "page_title": "InsideOut Wellness - Mental & Physical Health Diagnostic Coaches",
+    "brand_name": "InsideOut Wellness",
+    "assistant_id": "a4b33549-3d3d-4ba0-8be1-bea0ea3ba136",
+    "hover_tooltip": "Kiara (Physical Well Being)",
+    "theme": {
+      "primary": "blue-600",
+      "secondary": "slate-900",
+      "accent": "cyan-500",
+      "background": "blue-50/40",
+      "layout": "wellness-coach"
+    },
+    "assistant_info": {
+      "name": "InsideOut Diagnostic Assistants",
+      "active_coach": "Kiara",
+      "assistant_id": "a4b33549-3d3d-4ba0-8be1-bea0ea3ba136",
+      "hover_tooltip": "Kiara (Physical Well Being)",
+      "role": "Physical Well Being Coach",
+      "description": "Get fit, stay healthy. Discuss nutrition, exercise, strength routines, and sustainable lifestyle habits.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "voice",
+      "avatar_icon": "Dumbbell",
+      "status_text": "Active Fitness & Nutrition Session • Kiara is Online",
+      "suggested_prompts": [
+        "Design a 30-minute home mobility and strength routine for desk workers",
+        "How can I hit 100g of protein daily on an Indian vegetarian diet?",
+        "Why do my energy levels crash around 3 PM every afternoon?",
+        "Help me plan a sustainable 5K running progression"
+      ],
+      "assistants": {
+        "physical": {
+          "name": "Kiara",
+          "assistant_id": "a4b33549-3d3d-4ba0-8be1-bea0ea3ba136",
+          "role": "Physical Well Being Coach",
+          "tagline": "Get fit, stay healthy. Discuss nutrition, exercise, and lifestyle."
+        }
+      }
+    },
+    "ui": {
+      "header": {
+        "brand": "InsideOut Health & Diagnostics",
+        "session_timer": "4-hour session access for authorized accounts",
+        "badge": "Personalized Biometric Coaching"
+      },
+      "coaching_modules": [
+        {
+          "id": "mental",
+          "coach_name": "Jessica",
+          "title": "Mental Well Being",
+          "badge": "Counsellor",
+          "theme_color": "#8B5CF6",
+          "selected": false,
+          "tagline": "Find your inner peace. Talk about stress, anxiety, or just unwind.",
+          "specialties": [
+            "Stress & Burnout",
+            "Guided Mindfulness",
+            "Cognitive Reframing",
+            "Sleep Hygiene"
+          ]
+        },
+        {
+          "id": "physical",
+          "coach_name": "Kiara",
+          "title": "Physical Well Being",
+          "badge": "Wellness Coach",
+          "theme_color": "#3B82F6",
+          "selected": true,
+          "tagline": "Get fit, stay healthy. Discuss nutrition, exercise, and lifestyle.",
+          "specialties": [
+            "Metabolic Nutrition",
+            "Strength & Mobility",
+            "Daily Habits",
+            "Recovery"
+          ]
+        }
+      ]
+    }
+  },
+  "aludecor": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/aludecor",
+    "route": "/livekit/aludecor",
+    "agent_type": "aludecor",
+    "function": "call",
+    "page_title": "Aludecor - Aluminium Composite Panels (ACP) Specialist",
+    "brand_name": "Aludecor",
+    "assistant_id": "6a152afbf92c8a527770ac6f",
+    "hover_tooltip": "Request Consultation Call",
+    "theme": {
+      "primary": "zinc-900",
+      "secondary": "amber-600",
+      "accent": "orange-500",
+      "background": "zinc-100",
+      "layout": "telephony-lead-capture"
+    },
+    "assistant_info": {
+      "name": "Aludecor Consultation Voicebot",
+      "personalized_prompt_id": "6a152afbf92c8a527770ac6f",
+      "usecase_id": "69e8705f4773b65fe017fd7d",
+      "trunk_id": "exotel_ff2a62f4",
+      "tts_provider": "sarvam (simran voice)",
+      "role": "Aluminium Composite Panel Architectural Consultant",
+      "description": "Triggers outbound consultation phone calls to assist architects, fabricators, and clients with ACP sheet shades, fire safety, and technical specs.",
+      "connection_type": "outbound_telephony_call",
+      "function": "call",
+      "avatar_icon": "Layers",
+      "status_text": "Instant Exotel Outbound Callback (< 10 Secs)"
+    },
+    "ui": {
+      "header": {
+        "brand": "Aludecor",
+        "tagline": "Aluminium Composite Panel Specialist • Adorning Facades Globally"
+      },
+      "product_highlights": [
+        {
+          "title": "FireWall A2 & FR Grades",
+          "spec": "EN 13501-1 Certified Fire-Retardant Cladding",
+          "icon": "Flame"
+        },
+        {
+          "title": "500+ Metallic, Wood & Stone Shades",
+          "spec": "PVDF / FEVE PVDF Kynar-500 Coating with 20-Yr Warranty",
+          "icon": "Palette"
+        },
+        {
+          "title": "Zinc & Honeycomb Panels",
+          "spec": "High wind-load structural stability for high-rise elevations",
+          "icon": "Building"
+        }
+      ],
+      "callback_form": {
+        "title": "Request a Voice Call from an ACP Specialist",
+        "subtitle": "Enter your details below and our AI Architectural Consultant will call your mobile number immediately.",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Your Full Name",
+            "placeholder": "e.g., Ar. Vikram Mehta",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "label": "10-digit Phone Number",
+            "placeholder": "98765 43210",
+            "type": "tel",
+            "prefix": "+91",
+            "required": true
+          },
+          {
+            "name": "projectType",
+            "label": "Project Category (Optional)",
+            "placeholder": "Commercial Facade / Signage / Interior",
+            "type": "select",
+            "required": false
+          }
+        ],
+        "cta": {
+          "label": "Call Me Now",
+          "icon": "PhoneCall"
+        }
+      }
+    }
+  },
+  "sbi_agent": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/sbi_agent",
+    "route": "/livekit/sbi_agent",
+    "agent_type": "sbi_agent",
+    "function": "chat-and-voice",
+    "page_title": "Bharat General Insurance Company - SBI Insurance Customer Portal",
+    "brand_name": "Bharat General Insurance (SBI)",
+    "assistant_id": "cf4519e0-8241-4b21-b9c7-160dbab32bc1",
+    "hover_tooltip": "Chat with Pratika",
+    "theme": {
+      "primary": "blue-800",
+      "secondary": "indigo-950",
+      "accent": "amber-500",
+      "background": "slate-50",
+      "layout": "insurance-portal"
+    },
+    "assistant_info": {
+      "name": "Pratika (Insurance Assistant)",
+      "assistant_id": "cf4519e0-8241-4b21-b9c7-160dbab32bc1",
+      "hover_tooltip": "Chat with Pratika",
+      "role": "Insurance Policy, Claims & Renewal Specialist",
+      "description": "Assists policyholders with health & motor policy details, cashless hospital networks, claim status, and instant renewals.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "ShieldPlus",
+      "status_text": "24x7 Claims & Policy Concierge",
+      "suggested_prompts": [
+        "Find cashless network hospitals near me for my Arogya Sanjeevani policy",
+        "What is covered under policy #BGIC-H-2026-00892 and what is the co-pay?",
+        "How do I file a cashless motor claim for my two-wheeler?",
+        "Download my 80D tax certificate for FY 2025-26"
+      ]
+    },
+    "ui": {
+      "header": {
+        "company": "Bharat General Insurance Company",
+        "portal": "Customer Self-Service Insurance Portal",
+        "member": {
+          "name": "Rahul Sharma",
+          "member_id": "BG-2024-RS-00471",
+          "tier": "GOLD",
+          "tier_badge": "bg-amber-100 text-amber-800",
+          "member_since": "2021",
+          "email": "rahul.sharma@email.com",
+          "phone": "+91 98765 43210"
+        },
+        "sidebar_nav": [
+          { "label": "Dashboard", "icon": "LayoutDashboard", "active": true },
+          { "label": "My Policies", "icon": "ShieldCheck", "active": false },
+          { "label": "Claims", "icon": "FileWarning", "active": false },
+          { "label": "Renewals", "icon": "RefreshCw", "active": false },
+          { "label": "Network Hospitals", "icon": "Hospital", "active": false },
+          { "label": "Support", "icon": "Headphones", "active": false }
+        ]
+      },
+      "active_policies": [
+        {
+          "id": "pol-health-1",
+          "type": "Health Insurance",
+          "icon": "HeartPulse",
+          "product": "Arogya Sanjeevani Policy",
+          "policy_number": "BGIC-H-2026-00892",
+          "valid_until": "01 Apr 2027",
+          "days_left": 296,
+          "status": "Active",
+          "sum_insured": "₹5,00,000",
+          "no_claim_bonus": "₹50,000 Accrued",
+          "premium": "₹5,401/yr",
+          "features": [
+            "Cashless across 8,500+ Hospitals",
+            "AYUSH Covered",
+            "5% Co-pay"
+          ],
+          "actions": ["View e-Card", "Intimate Claim", "Download Policy"]
+        },
+        {
+          "id": "pol-motor-2",
+          "type": "Motor Insurance",
+          "icon": "Bike",
+          "product": "Package Two-Wheeler Policy",
+          "policy_number": "POPM2W00104186836",
+          "valid_until": "31 Mar 2027",
+          "days_left": 295,
+          "status": "Active",
+          "sum_insured": "₹14,256 IDV",
+          "premium": "₹965/yr",
+          "features": ["Own Damage", "Third Party Liability", "NCB 50%"],
+          "actions": [
+            "Roadside Assist",
+            "File Motor Claim",
+            "Download Schedule"
+          ]
+        }
+      ],
+      "trigger_button": {
+        "label": "Chat with Pratika",
+        "tooltip": "Chat with Pratika",
+        "icon": "MessageSquareHeart"
+      }
+    }
+  },
+  "jana_bank": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/jana_bank",
+    "route": "/livekit/jana_bank",
+    "agent_type": "jana_bank",
+    "function": "chat-and-voice",
+    "page_title": "Jana Small Finance Bank - Banking for Everyone",
+    "brand_name": "Jana Small Finance Bank",
+    "assistant_id": "b1952a2c-002e-4447-9222-79568acbb420",
+    "hover_tooltip": "Ask Vyom Assistant",
+    "theme": {
+      "primary": "rose-700",
+      "secondary": "slate-900",
+      "accent": "amber-500",
+      "background": "white",
+      "layout": "retail-bank-landing"
+    },
+    "assistant_info": {
+      "name": "Vyom (Jana Bank Assistant)",
+      "assistant_id": "b1952a2c-002e-4447-9222-79568acbb420",
+      "hover_tooltip": "Ask Vyom Assistant",
+      "role": "Jana Bank Retail Banking Assistant",
+      "description": "Supports customers with savings accounts, fixed deposit interest rates, digital loans, and account status checks.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Landmark",
+      "status_text": "Jana Digital Banking Helpdesk",
+      "suggested_prompts": [
+        "What is the highest Fixed Deposit interest rate at Jana Bank?",
+        "How do I open a Video KYC Savings Account online?",
+        "Check eligibility for a Gold Loan or MSME Business Loan",
+        "How can I activate UPI and Mobile Banking on my account?"
+      ]
+    },
+    "ui": {
+      "utility_bar": {
+        "skip_link": "Skip to Main Content",
+        "accessibility": ["A-", "A", "A+"],
+        "theme_toggles": ["contrast-dark", "contrast-light"]
+      },
+      "header": {
+        "brand": "JANA SMALL FINANCE BANK",
+        "tagline": "Paise Ki Kadar • Banking for Everyone",
+        "nav_links": ["Home", "Personal", "Business", "Digital", "About Us"],
+        "actions": ["Search", "ATM/Branch Locator", "Reach us", "Pay", "Login"]
+      },
+      "hero": {
+        "headline": "Start banking with us!",
+        "subheadline": "Open a high-yield Savings Account or Fixed Deposit today.",
+        "cta": "Open Now",
+        "trust_badge": "Fast, Secure & 100% Digital Process • DICGC Insured up to ₹5 Lakh"
+      },
+      "rate_highlights": [
+        {
+          "product": "Fixed Deposits (Regular)",
+          "rate": "Up to 8.25% p.a.",
+          "tenure": "365 – 1095 Days"
+        },
+        {
+          "product": "Senior Citizen FD",
+          "rate": "Up to 8.75% p.a.",
+          "tenure": "Additional +0.50% p.a."
+        },
+        {
+          "product": "Savings Account",
+          "rate": "Up to 7.50% p.a.",
+          "tenure": "Monthly Interest Payout"
+        }
+      ],
+      "trusted_section": {
+        "title": "Trusted by all, banking for all",
+        "description": "Jana Small Finance Bank brings you comprehensive financial products and competitive interest rates across 750+ branches nationwide."
+      },
+      "trigger_button": {
+        "label": "Ask Vyom Assistant",
+        "tooltip": "Ask Vyom Assistant",
+        "icon": "Headphones"
+      }
+    }
+  },
+  "equitas_bank": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/equitas_bank",
+    "route": "/livekit/equitas_bank",
+    "agent_type": "equitas_bank",
+    "function": "chat-and-voice",
+    "page_title": "Equitas Small Finance Bank - Internet Banking Portal",
+    "brand_name": "Equitas Small Finance Bank",
+    "assistant_id": "766aafee-21e1-40a6-9f37-2e7d8d6df385",
+    "hover_tooltip": "Ask Equitas Assistant",
+    "theme": {
+      "primary": "fuchsia-800",
+      "secondary": "slate-900",
+      "accent": "orange-500",
+      "background": "slate-50",
+      "layout": "authenticated-netbanking"
+    },
+    "assistant_info": {
+      "name": "Equitas Assistant (Logged In)",
+      "assistant_id": "766aafee-21e1-40a6-9f37-2e7d8d6df385",
+      "hover_tooltip": "Ask Equitas Assistant",
+      "role": "Authenticated Banking Assistant",
+      "description": "Provides personalized banking support for logged-in users, including account statements, fund transfers, card security, and deposit inquiries.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "ShieldCheck",
+      "status_text": "Authenticated Session • Equitas Selfe Banking",
+      "suggested_prompts": [
+        "Temporarily lock my Visa Debit Card or lower my POS daily limit",
+        "Download my last 6 months account statement in PDF",
+        "What is the ForexFare exchange rate for sending USD abroad?",
+        "Book a 444-day Selfe Fixed Deposit from my savings balance"
+      ]
+    },
+    "ui": {
+      "top_bar": {
+        "whatsapp_support": "81224 83766 Just WhatsApp!",
+        "complaints": "Lodge Complaints & 24x7 Security Desk"
+      },
+      "header": {
+        "brand": "equitas",
+        "subtitle": "Beyond Banking",
+        "nav_links": [
+          "Home",
+          "Personal",
+          "Business",
+          "NRI",
+          "Selfe Zone",
+          "About Us"
+        ]
+      },
+      "services": [
+        {
+          "id": "bow",
+          "title": "Bank on Wheels (BOW)",
+          "description": "Doorstep & rural mobile banking bringing ATM and branch services to your neighbourhood.",
+          "icon": "Truck"
+        },
+        {
+          "id": "forexfare",
+          "title": "International Remittances & ForexFare",
+          "description": "Send money abroad across 100+ currencies with zero hidden markups.",
+          "icon": "Globe"
+        },
+        {
+          "id": "high-interest-sa",
+          "title": "High Interest Savings Accounts",
+          "description": "Earn up to 7.5% p.a. with zero non-maintenance penalties on Selfe Digital Savings.",
+          "icon": "Percent"
+        },
+        {
+          "id": "fd-rd",
+          "title": "Fixed & Recurring Deposits",
+          "description": "Up to 8.50% p.a. for Senior Citizens with instant premature liquidity.",
+          "icon": "PiggyBank"
+        },
+        {
+          "id": "card-security",
+          "title": "Debit Card Security & Daily Limits Manager",
+          "description": "Toggle international usage, contactless tap-and-pay, and ATM withdrawal limits instantly.",
+          "icon": "Lock"
+        }
+      ],
+      "trigger_button": {
+        "label": "Ask Equitas Assistant",
+        "tooltip": "Ask Equitas Assistant",
+        "icon": "Bot"
+      }
+    }
+  },
+  "equitas_login": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/equitas_login",
+    "route": "/livekit/equitas_login",
+    "agent_type": "equitas_bank",
+    "function": "chat-and-voice",
+    "page_title": "Equitas Small Finance Bank - Secure Login",
+    "brand_name": "Equitas Small Finance Bank",
+    "assistant_id": "f4afa900-def1-4785-a4b6-9ed89fd5567d",
+    "hover_tooltip": "Ask Equitas Assistant",
+    "theme": {
+      "primary": "fuchsia-800",
+      "secondary": "slate-900",
+      "accent": "emerald-600",
+      "background": "slate-100",
+      "layout": "auth-card"
+    },
+    "assistant_info": {
+      "name": "Equitas Assistant (Pre-Login)",
+      "assistant_id": "f4afa900-def1-4785-a4b6-9ed89fd5567d",
+      "hover_tooltip": "Ask Equitas Assistant",
+      "role": "Onboarding & Login Support Assistant",
+      "description": "Assists customers through the login flow, mobile OTP verification, password resets, and new account onboarding.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "KeyRound",
+      "status_text": "Login & Onboarding Helpdesk",
+      "suggested_prompts": [
+        "I am not receiving my 6-digit SMS OTP on my registered mobile",
+        "How do I unlock my Customer ID or reset my NetBanking password?",
+        "How do I update my registered mobile number with Equitas?",
+        "I am a new customer—how do I register for Internet Banking?"
+      ]
+    },
+    "ui": {
+      "login_card": {
+        "brand": "equitas",
+        "title": "Login to Internet Banking",
+        "subtitle": "Secure 2-Factor OTP Authentication",
+        "steps": [
+          {
+            "step": 1,
+            "label": "Enter 10-digit Registered Mobile Number",
+            "placeholder": "e.g., 98765 43210",
+            "field_type": "tel"
+          },
+          {
+            "step": 2,
+            "label": "Verify 6-digit One Time Password (OTP)",
+            "placeholder": "• • • • • •",
+            "field_type": "otp"
+          }
+        ],
+        "cta": "Proceed / Verify",
+        "helper_links": [
+          "Forgot Customer ID?",
+          "First Time User? Register Now",
+          "Report Unauthorized Transaction"
+        ],
+        "security_tips": [
+          "Equitas Bank never asks for your OTP, PIN, or CVV over phone calls.",
+          "Always verify the padlock icon and 'indusnettechnologies.com' domain."
+        ]
+      },
+      "trigger_button": {
+        "label": "Ask Equitas Assistant",
+        "tooltip": "Ask Equitas Assistant",
+        "icon": "HelpCircle"
+      }
+    }
+  },
+  "medical_rep": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/medical_rep",
+    "route": "/livekit/medical_rep",
+    "agent_type": "medical",
+    "function": "chat-and-voice",
+    "page_title": "MedCoach - Medical Representative Communication Trainer",
+    "brand_name": "MedCoach",
+    "assistant_id": "477c3809-7fb3-4904-ba2c-1102ac708f9c",
+    "hover_tooltip": "Practise with Med Coach",
+    "theme": {
+      "primary": "teal-600",
+      "secondary": "slate-900",
+      "accent": "indigo-600",
+      "background": "slate-50",
+      "layout": "roleplay-trainer"
+    },
+    "assistant_info": {
+      "name": "Med Coach AI",
+      "assistant_id": "477c3809-7fb3-4904-ba2c-1102ac708f9c",
+      "hover_tooltip": "Practise with Med Coach",
+      "role": "MR Communication & Detailing Coach",
+      "description": "Roleplays doctor interactions with medical representatives, provides clinical objection handling coaching, and scores sales pitches.",
+      "connection_type": "livekit_voice_or_chat",
+      "function": "chat-and-voice",
+      "avatar_icon": "Stethoscope",
+      "status_text": "AI Physician Simulator Ready",
+      "suggested_prompts": [
+        "Roleplay as a busy Cardiologist who only gives me 90 seconds",
+        "Challenge me with price and generic-substitution objections",
+        "Evaluate my in-clinic detailing pitch on Phase-III clinical efficacy",
+        "Give me a scorecard on scientific accuracy, empathy, and closing"
+      ]
+    },
+    "ui": {
+      "utility_bar": {
+        "accessibility": ["A-", "A", "A+"],
+        "skip_link": "Skip to Main Content"
+      },
+      "header": {
+        "brand": "MED COACH",
+        "subtitle": "MR Communication Trainer",
+        "nav_links": [
+          "Home",
+          "Coaching",
+          "Role-Play",
+          "Practice Scripts",
+          "Feedback"
+        ],
+        "action": { "label": "Start Practice", "icon": "Play" }
+      },
+      "hero": {
+        "badge": "Voice-first coaching assistant",
+        "headline": "Talk to doctors like a confident MR.",
+        "description": "Simulate high-pressure physician visits, practice clinical study presentations, and receive instantaneous performance feedback."
+      },
+      "doctor_personas": [
+        {
+          "id": "dr-mehta",
+          "name": "Dr. Arvind Mehta (Cardiologist)",
+          "trait": "Skeptical & Time-Constrained (2-Min Window)",
+          "focus": "Demands head-to-head trial data & cardiovascular outcome endpoints.",
+          "difficulty": "Hard"
+        },
+        {
+          "id": "dr-nair",
+          "name": "Dr. Kavita Nair (Pediatrician)",
+          "trait": "Safety & Palatability Focused",
+          "focus": "Asks about pediatric dosing accuracy, GI tolerability, and patient compliance.",
+          "difficulty": "Medium"
+        },
+        {
+          "id": "dr-gupta",
+          "name": "Dr. राजेश Gupta (General Physician)",
+          "trait": "Cost-Conscious High-Volume Prescriber",
+          "focus": "Pushes back on therapy cost vs cheaper generic alternatives.",
+          "difficulty": "Medium"
+        }
+      ],
+      "evaluation_metrics": [
+        "Opening Hook & Brand Recall",
+        "Clinical Evidence & Mechanism Delivery",
+        "Objection Handling & Composure",
+        "Prescription Commitment Close"
+      ],
+      "trigger_button": {
+        "label": "Practise with Med Coach",
+        "tooltip": "Practise with Med Coach",
+        "icon": "Mic"
+      }
+    }
+  },
+  "hero_humrahi": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/hero_humrahi",
+    "route": "/livekit/hero_humrahi",
+    "agent_type": "hero_humrahi",
+    "function": "voice",
+    "page_title": "Hero Housing Finance - Hero Humrahi Partner Portal",
+    "brand_name": "Hero Housing Finance",
+    "assistant_id": "c64a272b-f927-40cb-957a-86b46d00b70d",
+    "hover_tooltip": "Ask Hero Assistant",
+    "theme": {
+      "primary": "red-600",
+      "secondary": "zinc-900",
+      "accent": "emerald-600",
+      "background": "zinc-50",
+      "layout": "partner-portal"
+    },
+    "assistant_info": {
+      "name": "Hero Humrahi Assistant",
+      "assistant_id": "c64a272b-f927-40cb-957a-86b46d00b70d",
+      "hover_tooltip": "Ask Hero Assistant",
+      "role": "DSA & Housing Finance Partner Support Assistant",
+      "description": "Assists loan agents and channel partners with lead status tracking, loan eligibility, document checklists, and payout calculations.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "voice",
+      "avatar_icon": "Building",
+      "status_text": "DSA Channel Partner Voice Desk",
+      "suggested_prompts": [
+        "What is the FOIR and CIBIL requirement for a self-employed LAP lead?",
+        "Check credit sanction status for Lead ID #HHF-2026-4419",
+        "What is the document checklist for an informal income home loan?",
+        "Calculate my DSA commission payout on ₹45 Lakhs disbursement"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brands": ["Hero Humrahi", "Hero Housing Finance"],
+        "portal": "Channel Partner & Connector Portal",
+        "partner_badge": "Authorized Platinum DSA #DSA-9920"
+      },
+      "partner_metrics": [
+        {
+          "label": "Active Leads in Pipeline",
+          "value": "18 Leads",
+          "subtext": "₹ 4.2 Cr Total Sanction Value"
+        },
+        {
+          "label": "Disbursed This Month",
+          "value": "₹ 1.35 Cr",
+          "subtext": "5 Files Disbursed"
+        },
+        {
+          "label": "Accrued DSA Payout",
+          "value": "₹ 1,48,500",
+          "subtext": "Next Release: 10 Jan 2026"
+        }
+      ],
+      "loan_products": [
+        {
+          "id": "home-loans",
+          "label": "Home Loans for Salaried & Self-Employed",
+          "max_ltv": "Up to 90% LTV",
+          "tenure": "Up to 30 Years",
+          "icon": "Home"
+        },
+        {
+          "id": "lap",
+          "label": "Loan Against Property (LAP)",
+          "max_ltv": "Up to 70% Market Value",
+          "tenure": "Up to 15 Years",
+          "icon": "Building2"
+        },
+        {
+          "id": "plot-construction",
+          "label": "Plot Purchase & Construction Loans",
+          "max_ltv": "Up to 80% LTV",
+          "tenure": "Quick Tranche Disbursal",
+          "icon": "HardHat"
+        },
+        {
+          "id": "home-improvement",
+          "label": "Home Improvement & Extension Loans",
+          "max_ltv": "Minimal Documentation",
+          "tenure": "48-Hour Sanction",
+          "icon": "Hammer"
+        }
+      ],
+      "features": [
+        "Instant customer lead registration via PAN & Mobile",
+        "Real-time credit appraisal pipeline tracker",
+        "Direct payout & incentive slab calculator"
+      ]
+    }
+  },
+  "bharat_general_insurance": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/bharat_general_insurance",
+    "route": "/livekit/bharat_general_insurance",
+    "agent_type": "bharat_general_insurance",
+    "function": "voice",
+    "page_title": "Bharat General Insurance - Smart Insurance Companion",
+    "brand_name": "Bharat General Insurance",
+    "assistant_id": "cf4519e0-8241-4b21-b9c7-160dbab32bc1",
+    "hover_tooltip": "Chat with Pratika",
+    "theme": {
+      "primary": "indigo-700",
+      "secondary": "slate-900",
+      "accent": "emerald-600",
+      "background": "slate-50",
+      "layout": "smart-companion-cards"
+    },
+    "assistant_info": {
+      "name": "Pratika (Bharat Insurance Assistant)",
+      "assistant_id": "cf4519e0-8241-4b21-b9c7-160dbab32bc1",
+      "hover_tooltip": "Chat with Pratika",
+      "role": "Insurance Claims & Renewal Companion",
+      "description": "Provides quick access to policy certificates, claims submission, cashless hospital locators, and automated renewal payments.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "voice",
+      "avatar_icon": "Shield",
+      "status_text": "Instant Voice Claims & Renewal Desk",
+      "suggested_prompts": [
+        "Renew my two-wheeler package policy instantly",
+        "Intimate a cashless hospitalization claim for Rahul Sharma",
+        "Locate the nearest network garage or cashless hospital in Kolkata",
+        "Send my policy schedule PDF to my registered email"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "Bharat General Insurance Company",
+        "customer": "Rahul Sharma",
+        "customer_id": "CIF-8839201"
+      },
+      "policies": [
+        {
+          "id": "arogya-sanjeevani",
+          "label": "Arogya Sanjeevani Health Policy",
+          "sum_insured": "₹5 Lakh",
+          "policy_no": "BGIC-H-2026-00892",
+          "expiry": "01 Apr 2027",
+          "status": "Active",
+          "icon": "HeartHandshake"
+        },
+        {
+          "id": "two-wheeler",
+          "label": "Comprehensive 2-Wheeler Package Policy",
+          "sum_insured": "₹14,256 IDV",
+          "policy_no": "POPM2W00104186836",
+          "expiry": "31 Mar 2027",
+          "status": "Active",
+          "icon": "Bike"
+        }
+      ],
+      "quick_actions": [
+        {
+          "id": "renew",
+          "label": "Renew Policy",
+          "icon": "RefreshCw",
+          "color": "indigo"
+        },
+        {
+          "id": "claim",
+          "label": "Intimate Claim",
+          "icon": "FilePlus2",
+          "color": "rose"
+        },
+        {
+          "id": "hospital",
+          "label": "Find Network Hospital",
+          "icon": "MapPin",
+          "color": "emerald"
+        },
+        {
+          "id": "download",
+          "label": "Download Policy Schedule",
+          "icon": "Download",
+          "color": "blue"
+        }
+      ]
+    }
+  },
+  "restaurant": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/restaurant",
+    "route": "/livekit/restaurant",
+    "agent_type": "restaurant",
+    "function": "chat-and-voice",
+    "page_title": "Restaurant Hospitality & Reservation Assistant",
+    "brand_name": "Vyom Hospitality",
+    "assistant_id": "4e1b04f7-ea3d-4cd1-8288-ff0ebaf7339d",
+    "hover_tooltip": "Restaurant Agent",
+    "theme": {
+      "primary": "amber-700",
+      "secondary": "stone-900",
+      "accent": "rose-700",
+      "background": "stone-950",
+      "layout": "hospitality-concierge"
+    },
+    "assistant_info": {
+      "name": "Restaurant Agent",
+      "assistant_id": "4e1b04f7-ea3d-4cd1-8288-ff0ebaf7339d",
+      "hover_tooltip": "Restaurant Agent",
+      "role": "Hospitality Concierge & Table Reservation Specialist",
+      "description": "Handles table reservations, dietary preferences, special occasion arrangements, and dining inquiries.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "UtensilsCrossed",
+      "status_text": "Maître D' AI • Reservations Open",
+      "suggested_prompts": [
+        "Book a rooftop table for 4 guests this Saturday at 8:30 PM",
+        "Do you have Jain, vegan, or gluten-free tasting menu options?",
+        "We are celebrating an anniversary—can you arrange a custom cake?",
+        "What is the chef's signature coastal seafood special tonight?"
+      ]
+    },
+    "ui": {
+      "hero": {
+        "service_tagline": "Seamless restaurant booking & fine-dining hospitality.",
+        "venue_name": "Saffron & Ember • Fine Dining & Sky Lounge",
+        "timings": "Lunch: 12:30 PM – 3:30 PM | Dinner: 7:00 PM – 11:30 PM",
+        "location": "Park Street, Kolkata"
+      },
+      "capabilities": [
+        {
+          "label": "Instant Table & Rooftop Reservations",
+          "icon": "CalendarCheck"
+        },
+        {
+          "label": "Menu Inquiries & Chef's Tasting Specials",
+          "icon": "ChefHat"
+        },
+        { "label": "Dietary Accommodation & Allergy Notes", "icon": "Leaf" },
+        { "label": "Private Dining Room (PDR) Bookings", "icon": "Wine" }
+      ],
+      "menu_highlights": [
+        {
+          "dish": "Smoked Beckti in Banana Leaf",
+          "category": "Chef's Signature",
+          "price": "₹ 890",
+          "dietary": "Gluten-Free"
+        },
+        {
+          "dish": "Truffle & Wild Mushroom Galouti",
+          "category": "Small Plates",
+          "price": "₹ 650",
+          "dietary": "Vegetarian"
+        },
+        {
+          "dish": "Artisanal Burrata & Heirloom Fig Salad",
+          "category": "Appetizer",
+          "price": "₹ 720",
+          "dietary": "Veg / Nut-Free"
+        }
+      ],
+      "available_slots_tonight": [
+        "7:30 PM (Indoor)",
+        "8:15 PM (Rooftop Patio)",
+        "9:00 PM (Chef's Counter)"
+      ]
+    }
+  },
+  "realestate": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/realestate",
+    "route": "/livekit/realestate",
+    "agent_type": "realestate",
+    "function": "chat-and-voice",
+    "page_title": "Real Estate Advisory & Virtual Property Tours",
+    "brand_name": "Vyom Real Estate",
+    "assistant_id": "c89e2897-c526-4efa-b8c3-a482868fe2fa",
+    "hover_tooltip": "Real Estate Agent",
+    "theme": {
+      "primary": "emerald-800",
+      "secondary": "slate-900",
+      "accent": "amber-600",
+      "background": "stone-50",
+      "layout": "property-advisory"
+    },
+    "assistant_info": {
+      "name": "Real Estate Agent",
+      "assistant_id": "c89e2897-c526-4efa-b8c3-a482868fe2fa",
+      "hover_tooltip": "Real Estate Agent",
+      "role": "High-Value Real Estate Guidance & Property Consultant",
+      "description": "Assists high-net-worth buyers with luxury listings, property brochures, site visits, and financing structures.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Building2",
+      "status_text": "RERA-Certified Luxury Property Advisor",
+      "suggested_prompts": [
+        "Show me 4BHK sea-facing or golf-view residences under ₹4 Crore",
+        "Calculate the 20:80 subvention payment plan and monthly EMI",
+        "What is the RERA registration number and possession timeline?",
+        "Book a virtual 3D walkthrough or weekend site visit"
+      ]
+    },
+    "ui": {
+      "hero": {
+        "service_tagline": "High-value real estate guidance & virtual property tours.",
+        "subtext": "Curated residential penthouses, gated villas, and Grade-A commercial spaces."
+      },
+      "capabilities": [
+        { "label": "Luxury Apartment & Villa Search", "icon": "Home" },
+        {
+          "label": "Interactive Virtual Property Walkthroughs",
+          "icon": "Video"
+        },
+        {
+          "label": "Pricing, Payment Plans & EMI Calculations",
+          "icon": "Calculator"
+        },
+        {
+          "label": "Developer Track Record & RERA Verification",
+          "icon": "BadgeCheck"
+        }
+      ],
+      "featured_listings": [
+        {
+          "id": "prop-101",
+          "title": "The Aurelia Sky Penthouses",
+          "location": "Alipore, Kolkata",
+          "config": "4.5 BHK + Private Deck (4,450 sq.ft.)",
+          "price": "₹ 6.20 Cr",
+          "rera_id": "WBRERA/P/KOL/2025/001482",
+          "possession": "Dec 2027"
+        },
+        {
+          "id": "prop-102",
+          "title": "Veridian Botanica Villas",
+          "location": "New Town Action Area III",
+          "config": "4 BHK Triplex Villa (3,800 sq.ft.)",
+          "price": "₹ 3.45 Cr",
+          "rera_id": "WBRERA/P/NOR/2025/000914",
+          "possession": "Ready to Move"
+        }
+      ]
+    }
+  },
+  "distributor": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/distributor",
+    "route": "/livekit/distributor",
+    "agent_type": "distributor",
+    "function": "chat-and-voice",
+    "page_title": "Supply Chain & Distribution Coordination Agent",
+    "brand_name": "Vyom Distribution",
+    "assistant_id": "5945555f-2c2a-44e1-ae9f-192eb9291471",
+    "hover_tooltip": "Distributor Agent",
+    "theme": {
+      "primary": "blue-700",
+      "secondary": "slate-900",
+      "accent": "amber-500",
+      "background": "slate-50",
+      "layout": "supply-chain-ops"
+    },
+    "assistant_info": {
+      "name": "Distributor Agent",
+      "assistant_id": "5945555f-2c2a-44e1-ae9f-192eb9291471",
+      "hover_tooltip": "Distributor Agent",
+      "role": "Supply Chain Logistics & Distributor Order Coordinator",
+      "description": "Automates distributor inventory checks, wholesale order re-ordering, order dispatch tracking, and shipment schedules.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "Boxes",
+      "status_text": "DMS & Warehouse ERP Connected",
+      "suggested_prompts": [
+        "Check real-time stock availability for SKU #FMCG-4402 at Dankuni Depot",
+        "Repeat my last wholesale order of 250 master cartons",
+        "Where is dispatch truck WB-23-E-8841 for Order #ORD-9081?",
+        "What is my current distributor credit utilization and trade scheme margin?"
+      ]
+    },
+    "ui": {
+      "hero": {
+        "service_tagline": "Efficient supply chain & distributor order coordination.",
+        "depot_status": "East Zone Mother Warehouse (Dankuni) • Dispatch SLA: 24 Hrs"
+      },
+      "capabilities": [
+        {
+          "label": "Automated Wholesale Order Placement",
+          "icon": "ShoppingCart"
+        },
+        {
+          "label": "Real-Time Warehouse Inventory & Stock Queries",
+          "icon": "PackageSearch"
+        },
+        {
+          "label": "Live GPS Dispatch & Delivery Status Tracking",
+          "icon": "Truck"
+        },
+        { "label": "Credit Limit & Trade Scheme Clearance", "icon": "Receipt" }
+      ],
+      "active_shipments": [
+        {
+          "order_id": "ORD-2026-9081",
+          "destination": "Howrah Wholesale Hub",
+          "cartons": "320 Cases",
+          "vehicle": "WB-23-E-8841",
+          "eta": "Today, 4:30 PM",
+          "status": "In Transit"
+        },
+        {
+          "order_id": "ORD-2026-9104",
+          "destination": "Siliguri Regional Stockist",
+          "cartons": "500 Cases",
+          "vehicle": "WB-73-B-1129",
+          "eta": "Tomorrow, 11:00 AM",
+          "status": "Loaded at Dock"
+        }
+      ]
+    }
+  },
+  "kingston": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/kingston",
+    "route": "/livekit/kingston",
+    "agent_type": "kingston",
+    "function": "chat-and-voice",
+    "page_title": "Kingston Educational Advisory Services",
+    "brand_name": "Kingston Advisory",
+    "assistant_id": "3ce58ec1-cacb-4cc1-9680-11059706228e",
+    "hover_tooltip": "Kingston Agent",
+    "theme": {
+      "primary": "blue-900",
+      "secondary": "indigo-950",
+      "accent": "amber-500",
+      "background": "slate-50",
+      "layout": "education-counsellor"
+    },
+    "assistant_info": {
+      "name": "Kingston Agent",
+      "assistant_id": "3ce58ec1-cacb-4cc1-9680-11059706228e",
+      "hover_tooltip": "Kingston Agent",
+      "role": "Senior Educational Consultant",
+      "description": "Guides students through university applications, eligibility criteria, international scholarships, and curriculum choices.",
+      "connection_type": "livekit_voice_web_call",
+      "function": "chat-and-voice",
+      "avatar_icon": "GraduationCap",
+      "status_text": "Fall & Spring Intake Admissions Open",
+      "suggested_prompts": [
+        "Which UK and German universities match my 9.2 CGPA in Computer Science?",
+        "What scholarships are available for MS in AI & Data Science?",
+        "What IELTS/TOEFL score and SOP documents do I need?",
+        "Run a mock F-1 / UK Student Visa interview with me"
+      ]
+    },
+    "ui": {
+      "hero": {
+        "service_tagline": "Your Senior Educational Consultant for Global & Domestic Admissions.",
+        "intake_banner": "Applications Open for Fall 2026 & Spring 2027 Intakes"
+      },
+      "capabilities": [
+        { "label": "University & Course Shortlisting", "icon": "BookOpen" },
+        {
+          "label": "Academic Credential & CGPA Evaluation",
+          "icon": "FileCheck2"
+        },
+        {
+          "label": "Merit Scholarship Matching & Financial Aid",
+          "icon": "Award"
+        },
+        { "label": "Mock Visa Interview Preparation", "icon": "Stamp" }
+      ],
+      "featured_tracks": [
+        {
+          "program": "M.S. in Artificial Intelligence & ML",
+          "destinations": "USA, Germany, UK",
+          "scholarship": "Up to 50% Tuition Waiver"
+        },
+        {
+          "program": "MBA & Global Management",
+          "destinations": "UK, Canada, Australia, India",
+          "scholarship": "Merit Bursaries up to £10,000"
+        },
+        {
+          "program": "B.Tech / Undergraduate Honors",
+          "destinations": "India & Singapore Partner Campuses",
+          "scholarship": "100% Academic Merit Scholarship"
+        }
+      ]
+    }
+  },
+  "mmt": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/mmt",
+    "route": "/livekit/mmt",
+    "agent_type": "mmt",
+    "function": "chat",
+    "page_title": "MakeMyTrip - Myra AI Travel Assistant",
+    "brand_name": "MakeMyTrip",
+    "assistant_id": "myra-openai-gpt4o",
+    "hover_tooltip": "Myra - Your AI Assistant for Flights & Stays",
+    "theme": {
+      "primary": "red-600",
+      "secondary": "blue-900",
+      "accent": "sky-500",
+      "background": "slate-50",
+      "layout": "travel-booking-chat"
+    },
+    "assistant_info": {
+      "name": "Myra",
+      "assistant_id": "myra-openai-gpt4o",
+      "hover_tooltip": "Myra - Your AI Assistant for Flights & Stays",
+      "role": "AI Assistant for Flights & Stays",
+      "description": "Conversational travel planner capable of suggesting flight itineraries, hotels, comparison tables, and holiday packages.",
+      "connection_type": "chat_with_openai_realtime_data",
+      "function": "chat",
+      "avatar_icon": "Plane",
+      "status_text": "Powered by Live Flight & Hotel Inventory",
+      "suggested_prompts": [
+        "Compare morning non-stop flights from Kolkata (CCU) to Bengaluru (BLR)",
+        "Suggest 4-star beachfront resorts in South Goa under ₹6,500/night",
+        "Build a 5-day Kashmir family holiday package with houseboat stay",
+        "Show me the cheapest flexible-fare return flights to Delhi next week"
+      ]
+    },
+    "ui": {
+      "header": {
+        "brand": "MakeMyTrip",
+        "assistant_badge": "Myra - Your AI Assistant for Flights & Stays",
+        "categories": [
+          { "label": "Flights", "icon": "Plane", "active": true },
+          { "label": "Hotels", "icon": "Hotel", "active": false },
+          { "label": "Holiday Packages", "icon": "Palmtree", "active": false },
+          { "label": "Trains & Cabs", "icon": "Train", "active": false }
+        ]
+      },
+      "capabilities": [
+        {
+          "label": "Flight schedule queries & live fare comparisons",
+          "icon": "PlaneTakeoff"
+        },
+        {
+          "label": "Hotel recommendations with verified ratings & amenities",
+          "icon": "Building"
+        },
+        {
+          "label": "Interactive day-by-day itinerary generation",
+          "icon": "CalendarRange"
+        },
+        {
+          "label": "Dynamic markdown comparison tables for travel options",
+          "icon": "Table"
+        }
+      ],
+      "trending_routes": [
+        {
+          "route": "Kolkata (CCU) → Goa (GOX)",
+          "starting_fare": "₹ 4,899",
+          "airline": "IndiGo / Akasa Air"
+        },
+        {
+          "route": "Mumbai (BOM) → Dubai (DXB)",
+          "starting_fare": "₹ 11,450",
+          "airline": "Air India / Emirates"
+        },
+        {
+          "route": "Delhi (DEL) → Srinagar (SXR)",
+          "starting_fare": "₹ 3,950",
+          "airline": "Vistara / IndiGo"
+        }
+      ]
+    }
+  },
+  "itc_agent": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit/itc_agent",
+    "route": "/livekit/itc_agent",
+    "agent_type": "itc_agent",
+    "function": "chat",
+    "page_title": "ITC Limited - Prism Copilot Data Assistant",
+    "brand_name": "ITC Limited",
+    "assistant_id": "itc-prism-copilot-6a20031a403970c6e4358aa2",
+    "hover_tooltip": "ITC Copilot Assistant",
+    "theme": {
+      "primary": "blue-900",
+      "secondary": "slate-950",
+      "accent": "teal-500",
+      "background": "slate-900",
+      "layout": "enterprise-analytics-copilot"
+    },
+    "assistant_info": {
+      "name": "ITC Copilot Data Assistant",
+      "assistant_id": "itc-prism-copilot-6a20031a403970c6e4358aa2",
+      "hover_tooltip": "ITC Copilot Assistant",
+      "role": "Enterprise FMCG Data Copilot",
+      "description": "Queries FMCG sales performance, retail partner distributions, product stocking insights, and retail copilot analytics.",
+      "connection_type": "enterprise_rag_copilot_chat",
+      "function": "chat",
+      "avatar_icon": "BarChart4",
+      "status_text": "Prism Enterprise RAG Connected • FMCG Analytics",
+      "suggested_prompts": [
+        "Compare Q3 primary vs secondary sales for Aashirvaad and Sunfeast in East Zone",
+        "Which retail beats have the highest stock-out rate for YiPPee! Magic Masala?",
+        "Show top 10 high-velocity wholesale distributors in Kolkata Metro",
+        "Synthesize trade scheme ROI across General Trade vs Modern Trade"
+      ]
+    },
+    "ui": {
+      "user_context": {
+        "user_id": "6a20031a403970c6e4358aa2",
+        "user_name": "test_itc",
+        "user_email": "test_itc@gmail.com",
+        "slug_name": "copilot_data",
+        "agent_engine": "prism"
+      },
+      "kpi_snapshot": [
+        {
+          "label": "East Zone MTD Offtake",
+          "value": "₹ 48.6 Cr",
+          "change": "+14.2% YoY",
+          "status": "positive"
+        },
+        {
+          "label": "Active Retail Outlet Coverage",
+          "value": "94.8%",
+          "change": "+2.1% vs Target",
+          "status": "positive"
+        },
+        {
+          "label": "SKU Fill-Rate (Depot → WD)",
+          "value": "97.3%",
+          "change": "Optimal",
+          "status": "neutral"
+        }
+      ],
+      "features": [
+        { "label": "Multi-session persistent chat history", "icon": "History" },
+        {
+          "label": "Automated SQL & RAG sales data synthesis",
+          "icon": "DatabaseZap"
+        },
+        {
+          "label": "Real-time retail beat & distributor analytics",
+          "icon": "LineChart"
+        }
+      ]
+    }
+  },
+  "livekit": {
+    "url": "https://internal-vyom.indusnettechnologies.com/livekit",
+    "route": "/livekit",
+    "agent_type": "directory",
+    "function": "voice",
+    "page_title": "Vyom AI - Virtual Workforce Intelligent Voice Solutions",
+    "brand_name": "Vyom AI",
+    "assistant_id": "directory-hub",
+    "hover_tooltip": "Explore Virtual Workforce Agents",
+    "theme": {
+      "primary": "violet-600",
+      "secondary": "slate-950",
+      "accent": "cyan-400",
+      "background": "slate-950",
+      "layout": "agent-directory-hub"
+    },
+    "assistant_info": {
+      "name": "Vyom Virtual Workforce Directory",
+      "assistant_id": "directory-hub",
+      "hover_tooltip": "Explore Virtual Workforce Agents",
+      "role": "Central AI Agent Directory & Inbound Call Settings",
+      "description": "Comprehensive dashboard of all voice agents available across financial, tourism, healthcare, logistics, and enterprise domains.",
+      "connection_type": "hub_directory",
+      "function": "voice",
+      "avatar_icon": "Cpu",
+      "status_text": "21 Specialized Agents Online • Sub-300ms Voice Latency"
+    },
+    "ui": {
+      "hero": {
+        "eyebrow": "INTELLIGENT VOICE SOLUTIONS",
+        "headline": "Speak to your Virtual Workforce.",
+        "subheadline": "Deploy specialized AI agents tailored for your business needs. Professional, instant, and human-like interactions across WebRTC, Chat, and Telephony.",
+        "total_agents_available": 21
+      },
+      "tech_stack": [
+        {
+          "label": "LiveKit Agents",
+          "icon": "Radio",
+          "description": "Ultra-low latency WebRTC media rooms"
+        },
+        {
+          "label": "OpenAI Realtime",
+          "icon": "Sparkles",
+          "description": "Multimodal native speech-to-speech reasoning"
+        },
+        {
+          "label": "Cartesia & Sarvam TTS",
+          "icon": "AudioWaveform",
+          "description": "Expressive Indian & global neural voices"
+        },
+        {
+          "label": "WebRTC 2.0 & SIP Trunks",
+          "icon": "PhoneCall",
+          "description": "Browser voice + Exotel/Twilio outbound calls"
+        }
+      ],
+      "domain_filters": [
+        { "id": "all", "label": "All Agents (21)", "icon": "LayoutGrid" },
+        {
+          "id": "bfsi",
+          "label": "Banking, Insurance & Wealth",
+          "icon": "Landmark",
+          "agents": [
+            "bank",
+            "bandhan_banking",
+            "jana_bank",
+            "equitas_bank",
+            "equitas_login",
+            "abbakus_funds",
+            "sbi_agent",
+            "bharat_general_insurance",
+            "hero_humrahi"
+          ]
+        },
+        {
+          "id": "enterprise",
+          "label": "Enterprise, Legal & Supply Chain",
+          "icon": "Briefcase",
+          "agents": [
+            "invoice",
+            "gs1",
+            "case_manager",
+            "distributor",
+            "itc_agent",
+            "aludecor"
+          ]
+        },
+        {
+          "id": "healthcare",
+          "label": "Healthcare, Pharma & Wellness",
+          "icon": "HeartPulse",
+          "agents": [
+            "blue_cross",
+            "medical_rep",
+            "insideout-mental",
+            "insideout-physical"
+          ]
+        },
+        {
+          "id": "consumer",
+          "label": "Travel, Hospitality & Real Estate",
+          "icon": "Compass",
+          "agents": [
+            "tour",
+            "mmt",
+            "ambuja",
+            "realestate",
+            "restaurant",
+            "hirebot",
+            "kingston"
+          ]
+        }
+      ]
+    }
+  }
+}

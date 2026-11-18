@@ -21,8 +21,13 @@ import {
 import UseCaseSelector from "./UseCaseSelector";
 import RobotFAB from "./AskAgentModal";
 import Script from "next/script";
+import AgentDirectory from "@/components/AgentDirectory";
 
-export default function VyomLandingPage() {
+interface VyomLandingPageProps {
+  assistantId?: string;
+}
+
+export default function VyomLandingPage({ assistantId }: VyomLandingPageProps) {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       {/* Top Navbar */}
@@ -172,7 +177,12 @@ export default function VyomLandingPage() {
       <div className="my-12">
         <UseCaseSelector initiatedBy="me@co.com" initiatedByName="Me" />
       </div>
-      {/* <RobotFAB />  */}
+      <AgentDirectory
+        category="vyom"
+        title="Choose a call agent"
+        description="Open an agent to start its dedicated call experience."
+      />
+      {/* <RobotFAB assistantId={assistantId} /> */}
       <Script src="/widget/bandhan-widget.js" strategy="lazyOnload" />
 
       {/* floating bot button — bottom right */}
@@ -310,7 +320,6 @@ export default function VyomLandingPage() {
           </div>
         </div>
       </section>
-
       {/* Capabilities Section */}
       <section className="bg-white px-8 py-20">
         <div className="mx-auto max-w-7xl">
