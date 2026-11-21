@@ -28,9 +28,9 @@ import { useBandhanChatTranscriptions } from "./useBandhanChatTranscriptions";
 const LIVEKIT_URL = "wss://livekit-vyom.indusnettechnologies.com";
 const BANDHAN_ASSISTANT_ID = "fa598b51-25a5-406e-8e69-7c7ae17d687f";
 const BANDHAN = {
-  gold: "#fbaf17",
-  navy: "#002d5e",
-  lightGold: "rgba(251,175,23,0.12)",
+  gold: "#6366f1",
+  navy: "#0b1120",
+  lightGold: "rgba(99,102,241,0.12)",
 };
 
 type AssistantMode = "voice" | "chat";
@@ -97,7 +97,7 @@ function StandbyCard({
     >
       <div
         style={{
-          background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #003f7f 100%)`,
+          background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #1e1b4b 100%)`,
           padding: "16px 20px",
           display: "flex",
           alignItems: "center",
@@ -160,7 +160,7 @@ function StandbyCard({
             onClick={() => onConnect("voice")}
             disabled={connecting}
             style={{
-              background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #003f7f 100%)`,
+              background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #1e1b4b 100%)`,
               color: "#fff",
               border: 0,
               borderRadius: 10,
@@ -287,7 +287,7 @@ function AssistantOverlay({
         >
           <div
             style={{
-              background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #003f7f 100%)`,
+              background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #1e1b4b 100%)`,
               padding: "14px 18px",
               display: "flex",
               alignItems: "center",
@@ -408,7 +408,7 @@ function AssistantOverlay({
                 type="submit"
                 aria-label="Send message"
                 style={{
-                  background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #003f7f 100%)`,
+                  background: `linear-gradient(135deg, ${BANDHAN.navy} 0%, #1e1b4b 100%)`,
                   color: "#fff",
                   border: 0,
                   borderRadius: 10,
@@ -623,15 +623,15 @@ export function BandhanAssistant({ className }: BandhanAssistantProps) {
                 height: 64,
                 borderRadius: "50%",
                 border: "4px solid rgba(255,255,255,0.2)",
-                background: `linear-gradient(135deg, ${BANDHAN.gold} 0%, #e59e15 100%)`,
-                boxShadow: "0 4px 20px rgba(251,175,23,0.4)",
+                background: `linear-gradient(135deg, ${BANDHAN.gold} 0%, #4f46e5 100%)`,
+                boxShadow: "0 4px 20px rgba(99,102,241,0.4)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
               }}
             >
-              <Bot size={32} color={BANDHAN.navy} />
+              <Bot size={32} color="#ffffff" />
             </button>
           )}
         </div>

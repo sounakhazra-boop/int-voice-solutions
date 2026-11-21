@@ -80,7 +80,7 @@ export function ConfigureVoiceModal({
       <div style={styles.modal}>
         <div style={styles.header}>
           <div style={styles.heading}>
-            <Settings size={19} color="#2563eb" />
+            <Settings size={19} color="#4f46e5" />
             <div>
               <strong>Agent Configuration</strong>
               <small>Adjust voice and connection settings</small>
@@ -211,7 +211,7 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: 7,
     marginBottom: 10,
-    color: "#2563eb",
+    color: "#4f46e5",
     fontSize: 10,
     fontWeight: 800,
     letterSpacing: ".12em",
@@ -247,9 +247,9 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 600,
   },
   activePill: {
-    background: "#2563eb",
+    background: "#4f46e5",
     color: "#fff",
-    boxShadow: "0 2px 6px rgba(37,99,235,.25)",
+    boxShadow: "0 2px 6px rgba(79,70,229,.25)",
   },
   twoColumns: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 },
   cost: {
@@ -266,7 +266,7 @@ const styles: Record<string, React.CSSProperties> = {
     border: 0,
     borderRadius: 10,
     padding: 14,
-    background: "#2563eb",
+    background: "#6366f1",
     color: "#fff",
     fontWeight: 700,
     cursor: "pointer",

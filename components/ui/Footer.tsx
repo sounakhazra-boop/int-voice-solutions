@@ -75,32 +75,54 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative border-t border-slate-200 bg-white text-slate-700">
       <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl py-12 sm:w-[calc(100%-3rem)] lg:py-16">
-        <div className="mt-14 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between lg:mt-16">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5 pb-12 border-b border-slate-100">
+          {footerColumns.map((col, idx) => (
+            <div key={idx} className="space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                {col.title}
+              </h4>
+              <ul className="space-y-2.5">
+                {col.links.map((link, lIdx) => (
+                  <li key={lIdx}>
+                    <a
+                      href="#"
+                      className="text-xs text-slate-500 transition-colors hover:text-brand-600"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
           <Image
             src="/int_logo.png"
             alt="INT."
             width={80}
             height={80}
-            className="h-20 w-20 object-contain"
+            className="h-14 w-auto object-contain"
           />
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-8">
             <a
               href="mailto:info@intglobal.com"
-              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-indigo-600"
+              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-brand-600"
             >
               <EnvelopeSimple size={22} />
               info@intglobal.com
             </a>
             <a
               href="tel:+918047092630"
-              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-indigo-600"
+              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-brand-600"
             >
               <Phone size={22} />
               +91 80470 92630 (IND)
             </a>
             <a
               href="tel:+19175401340"
-              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-indigo-600"
+              className="inline-flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-brand-600"
             >
               <Phone size={22} />
               +1 (917) 540-1340 (US)
@@ -112,19 +134,19 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-7">
             <a
               href="#"
-              className="text-sm leading-5 text-slate-600 transition-colors hover:text-indigo-600"
+              className="text-sm leading-5 text-slate-600 transition-colors hover:text-brand-600"
             >
               Terms of Use
             </a>
             <a
               href="#"
-              className="text-sm leading-5 text-slate-600 transition-colors hover:text-indigo-600"
+              className="text-sm leading-5 text-slate-600 transition-colors hover:text-brand-600"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-sm leading-5 text-slate-600 transition-colors hover:text-indigo-600"
+              className="text-sm leading-5 text-slate-600 transition-colors hover:text-brand-600"
             >
               Site Map
             </a>
@@ -135,7 +157,7 @@ export const Footer: React.FC = () => {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-600"
               >
                 <SocialIcon size={18} weight="fill" />
               </a>
@@ -146,7 +168,7 @@ export const Footer: React.FC = () => {
 
       <button
         type="button"
-        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-indigo-700 bg-indigo-700 text-white shadow-lg shadow-indigo-900/20 transition-all hover:-translate-y-1 hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-200"
+        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand-500 bg-brand-500 text-white shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-1 hover:bg-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-200"
         onClick={scrollToTop}
         aria-label="Back to top"
       >

@@ -17,7 +17,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
     >
       {/* Ambient background gradients */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-blue-500/5 rounded-full blur-[100px]" />
+        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-brand-500/5 rounded-full blur-[100px]" />
         <div className="absolute top-[30%] -right-[10%] w-[50%] h-[50%] bg-purple-500/5 rounded-full blur-[100px]" />
       </div>
 
@@ -49,7 +49,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
         {/* Right Side: Form Fields */}
         <div className="w-full md:w-[60%] p-8 md:p-12 space-y-8 flex flex-col justify-center">
           <div className="space-y-1">
-            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600/80">
+            <span className="text-[10px] font-black uppercase tracking-widest text-brand-600">
               Contact Us
             </span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
@@ -68,7 +68,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                   type="text"
                   defaultValue={data.user_name}
                   placeholder="Your Name"
-                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-zinc-400 shadow-sm"
+                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-zinc-400 shadow-sm"
                 />
               </div>
 
@@ -81,7 +81,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                   type="email"
                   defaultValue={data.user_email}
                   placeholder="name@company.com"
-                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-zinc-400 shadow-sm"
+                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-zinc-400 shadow-sm"
                 />
               </div>
 
@@ -92,7 +92,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                 </label>
                 <div className="flex gap-3">
                   <div className="relative flex-1">
-                    <select className="w-full appearance-none bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm">
+                    <select className="w-full appearance-none bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all shadow-sm">
                       <option>India (भारत)</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 text-zinc-900">
@@ -111,7 +111,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                     <input
                       type="text"
                       defaultValue={data.user_phone || "+91"}
-                      className="w-full bg-white border border-zinc-200 rounded-2xl px-4 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm"
+                      className="w-full bg-white border border-zinc-200 rounded-2xl px-4 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all shadow-sm"
                     />
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                   rows={3}
                   defaultValue={data.contact_details}
                   placeholder="Tell us about your project..."
-                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder:text-zinc-400 resize-none shadow-sm"
+                  className="w-full bg-white border border-zinc-200 rounded-2xl px-5 py-3.5 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all placeholder:text-zinc-400 resize-none shadow-sm"
                 />
               </div>
             </div>

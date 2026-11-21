@@ -48,10 +48,10 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full max-w-md flex-col gap-5 rounded-2xl border border-brand-100 bg-white p-8 shadow-xl"
+      className="flex w-full max-w-md flex-col gap-5 rounded-2xl border border-indigo-100 bg-white p-8 shadow-xl"
     >
       <div>
-        <h1 className="text-2xl font-semibold text-brand-900">Sign in</h1>
+        <h1 className="text-2xl font-semibold text-ink-900">Sign in</h1>
         <p className="mt-2 text-sm text-gray-600">
           Use your INT Voice Solutions account to continue.
         </p>
@@ -64,7 +64,7 @@ export function LoginForm() {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
           autoComplete="email"
         />
       </label>
@@ -76,7 +76,7 @@ export function LoginForm() {
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          className="rounded-lg border border-gray-200 px-3 py-2 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
           autoComplete="current-password"
         />
       </label>
@@ -86,7 +86,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-lg bg-brand-600 px-4 py-2.5 font-medium text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="rounded-lg bg-brand-500 px-4 py-2.5 font-medium text-white shadow-md shadow-indigo-950/20 transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting ? "Signing in..." : "Sign in"}
       </button>

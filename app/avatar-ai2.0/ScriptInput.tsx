@@ -19,7 +19,7 @@ export default function ScriptInput({ value, onChange, disabled }: Props) {
         maxLength={MAX_SCRIPT_CHARS}
         rows={4}
         placeholder="Welcome to our voice solution. Here's what we can do for you..."
-        className="rounded-md border border-neutral-300 bg-transparent p-2 dark:border-neutral-700"
+        className="rounded-md border border-neutral-300 bg-transparent p-2 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
       />
       <span className="self-end text-xs text-neutral-500">
         {value.length}/{MAX_SCRIPT_CHARS}

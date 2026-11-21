@@ -70,7 +70,7 @@ function ConnectedVoiceBot({
                 ...styles.message,
                 alignSelf:
                   message.sender === "user" ? "flex-end" : "flex-start",
-                background: message.sender === "user" ? "#2563eb" : "#f1f5f9",
+                background: message.sender === "user" ? "#6366f1" : "#f1f5f9",
                 color: message.sender === "user" ? "#fff" : "#0f172a",
               }}
             >
@@ -204,7 +204,7 @@ const styles: Record<string, React.CSSProperties> = {
     border: 0,
     borderRadius: 999,
     padding: "14px 20px",
-    background: "#2563eb",
+    background: "#6366f1",
     color: "#fff",
     fontWeight: 700,
     cursor: "pointer",
@@ -230,7 +230,7 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "16px 18px",
-    background: "#0f172a",
+    background: "#0b1120",
     color: "#fff",
   },
   iconButton: {

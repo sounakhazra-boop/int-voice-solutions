@@ -258,7 +258,7 @@ export const MapDisplay = React.memo(
           <Polyline
             positions={positions}
             pathOptions={{
-              color: "#2563eb",
+              color: "#6366f1",
               weight: 6,
               opacity: 1,
               lineCap: "round",
@@ -287,7 +287,7 @@ export const MapDisplay = React.memo(
 
         {/* Premium Overlay Elements */}
         <div className="absolute top-4 left-4 z-[1000] flex gap-2">
-          <div className="flex items-center gap-2 rounded-xl bg-blue-600 px-3 py-1.5 text-white shadow-lg backdrop-blur-md">
+          <div className="flex items-center gap-2 rounded-xl bg-brand-500 px-3 py-1.5 text-white shadow-lg backdrop-blur-md">
             <TravelModeIcon mode={travelMode} />
             <span className="text-[10px] font-bold uppercase tracking-widest">
               {mode_label || travelMode || "DRIVE"}
@@ -311,7 +311,7 @@ export const MapDisplay = React.memo(
                   <span className="text-[8px] font-medium text-zinc-500 uppercase">
                     Time
                   </span>
-                  <span className="text-xs font-bold text-blue-600">
+                  <span className="text-xs font-bold text-brand-600">
                     {duration}
                   </span>
                 </div>
@@ -335,7 +335,7 @@ export const MapDisplay = React.memo(
             <div className="flex-1 space-y-2">
               <div className="flex items-center gap-3">
                 <div className="flex flex-col items-center">
-                  <div className="h-2.5 w-2.5 rounded-full border-2 border-blue-500 bg-white"></div>
+                  <div className="h-2.5 w-2.5 rounded-full border-2 border-brand-500 bg-white"></div>
                   <div className="h-4 w-0.5 border-l border-dashed border-zinc-300"></div>
                   <div className="h-2.5 w-2.5 rounded-sm bg-red-500"></div>
                 </div>

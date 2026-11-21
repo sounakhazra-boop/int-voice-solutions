@@ -79,7 +79,6 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
   const normalizedRefImage = (referanceImage ?? referenceImage)?.trim() || null;
   const normalizedDemoLinks =
     demoLinks?.filter((link) => link.label.trim() && link.url.trim()) ?? [];
-
   const hasFooterMetadata =
     Boolean(normalizedRefImage) ||
     Boolean(normalizedRefUrl) ||
@@ -88,7 +87,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
   const theme = iconStyles[iconType] ?? iconStyles.blue;
 
   const primaryBodyContent = (
-    <div className="flex w-full items-start gap-4 p-5 text-left">
+    <div className="flex w-full items-start gap-4 p-6 sm:gap-5 text-left">
       {/* Icon Container */}
       <div
         className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-200 ${theme.container}`}
@@ -100,7 +99,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex flex-wrap items-center gap-2">
           <h3
-            className=" truncate text-base font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-950"
+            className="truncate text-base font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-950"
             title={title}
           >
             {title}
@@ -118,7 +117,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
         </div>
 
         <p
-          className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-slate-500"
+          className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-500"
           title={description}
         >
           {description}
@@ -127,7 +126,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
 
       {/* Directional Action Indicator */}
       <div
-        className={`mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-300 transition-all duration-200 ${theme.arrowHover}`}
+        className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-300 transition-all duration-200 ${theme.arrowHover}`}
       >
         {normalizedUrl ? (
           <svg
@@ -162,7 +161,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
 
   return (
     <div
-      className={`flex h-full flex-col justify-between rounded-2xl border border-slate-200/80 bg-white shadow-xs transition-all duration-200 hover:shadow-md ${theme.borderHover}`}
+      className={`flex h-full flex-col justify-between rounded-2xl border border-slate-200/90 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-950/5 ${theme.borderHover}`}
     >
       {/* Top Primary Clickable Area */}
       {normalizedUrl ? (
@@ -207,7 +206,7 @@ export const InitiativeCard: React.FC<InitiativeCardProps> = ({
 
       {/* Unified Footer for Reference & Demo Links */}
       {hasFooterMetadata && (
-        <div className="flex flex-col gap-3 rounded-b-2xl border-t border-slate-100 bg-slate-50/60 px-5 py-3">
+        <div className="flex flex-col gap-3 rounded-b-2xl border-t border-slate-100 bg-slate-50/70 px-6 py-3.5">
           {/* Reference Row (Image + Reference Link) */}
           {(normalizedRefImage || normalizedRefUrl) && (
             <div className="flex items-center justify-between gap-3">

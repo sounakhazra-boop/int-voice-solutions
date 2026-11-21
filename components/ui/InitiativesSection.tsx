@@ -77,7 +77,7 @@ export const InitiativesSection: React.FC = () => {
   }, [isAuthenticated]);
 
   return (
-    <section id="solutions" className="section section-light my-3 sm:my-5">
+    <section id="solutions" className="section section-light">
       <div className="section-container">
         <header className="section-header">
           <h2 className="section-title">{content.initiatives.sectionTitle}</h2>

@@ -6,14 +6,14 @@ import React from "react";
 // cascade comes from the `.md-stagger` CSS (globals.css). Used by both the
 // Flashcard body and the infographic MarkdownBlock — single source of truth.
 
-// Blue filled check-circle (the headline bullet visual). Inline SVG = crisp + cheap.
+// Blue/indigo filled check-circle (the headline bullet visual). Inline SVG = crisp + cheap.
 export const CheckDot = () => (
   <svg
     viewBox="0 0 24 24"
     className="mt-[0.15em] h-[1.15rem] w-[1.15rem] shrink-0 @md:h-5 @md:w-5"
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="10" fill="#3b82f6" />
+    <circle cx="12" cy="12" r="10" fill="#6366f1" />
     <path
       d="M7.5 12.5l3 3 6-6.5"
       fill="none"
@@ -32,13 +32,13 @@ export const MD_COMPONENTS = {
   h1: ({ children }: any) => (
     <h1 className="font-display text-xl @md:text-2xl font-semibold tracking-tight text-zinc-900 mt-5 first:mt-0 mb-2">
       {children}
-      <span className="mt-1.5 block h-[3px] w-9 rounded-full bg-gradient-to-r from-blue-500 to-blue-400" />
+      <span className="mt-1.5 block h-[3px] w-9 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600" />
     </h1>
   ),
   h2: ({ children }: any) => (
     <h2 className="font-display text-lg @md:text-xl font-semibold tracking-tight text-zinc-900 mt-5 first:mt-0 mb-2">
       {children}
-      <span className="mt-1.5 block h-[3px] w-8 rounded-full bg-gradient-to-r from-blue-500 to-blue-400" />
+      <span className="mt-1.5 block h-[3px] w-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600" />
     </h2>
   ),
   h3: ({ children }: any) => (
@@ -66,7 +66,7 @@ export const MD_COMPONENTS = {
     if (ordered) {
       return (
         <li className="flex items-start gap-3 leading-[1.6] text-zinc-700 [counter-increment:md-step]">
-          <span className="mt-[0.1em] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-[0.7rem] font-semibold text-blue-600 before:content-[counter(md-step)] @md:h-6 @md:w-6 @md:text-xs" />
+          <span className="mt-[0.1em] flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-[0.7rem] font-semibold text-brand-600 before:content-[counter(md-step)] @md:h-6 @md:w-6 @md:text-xs" />
           <span className="min-w-0">{children}</span>
         </li>
       );
@@ -83,7 +83,7 @@ export const MD_COMPONENTS = {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="font-medium text-blue-600 underline-offset-2 decoration-blue-400 hover:underline"
+      className="font-medium text-brand-600 underline-offset-2 decoration-brand-300 hover:underline"
     >
       {children}
     </a>
@@ -95,12 +95,12 @@ export const MD_COMPONENTS = {
     <em className="italic text-zinc-700">{children}</em>
   ),
   code: ({ children }: any) => (
-    <code className="rounded bg-zinc-900/5 px-1.5 py-0.5 text-[0.85em] font-medium text-blue-700">
+    <code className="rounded bg-zinc-900/5 px-1.5 py-0.5 text-[0.85em] font-medium text-brand-600">
       {children}
     </code>
   ),
   blockquote: ({ children }: any) => (
-    <blockquote className="my-3 rounded-r-lg border-l-2 border-blue-300 bg-blue-50/40 py-1 pl-4 italic text-zinc-500">
+    <blockquote className="my-3 rounded-r-lg border-l-2 border-brand-300 bg-brand-50/40 py-1 pl-4 italic text-zinc-500">
       {children}
     </blockquote>
   ),

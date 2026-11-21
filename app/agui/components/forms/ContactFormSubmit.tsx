@@ -19,8 +19,8 @@ export const ContactFormSubmit: React.FC<ContactFormSubmitProps> = ({
     >
       {/* Ambient background gradients */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[2.5rem]">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white via-white to-blue-50/50" />
-        <div className="absolute -top-[50%] -left-[50%] w-[100%] h-[100%] bg-blue-500/10 rounded-full blur-[80px]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white via-white to-brand-50/50" />
+        <div className="absolute -top-[50%] -left-[50%] w-[100%] h-[100%] bg-brand-500/10 rounded-full blur-[80px]" />
       </div>
 
       <div className="flex flex-col items-center justify-center p-8 min-h-[380px] relative z-10 text-center">
@@ -35,7 +35,7 @@ export const ContactFormSubmit: React.FC<ContactFormSubmitProps> = ({
               damping: 15,
               delay: 0.2,
             }}
-            className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30 text-white"
+            className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-brand-500/30 text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export const ContactFormSubmit: React.FC<ContactFormSubmitProps> = ({
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: [0, 1, 0], scale: [1, 1.5, 2] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-            className="absolute inset-0 rounded-full border-2 border-blue-500/30"
+            className="absolute inset-0 rounded-full border-2 border-brand-500/30"
           />
         </div>
 
@@ -86,7 +86,7 @@ export const ContactFormSubmit: React.FC<ContactFormSubmitProps> = ({
           <div className="flex flex-col gap-2 text-left">
             {data.user_email && (
               <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-full bg-blue-100 text-blue-600">
+                <span className="p-1.5 rounded-full bg-brand-50 text-brand-600">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-3 w-3"
@@ -109,7 +109,7 @@ export const ContactFormSubmit: React.FC<ContactFormSubmitProps> = ({
             )}
             {data.user_phone && (
               <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-full bg-blue-100 text-blue-600">
+                <span className="p-1.5 rounded-full bg-brand-50 text-brand-600">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-3 w-3"

@@ -388,7 +388,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
                           ...styles.personalizedItem,
                           borderColor:
                             activePersonalizedPrompt?._id === prompt._id
-                              ? "#2563eb"
+                              ? "#6366f1"
                               : "#dbe3ee",
                         }}
                       >
@@ -610,7 +610,7 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: 4,
     fontSize: 13,
-    color: "#3b82f6",
+    color: "#4f46e5",
     background: "none",
     border: "none",
     cursor: "pointer",
@@ -620,14 +620,14 @@ const styles: Record<string, React.CSSProperties> = {
   ucTitle: {
     fontSize: 28,
     fontWeight: 800,
-    color: "#0f172a",
+    color: "#1e1b4b",
     marginBottom: 12,
   },
   descBox: {
     display: "inline-block",
     borderRadius: 12,
-    border: "1px solid rgba(59,130,246,0.25)",
-    backgroundColor: "rgba(59,130,246,0.05)",
+    border: "1px solid rgba(99,102,241,0.25)",
+    backgroundColor: "rgba(99,102,241,0.05)",
     padding: "10px 20px",
     maxWidth: 560,
   },
@@ -647,7 +647,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 800,
     letterSpacing: "0.12em",
     textTransform: "uppercase",
-    color: "#2563eb",
+    color: "#4f46e5",
   },
   loadingRow: {
     display: "flex",
@@ -700,7 +700,7 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "0 10px",
     border: 0,
     borderRadius: 8,
-    backgroundColor: "#2563eb",
+    backgroundColor: "#6366f1",
     color: "#fff",
     fontSize: 11,
     fontWeight: 700,
@@ -749,7 +749,7 @@ const styles: Record<string, React.CSSProperties> = {
   callCardTitle: {
     fontSize: 18,
     fontWeight: 700,
-    color: "#0f172a",
+    color: "#1e1b4b",
     marginBottom: 20,
     marginTop: 0,
   },
@@ -758,10 +758,10 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: 7,
     padding: "6px 10px",
-    border: "1px solid #bfdbfe",
+    border: "1px solid #c7d2fe",
     borderRadius: 999,
-    background: "#eff6ff",
-    color: "#2563eb",
+    background: "#eef2ff",
+    color: "#4f46e5",
     fontSize: 10,
     fontWeight: 800,
     letterSpacing: ".06em",
@@ -773,10 +773,10 @@ const styles: Record<string, React.CSSProperties> = {
     gap: 7,
     flexShrink: 0,
     padding: "11px 14px",
-    border: "1px solid #bfdbfe",
+    border: "1px solid #c7d2fe",
     borderRadius: 10,
     background: "#fff",
-    color: "#0f172a",
+    color: "#1e1b4b",
     fontWeight: 700,
     cursor: "pointer",
   },
@@ -803,7 +803,7 @@ const styles: Record<string, React.CSSProperties> = {
     height: 52,
     borderRadius: 10,
     border: "none",
-    backgroundColor: "#3b82f6",
+    backgroundColor: "#6366f1",
     color: "#fff",
     fontSize: 17,
     fontWeight: 600,

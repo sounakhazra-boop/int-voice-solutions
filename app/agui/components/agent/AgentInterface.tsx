@@ -329,7 +329,7 @@ export const AgentInterface: React.FC<AgentInterfaceProps> = ({
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="h-3 w-3 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                    className="h-3 w-3 rounded-full bg-brand-500 shadow-[0_0_15px_rgba(99,102,241,0.5)]"
                     animate={{ y: [0, -10, 0] }}
                     transition={{
                       repeat: Infinity,
@@ -340,7 +340,7 @@ export const AgentInterface: React.FC<AgentInterfaceProps> = ({
                   />
                 ))}
               </div>
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-600/80">
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
                 Thinking
               </span>
             </div>

@@ -62,7 +62,7 @@ export function PersonalizedCallModal({
       <div style={styles.modal}>
         <div style={styles.header}>
           <div style={styles.headerTitle}>
-            <Phone size={17} color="#2563eb" /> <strong>Quick Call</strong>
+            <Phone size={17} color="#4f46e5" /> <strong>Quick Call</strong>
           </div>
           <button type="button" onClick={onClose} style={styles.close}>
             <X size={18} />
@@ -70,7 +70,7 @@ export function PersonalizedCallModal({
         </div>
         <div style={styles.body}>
           <div style={styles.persona}>
-            <Building2 size={18} color="#2563eb" />
+            <Building2 size={18} color="#4f46e5" />
             <div>
               <strong>{prompt.companyName}</strong>
               <small>{usecaseName}</small>
@@ -84,7 +84,7 @@ export function PersonalizedCallModal({
           >
             <span style={styles.voiceInfo}>
               <span style={styles.micIcon}>
-                <Mic2 size={15} color="#2563eb" />
+                <Mic2 size={15} color="#4f46e5" />
               </span>
               <span>
                 <small>ACTIVE VOICE</small>
@@ -307,10 +307,10 @@ const styles: Record<string, React.CSSProperties> = {
   activePill: {
     flex: 1,
     minWidth: 70,
-    border: "1px solid #2563eb",
+    border: "1px solid #6366f1",
     borderRadius: 8,
     padding: "8px 6px",
-    background: "#2563eb",
+    background: "#6366f1",
     color: "#fff",
     cursor: "pointer",
     fontSize: 11,
@@ -325,7 +325,7 @@ const styles: Record<string, React.CSSProperties> = {
     height: 50,
     border: 0,
     borderRadius: 10,
-    background: "#2563eb",
+    background: "#6366f1",
     color: "#fff",
     fontSize: 17,
     fontWeight: 700,

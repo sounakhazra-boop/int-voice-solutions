@@ -4,11 +4,7 @@
 "use client";
 
 import { useState } from "react";
-// import { useHeyGenAvatars } from "@/hooks/useHeyGenAvatars";
-// import { useHeyGenVideo } from "@/hooks/useHeyGenVideo";
-// import AvatarSelect from "./video-studio/AvatarSelect";
-// import ScriptInput from "./video-studio/ScriptInput";
-// import VideoResult from "./video-studio/VideoResult";
+import { Sparkles, Video } from "lucide-react";
 import { useHeyGenAvatars } from "./useHeyGenAvatars";
 import { useHeyGenVideo } from "./useHeyGenVideo";
 import AvatarSelect from "./AvatarSelect";
@@ -33,8 +29,26 @@ export default function HeyGenVideoStudioCard() {
   } = useHeyGenVideo();
   const [script, setScript] = useState("");
 
-  // Loading, or feature flag off (no HEYGEN_API_KEY): render nothing.
-  if (!enabled) return null;
+  if (!enabled) {
+    return (
+      <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-500 shadow-xs">
+          <Video className="h-6 w-6" />
+        </div>
+        <h3 className="mt-3 text-sm font-semibold text-slate-900">
+          HeyGen Video Studio Key Required
+        </h3>
+        <p className="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500">
+          Set{" "}
+          <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-brand-600">
+            HEYGEN_API_KEY
+          </code>{" "}
+          in your environment variables to enable generative digital avatar
+          synthesis.
+        </p>
+      </div>
+    );
+  }
 
   const canSubmit = !busy && !!selected && script.trim().length > 0;
 
@@ -48,10 +62,12 @@ export default function HeyGenVideoStudioCard() {
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
+    <section className="flex flex-col gap-5">
       <header>
-        <h3 className="text-lg font-semibold">AI Video Studio</h3>
-        <p className="text-sm text-neutral-500">
+        <h3 className="text-lg font-bold tracking-tight text-ink-900">
+          AI Video Studio
+        </h3>
+        <p className="text-sm text-slate-500">
           Type a script, pick an avatar, get a talking-head video.
         </p>
       </header>
@@ -68,7 +84,7 @@ export default function HeyGenVideoStudioCard() {
       <button
         onClick={onGenerate}
         disabled={!canSubmit}
-        className="self-start rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:text-neutral-900"
+        className="self-start rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-brand-700 disabled:opacity-50 transition-colors"
       >
         {phase === "starting"
           ? "Starting..."

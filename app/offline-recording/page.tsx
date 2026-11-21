@@ -5,7 +5,7 @@ export default function UnrecognizableIframe() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative w-full h-[85vh] bg-[#020617] overflow-hidden rounded-2xl border border-slate-800/80 shadow-2xl flex items-center justify-center">
+    <div className="relative w-full h-[85vh] bg-navy-950 overflow-hidden rounded-2xl border border-slate-800/80 shadow-2xl flex items-center justify-center">
       {/* 
         Heavy Obstruction Layer 1: Animated Scanlines, Dots & Matrix Grid overlays. 
         This disrupts pattern recognition by rendering visual noise on top of the iframe.
@@ -16,13 +16,13 @@ export default function UnrecognizableIframe() {
       <div className="absolute inset-0 z-25 pointer-events-none opacity-[0.18] bg-[radial-gradient(#1e1b4b_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
       {/* Abstract geometric distortion block overlays to visual obscure massive parts */}
-      <div className="absolute top-1/4 left-1/3 w-64 h-64 z-30 pointer-events-none bg-blue-900/30 blur-2xl rounded-full animate-pulse mix-blend-screen"></div>
+      <div className="absolute top-1/4 left-1/3 w-64 h-64 z-30 pointer-events-none bg-indigo-900/30 blur-2xl rounded-full animate-pulse mix-blend-screen"></div>
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 z-30 pointer-events-none bg-purple-900/20 blur-3xl rounded-full animate-pulse mix-blend-color-dodge"></div>
 
       {/* Loading indicator that remains as an abstract overlay */}
       {!isLoaded && (
-        <div className="absolute inset-0 z-40 bg-slate-950 flex flex-col items-center justify-center text-sm font-semibold text-blue-400 gap-3">
-          <div className="h-6 w-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 z-40 bg-navy-950 flex flex-col items-center justify-center text-sm font-semibold text-cyan-300 gap-3">
+          <div className="h-6 w-6 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div>
           <span>Obscuring Frame Stream...</span>
         </div>
       )}

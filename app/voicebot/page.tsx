@@ -2,22 +2,22 @@ import AgentDirectory from "@/components/AgentDirectory";
 
 export default function VoicebotLandingPage() {
   return (
-    <main className="min-h-screen bg-slate-950 font-sans text-white">
-      <section className="relative overflow-hidden px-6 py-24 md:px-12 lg:px-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(34,211,238,0.18),_transparent_38%),radial-gradient(circle_at_bottom_left,_rgba(59,130,246,0.16),_transparent_35%)]" />
+    <main className="min-h-screen bg-navy-950 font-sans text-white">
+      <section className="relative overflow-hidden bg-navy-900 px-6 py-20 sm:px-8 sm:py-24 lg:px-16">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(34,211,238,0.18),_transparent_38%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.2),_transparent_35%)]" />
         <div className="relative mx-auto max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">
             INT Voice Solutions
           </p>
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
             Voice agents built for real conversations.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
             Explore specialized voice assistants that help customers, teams, and
             businesses complete tasks through natural, intelligent voice
             interactions.
           </p>
-          <div className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid max-w-4xl gap-5 sm:grid-cols-3">
             {[
               ["Natural conversations", "Low-friction voice experiences"],
               ["Business-ready", "Designed around real workflows"],
@@ -25,10 +25,10 @@ export default function VoicebotLandingPage() {
             ].map(([label, detail]) => (
               <div
                 key={label}
-                className="rounded-2xl border border-white/10 bg-white/[0.06] p-5"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-sm backdrop-blur-sm"
               >
-                <p className="font-semibold">{label}</p>
-                <p className="mt-2 text-sm leading-5 text-slate-400">
+                <p className="font-bold text-white">{label}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
                   {detail}
                 </p>
               </div>

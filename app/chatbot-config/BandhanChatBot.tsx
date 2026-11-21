@@ -79,7 +79,7 @@ function ChatPanel({
               style={{
                 ...styles.bubble,
                 alignSelf: message.role === "user" ? "flex-end" : "flex-start",
-                background: message.role === "user" ? "#0066b3" : "#fff",
+                background: message.role === "user" ? "#6366f1" : "#fff",
                 color: message.role === "user" ? "#fff" : "#1e293b",
               }}
             >
@@ -200,8 +200,8 @@ const styles: Record<string, React.CSSProperties> = {
     overflow: "hidden",
     borderRadius: 18,
     background: "#fff",
-    boxShadow: "0 16px 56px rgba(0,45,94,0.22)",
-    border: "1px solid #fbd27b",
+    boxShadow: "0 16px 56px rgba(11,17,32,0.22)",
+    border: "1px solid #c7d2fe",
     fontFamily: "system-ui, sans-serif",
   },
   header: {
@@ -209,7 +209,7 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     justifyContent: "space-between",
     padding: "14px 18px",
-    background: "linear-gradient(135deg, #002d5e, #003f7f)",
+    background: "linear-gradient(135deg, #0b1120, #1e1b4b)",
     color: "#fff",
   },
   headerTitle: { display: "flex", alignItems: "center", gap: 8, fontSize: 13 },
@@ -273,7 +273,7 @@ const styles: Record<string, React.CSSProperties> = {
     border: 0,
     borderRadius: 10,
     padding: "0 14px",
-    background: "#002d5e",
+    background: "#6366f1",
     color: "#fff",
     cursor: "pointer",
   },

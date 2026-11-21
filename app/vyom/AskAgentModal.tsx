@@ -131,7 +131,7 @@ const AskAgentModal: React.FC<AskAgentModalProps> = ({
         <div style={styles.cardHeader}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={styles.iconBox}>
-              <Bot size={16} color="#3b82f6" />
+              <Bot size={16} color="#6366f1" />
             </div>
             <div>
               <p style={styles.cardTitle}>Ask AI Agent</p>
@@ -144,7 +144,7 @@ const AskAgentModal: React.FC<AskAgentModalProps> = ({
                 <p style={styles.subText}>Select an agent to start</p>
               )}
               {step === "connecting" && (
-                <p style={{ ...styles.subText, color: "#3b82f6" }}>
+                <p style={{ ...styles.subText, color: "#6366f1" }}>
                   Connecting…
                 </p>
               )}
@@ -201,7 +201,7 @@ const AskAgentModal: React.FC<AskAgentModalProps> = ({
                 {selectedId && (
                   <div style={styles.selectedPreview}>
                     <div style={styles.agentAvatar}>
-                      <Bot size={16} color="#3b82f6" />
+                      <Bot size={16} color="#6366f1" />
                     </div>
                     <div>
                       <p style={styles.agentName}>{selectedName}</p>
@@ -239,7 +239,7 @@ const AskAgentModal: React.FC<AskAgentModalProps> = ({
                   <div style={styles.spinnerOuter} />
                   <Bot
                     size={20}
-                    color="#3b82f6"
+                    color="#6366f1"
                     style={{ position: "absolute" }}
                   />
                 </div>
@@ -264,7 +264,7 @@ const AskAgentModal: React.FC<AskAgentModalProps> = ({
                     <div style={styles.agentPulse} />
                     <Bot
                       size={32}
-                      color="#3b82f6"
+                      color="#6366f1"
                       style={{ position: "relative", zIndex: 1 }}
                     />
                   </div>
@@ -473,7 +473,7 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     padding: "10px 0",
     borderRadius: 8,
-    backgroundColor: "#3b82f6",
+    backgroundColor: "#6366f1",
     color: "#fff",
     border: "none",
     fontSize: 14,
@@ -502,8 +502,8 @@ const styles: Record<string, React.CSSProperties> = {
     position: "absolute",
     inset: 0,
     borderRadius: "50%",
-    border: "4px solid #bfdbfe",
-    borderTopColor: "#3b82f6",
+    border: "4px solid #c7d2fe",
+    borderTopColor: "#6366f1",
     animation: "spin 1s linear infinite",
   },
   agentActiveIcon: {

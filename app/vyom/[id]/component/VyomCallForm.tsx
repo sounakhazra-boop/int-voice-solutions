@@ -92,20 +92,20 @@ export default function VyomCallForm({
   };
 
   return (
-    <section className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-[#060913] px-6 py-16 text-slate-100">
+    <section className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-navy-950 px-6 py-16 text-slate-100">
       {/* Ambient Radial Lighting */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-600/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-indigo-600/15 blur-[100px]" />
+      <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-brand-500/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-purple-600/15 blur-[100px]" />
 
       {/* Glassmorphic Card */}
-      <div className="relative z-10 w-full max-w-md rounded-3xl border border-slate-800/80 bg-slate-900/70 p-8 shadow-[0_24px_80px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-10">
+      <div className="relative z-10 w-full max-w-md rounded-3xl border border-indigo-900/60 bg-navy-900/80 p-8 shadow-[0_24px_80px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-10">
         {/* Top Subtle Accent Line */}
-        <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
+        <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/60 to-transparent" />
 
         {/* Header */}
         <div className="mb-8">
           <div className="mb-6 flex items-center justify-between">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/20 to-indigo-600/10 text-blue-400 shadow-inner shadow-blue-500/10">
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-500/20 to-purple-600/10 text-cyan-300 shadow-inner shadow-brand-500/10">
               <PhoneCall className="h-5 w-5" />
               <span className="absolute -right-1 -top-1 flex h-3 w-3">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -113,13 +113,13 @@ export default function VyomCallForm({
               </span>
             </div>
 
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-950/60 px-3 py-1 text-[11px] font-medium tracking-wide text-slate-400">
-              <Sparkles className="h-3 w-3 text-blue-400" />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-900/60 bg-navy-950/80 px-3 py-1 text-[11px] font-medium tracking-wide text-blue-200/70">
+              <Sparkles className="h-3 w-3 text-cyan-300" />
               Instant Callback
             </span>
           </div>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Vyom Voice Concierge
           </p>
           <h1 className="mt-2 bg-gradient-to-br from-white via-slate-100 to-slate-400 bg-clip-text text-2xl font-bold tracking-tight text-transparent sm:text-3xl">
@@ -145,7 +145,7 @@ export default function VyomCallForm({
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 placeholder="e.g., Rahul Sharma"
-                className="h-12 w-full rounded-xl border border-slate-800 bg-slate-950/80 pl-11 pr-4 text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-blue-500/80 focus:bg-slate-950 focus:ring-4 focus:ring-blue-500/15"
+                className="h-12 w-full rounded-xl border border-indigo-900/50 bg-navy-950/80 pl-11 pr-4 text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-brand-500/80 focus:bg-navy-950 focus:ring-4 focus:ring-brand-500/15"
               />
             </div>
           </label>
@@ -171,7 +171,7 @@ export default function VyomCallForm({
                   );
                 }}
                 placeholder="+91 9876543210"
-                className="h-12 w-full rounded-xl border border-slate-800 bg-slate-950/80 pl-11 pr-4 font-mono text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-blue-500/80 focus:bg-slate-950 focus:ring-4 focus:ring-blue-500/15"
+                className="h-12 w-full rounded-xl border border-indigo-900/50 bg-navy-950/80 pl-11 pr-4 font-mono text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-brand-500/80 focus:bg-navy-950 focus:ring-4 focus:ring-brand-500/15"
               />
             </div>
           </label>
@@ -179,7 +179,7 @@ export default function VyomCallForm({
           <button
             type="submit"
             disabled={calling}
-            className="group relative mt-2 flex h-12 w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+            className="group relative mt-2 flex h-12 w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 font-semibold text-white shadow-lg shadow-indigo-950/40 transition-all hover:from-indigo-400 hover:to-purple-500 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {calling ? (
               <>
@@ -203,7 +203,7 @@ export default function VyomCallForm({
                   ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
                   : statusType === "error"
                     ? "border-rose-500/30 bg-rose-500/10 text-rose-300"
-                    : "border-blue-500/30 bg-blue-500/10 text-blue-300"
+                    : "border-brand-500/30 bg-brand-500/10 text-brand-200"
               }`}
             >
               {statusType === "success" ? (
@@ -211,7 +211,7 @@ export default function VyomCallForm({
               ) : statusType === "error" ? (
                 <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
               ) : (
-                <Loader2 className="h-4 w-4 shrink-0 animate-spin text-blue-400" />
+                <Loader2 className="h-4 w-4 shrink-0 animate-spin text-cyan-300" />
               )}
               <span>{status}</span>
             </div>

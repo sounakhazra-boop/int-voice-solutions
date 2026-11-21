@@ -379,13 +379,13 @@ export const Flashcard = React.memo(
               {/* Status pulse indicator */}
               {visual_intent === "processing" ? (
                 <div className="flex shrink-0 space-x-0.5 md:space-x-1 mt-1">
-                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-blue-500 rounded-full animate-bounce" />
+                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-brand-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-brand-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                  <div className="w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-brand-500 rounded-full animate-bounce" />
                 </div>
               ) : (
                 <div
-                  className={`shrink-0 w-1 h-1 md:w-2 md:h-2 rounded-full mt-1 ${visual_intent === "urgent" ? "bg-red-500 animate-ping" : "bg-blue-500"}`}
+                  className={`shrink-0 w-1 h-1 md:w-2 md:h-2 rounded-full mt-1 ${visual_intent === "urgent" ? "bg-red-500 animate-ping" : "bg-brand-500"}`}
                 />
               )}
             </motion.div>

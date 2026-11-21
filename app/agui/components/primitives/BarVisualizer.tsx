@@ -49,14 +49,14 @@ export const BarVisualizer: React.FC<BarVisualizerProps> = ({
   // Premium Color Tokens
   const colors = {
     agent: {
-      primary: "#10b981",
-      secondary: "#059669",
-      glow: "rgba(16, 185, 129, 0.4)",
+      primary: "#6366f1",
+      secondary: "#4f46e5",
+      glow: "rgba(99, 102, 241, 0.4)",
     },
     user: {
-      primary: "#3b82f6",
-      secondary: "#2563eb",
-      glow: "rgba(59, 130, 246, 0.4)",
+      primary: "#06b6d4",
+      secondary: "#0891b2",
+      glow: "rgba(6, 182, 212, 0.4)",
     },
     idle: {
       primary: "#94a3b8",

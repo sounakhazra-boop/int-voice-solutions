@@ -363,7 +363,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 sm:space-y-10">
         {/* 3. CRITICAL ALERT BANNERS */}
         {alertBanners.length > 0 && (
           <div className="space-y-3">
@@ -537,17 +537,17 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
 
         {/* 5. GENERIC KPI / METRICS GRID */}
         {metrics.length > 0 && (
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {metrics.map((metric: any, idx: number) => (
               <div
                 key={metric.id || idx}
-                className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex items-start justify-between gap-4"
+                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex items-start justify-between gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
                 <div className="space-y-1">
                   <p className="text-xs font-medium text-slate-500">
                     {metric.label}
                   </p>
-                  <p className="text-2xl font-bold text-slate-900">
+                  <p className="text-2xl font-bold tracking-tight text-slate-900">
                     {metric.value}
                   </p>
                   {(metric.subtext || metric.trend || metric.change) && (
@@ -556,7 +556,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                     </p>
                   )}
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 shadow-xs">
                   <DynamicIcon
                     name={metric.icon || "TrendingUp"}
                     className="w-5 h-5"
@@ -569,11 +569,11 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
 
         {/* 6. GENERIC QUICK ACTIONS BAR */}
         {quickActions.length > 0 && (
-          <section className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
+          <section className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
               Quick Actions
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
               {quickActions.map((action: any, idx: number) => {
                 const label =
                   typeof action === "string" ? action : action.label;
@@ -585,9 +585,9 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                   <button
                     key={action.id || idx}
                     type="button"
-                    className="flex flex-col items-start p-3.5 rounded-xl border border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition-all text-left group"
+                    className="flex flex-col items-start p-4 rounded-xl border border-slate-200/80 hover:border-slate-400 hover:bg-slate-50/80 transition-all text-left group shadow-2xs hover:shadow-xs"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center mb-2 transition-colors">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center mb-2.5 transition-colors shadow-2xs">
                       <DynamicIcon name={icon} className="w-4 h-4" />
                     </div>
                     <span className="text-xs font-semibold text-slate-900">

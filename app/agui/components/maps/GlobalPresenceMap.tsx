@@ -18,10 +18,10 @@ const DefaultIcon = L.icon({
 const HQIcon = L.divIcon({
   html: `
         <div class="relative flex items-center justify-center w-12 h-12 group">
-            <div class="absolute w-full h-full bg-blue-500/10 rounded-full animate-[pulse_3s_infinite]"></div>
-            <div class="absolute w-2/3 h-2/3 bg-blue-500/20 rounded-full animate-[pulse_2s_infinite]"></div>
-            <div class="absolute w-4 h-4 bg-blue-600 rounded-full border-[3px] border-white shadow-[0_0_15px_rgba(37,99,235,0.6)] z-10 transition-transform group-hover:scale-125"></div>
-            <div class="absolute w-8 h-8 rounded-full border border-blue-400/30 animate-[spin_8s_linear_infinite] border-dashed"></div>
+            <div class="absolute w-full h-full bg-brand-500/10 rounded-full animate-[pulse_3s_infinite]"></div>
+            <div class="absolute w-2/3 h-2/3 bg-brand-500/20 rounded-full animate-[pulse_2s_infinite]"></div>
+            <div class="absolute w-4 h-4 bg-brand-600 rounded-full border-[3px] border-white shadow-[0_0_15px_rgba(99,102,241,0.6)] z-10 transition-transform group-hover:scale-125"></div>
+            <div class="absolute w-8 h-8 rounded-full border border-brand-400/30 animate-[spin_8s_linear_infinite] border-dashed"></div>
         </div>
     `,
   className: "custom-marker-hq",
@@ -33,8 +33,8 @@ const HQIcon = L.divIcon({
 const RegionIcon = L.divIcon({
   html: `
         <div class="relative flex items-center justify-center w-8 h-8 group">
-            <div class="absolute w-3 h-3 bg-blue-400 rounded-full border-2 border-white shadow-lg ring-1 ring-blue-100 transition-all group-hover:scale-150 group-hover:bg-blue-500"></div>
-            <div class="absolute w-full h-full bg-blue-400/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+            <div class="absolute w-3 h-3 bg-brand-400 rounded-full border-2 border-white shadow-lg ring-1 ring-brand-100 transition-all group-hover:scale-150 group-hover:bg-brand-500"></div>
+            <div class="absolute w-full h-full bg-brand-400/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500"></div>
         </div>
     `,
   className: "custom-marker-region",
@@ -173,7 +173,7 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
       }}
       className="group relative w-full h-[500px] md:h-[600px] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] ring-1 ring-zinc-100/80 z-0"
     >
-      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/10 blur-[60px] pointer-events-none z-[400]" />
+      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-500/10 blur-[60px] pointer-events-none z-[400]" />
 
       <div className="absolute top-4 left-4 md:top-10 md:left-10 z-[500] pointer-events-none max-w-[60%]">
         <motion.div
@@ -182,20 +182,20 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
           transition={{ delay: 0.5 }}
         >
           <h3 className="text-lg md:text-3xl font-black text-zinc-900 leading-tight tracking-tight uppercase">
-            Global <span className="text-blue-600">Network</span>
+            Global <span className="text-brand-600">Network</span>
           </h3>
         </motion.div>
       </div>
 
       <div className="absolute top-4 right-4 md:top-10 md:right-10 z-[500] flex flex-col items-end gap-1.5 md:flex-row md:gap-2">
         <div className="flex items-center gap-2 rounded-lg md:rounded-xl bg-white/90 px-2 py-1 md:px-3 md:py-1.5 backdrop-blur-xl ring-1 ring-zinc-100 shadow-sm">
-          <div className="w-1.5 h-1.5 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse"></div>
+          <div className="w-1.5 h-1.5 md:w-2.5 md:h-2.5 rounded-full bg-brand-600 animate-pulse"></div>
           <span className="text-[8px] md:text-[10px] font-black text-zinc-700 uppercase tracking-widest">
             HQ
           </span>
         </div>
         <div className="flex items-center gap-2 rounded-lg md:rounded-xl bg-white/90 px-2 py-1 md:px-3 md:py-1.5 backdrop-blur-xl ring-1 ring-zinc-100 shadow-sm">
-          <div className="w-1.5 h-1.5 md:w-2.5 md:h-2.5 rounded-full bg-blue-400"></div>
+          <div className="w-1.5 h-1.5 md:w-2.5 md:h-2.5 rounded-full bg-brand-400"></div>
           <span className="text-[8px] md:text-[10px] font-black text-zinc-500 uppercase tracking-widest">
             Regions
           </span>
@@ -224,7 +224,7 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
                   <div className="text-[13px] md:text-[15px] font-bold text-zinc-900 mb-1 flex items-center justify-between">
                     {point.label}
                     {point.type === "hq" && (
-                      <span className="text-[10px] uppercase tracking-wider bg-blue-50 text-blue-600 ring-1 ring-blue-100 px-1.5 py-0.5 rounded-md ml-2">
+                      <span className="text-[10px] uppercase tracking-wider bg-brand-50 text-brand-600 ring-1 ring-brand-200 px-1.5 py-0.5 rounded-md ml-2">
                         HQ
                       </span>
                     )}
@@ -245,10 +245,10 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
       </div>
 
       <div className="absolute bottom-4 left-4 right-4 md:bottom-10 md:left-10 md:right-10 z-[500]">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 rounded-[1.5rem] md:rounded-[2rem] bg-white/90 p-4 md:px-8 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] ring-1 ring-white/60 group/status transition-all duration-500 hover:ring-blue-200">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 rounded-[1.5rem] md:rounded-[2rem] bg-white/90 p-4 md:px-8 backdrop-blur-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] ring-1 ring-white/60 group/status transition-all duration-500 hover:ring-brand-200">
           <div className="flex items-center justify-between md:justify-start gap-6 md:gap-16">
             <div className="group/stat">
-              <div className="text-[8px] md:text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 md:mb-1.5 transition-colors group-hover/stat:text-blue-500">
+              <div className="text-[8px] md:text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 md:mb-1.5 transition-colors group-hover/stat:text-brand-500">
                 Hubs
               </div>
               <div className="flex items-baseline gap-1">
@@ -264,7 +264,7 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
             <div className="h-8 md:h-12 w-[1px] bg-zinc-200/80 rotate-12 transition-transform group-hover/status:rotate-0 duration-700"></div>
 
             <div className="group/stat">
-              <div className="text-[8px] md:text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 md:mb-1.5 transition-colors group-hover/stat:text-blue-500">
+              <div className="text-[8px] md:text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 md:mb-1.5 transition-colors group-hover/stat:text-brand-500">
                 Nations
               </div>
               <div className="flex items-baseline gap-1">
@@ -288,7 +288,7 @@ export const GlobalPresenceMap = ({ data }: GlobalPresenceMapProps) => {
                   )?.querySelector(".leaflet-container")?._leaflet_map;
                   if (map) map.flyTo(country.coords, 5, { duration: 1.5 });
                 }}
-                className="px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-zinc-100/80 text-[9px] md:text-[11px] font-black text-zinc-600 uppercase tracking-wider hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-lg transition-all active:scale-95 whitespace-nowrap"
+                className="px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-zinc-100/80 text-[9px] md:text-[11px] font-black text-zinc-600 uppercase tracking-wider hover:bg-brand-500 hover:text-white hover:scale-105 hover:shadow-lg transition-all active:scale-95 whitespace-nowrap"
               >
                 {country.name}
               </button>

@@ -13,7 +13,7 @@ export default function Home() {
       <InitiativesSection />
       <UseCasesSection />
       <StatsBanner />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -16,13 +16,13 @@ export const StatsBanner: React.FC = () => {
   return (
     <section className="stats-banner bg-gradient-to-br from-[#071638] via-[#0d1d46] to-[#17135a]">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-[radial-gradient(ellipse_at_20%_100%,rgba(0,164,255,0.35),transparent_45%),radial-gradient(ellipse_at_70%_100%,rgba(124,58,237,0.4),transparent_48%)]" />
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-between gap-7 lg:flex-row lg:gap-10">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 lg:flex-row lg:gap-12">
         {/* 1. Left/Center: Stats Grid */}
-        <div className="grid w-full grid-cols-2 lg:flex-1 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-y-6 sm:gap-y-8 lg:flex-1 lg:grid-cols-4 lg:gap-y-0">
           {content.stats.map((stat, index) => (
             <div
               key={index}
-              className="flex min-w-0 items-center justify-center border-gray-700/80 px-3 py-1 first:border-l-0 sm:px-5 lg:border-l lg:px-6 lg:first:border-l-0"
+              className="flex min-w-0 items-center justify-start sm:justify-center border-gray-700/60 px-4 py-2 sm:px-6 lg:border-l lg:px-8 lg:first:border-l-0"
             >
               <StatBlock
                 value={stat.value}

@@ -13,11 +13,19 @@ const nextConfig: NextConfig = {
     },
   },
   // Reverse proxy to bypass Cloudflare iframe/cookie restrictions
+  experimental: {
+    proxyTimeout: 120_000,
+  },
   async rewrites() {
     return [
       {
         source: "/tunnel/:path*",
         destination: "https://agui.indusnettechnologies.com/landing",
+      },
+      {
+        source: "/api/avatar/:path*",
+        destination:
+          "https://only4myrealme--musetalk-webrtc-server-serve.modal.run/:path*",
       },
     ];
   },

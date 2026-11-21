@@ -5,10 +5,11 @@
 
 import type { Transition } from "framer-motion";
 
-// The signature blue→emerald premium accent (top rail, underlines, CTA gradient).
+// The signature indigo→purple premium accent (matching home page CTA gradient).
 export const ACCENT_RAIL =
-  "bg-gradient-to-r from-blue-600 via-blue-500 to-emerald-400";
-export const ACCENT_UNDERLINE = "bg-gradient-to-r from-blue-500 to-emerald-400";
+  "bg-gradient-to-r from-indigo-500 via-brand-500 to-purple-600";
+export const ACCENT_UNDERLINE =
+  "bg-gradient-to-r from-indigo-500 to-purple-600";
 
 // Elevated card surface — radius + ring + shadow used by any card that owns its
 // own box (infographic, media frame). Flashcards render chromeless on the glass.

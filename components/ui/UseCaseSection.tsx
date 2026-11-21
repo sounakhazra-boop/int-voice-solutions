@@ -7,19 +7,19 @@ export const UseCasesSection: React.FC = () => {
   const industries = content.useCases.industries;
 
   return (
-    <section className="border-t border-gray-100 bg-white px-4 py-5 sm:px-6 sm:py-7 lg:px-12">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 rounded-2xl border border-indigo-50 bg-gradient-to-r from-indigo-50/80 via-white to-white p-2.5 shadow-sm sm:gap-4 sm:p-3 lg:flex-row lg:items-stretch lg:gap-5">
-        <div className="flex w-full shrink-0 items-center justify-between rounded-xl bg-indigo-100/70 px-4 py-3 transition-colors hover:bg-indigo-100 sm:px-5 sm:py-4 lg:w-64">
+    <section className="border-t border-slate-100 bg-white px-6 py-12 sm:px-8 sm:py-16 lg:px-16">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm sm:gap-5 sm:p-5 lg:flex-row lg:items-stretch lg:gap-6">
+        <div className="flex w-full shrink-0 items-center justify-between rounded-xl border border-brand-100 bg-brand-50/70 px-5 py-4 transition-colors hover:bg-brand-50 sm:px-6 sm:py-5 lg:w-72">
           <div>
-            <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-500">
+            <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600">
               Voice AI in action
             </p>
-            <h2 className="text-lg font-bold leading-tight text-[#1E1B4B]">
+            <h2 className="text-lg font-bold leading-tight text-ink-900">
               {content.useCases.sectionTitle}
             </h2>
           </div>
           <svg
-            className="h-5 w-5 shrink-0 text-indigo-400"
+            className="h-5 w-5 shrink-0 text-brand-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

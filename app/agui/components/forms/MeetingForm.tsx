@@ -29,7 +29,7 @@ export const MeetingForm: React.FC<MeetingFormProps> = ({ data }) => {
     >
       {/* Ambient background gradients */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-blue-500/5 rounded-full blur-[100px]" />
+        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-brand-500/5 rounded-full blur-[100px]" />
         <div className="absolute top-[30%] -right-[10%] w-[50%] h-[50%] bg-purple-500/5 rounded-full blur-[100px]" />
       </div>
 
@@ -49,7 +49,7 @@ export const MeetingForm: React.FC<MeetingFormProps> = ({ data }) => {
               }}
               className="w-full max-w-[200px] drop-shadow-2xl"
             >
-              <div className="aspect-square w-full rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-xl shadow-blue-500/20">
+              <div className="aspect-square w-full rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-xl shadow-brand-500/20">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-32 w-32"
@@ -80,7 +80,7 @@ export const MeetingForm: React.FC<MeetingFormProps> = ({ data }) => {
         {/* Right Side: Meeting Details */}
         <div className="w-full md:w-[60%] p-8 md:p-12 space-y-8 flex flex-col justify-center">
           <div className="space-y-1">
-            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600/80">
+            <span className="text-[10px] font-black uppercase tracking-widest text-brand-600">
               Calendar Invite
             </span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 leading-tight">
@@ -194,8 +194,8 @@ export const MeetingForm: React.FC<MeetingFormProps> = ({ data }) => {
           </div>
 
           <div className="pt-6">
-            <div className="flex items-center gap-2 text-blue-600/60 font-medium text-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            <div className="flex items-center gap-2 text-brand-600/80 font-medium text-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
               Awaiting your confirmation to send...
             </div>
           </div>

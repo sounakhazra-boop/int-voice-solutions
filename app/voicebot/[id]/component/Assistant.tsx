@@ -179,15 +179,15 @@ export const Assistant: React.FC<AssistantProps> = ({
               type="button"
               onClick={() => setIsCardOpen(true)}
               disabled={connecting}
-              className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#D4AF37] to-[#bfa03a] shadow-[0_4px_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-110 active:scale-95 disabled:scale-100 disabled:opacity-80"
+              className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-[0_4px_20px_rgba(99,102,241,0.4)] transition-transform hover:scale-110 active:scale-95 disabled:scale-100 disabled:opacity-80"
             >
-              <div className="pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-lg border border-[#D4AF37]/20 bg-[#151f32] px-3 py-1.5 text-xs font-bold text-[#D4AF37] opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-lg border border-indigo-500/20 bg-navy-900 px-3 py-1.5 text-xs font-bold text-indigo-200 opacity-0 transition-opacity group-hover:opacity-100">
                 {label}
               </div>
               <div className="relative z-10">
-                <Bot size={32} className="text-[#0B1426]" />
+                <Bot size={32} className="text-white" />
               </div>
-              <div className="absolute inset-0 animate-ping rounded-full bg-[#D4AF37] opacity-50" />
+              <div className="absolute inset-0 animate-ping rounded-full bg-brand-500 opacity-50" />
             </button>
           )}
         </div>

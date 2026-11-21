@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-// import { useHeyGenAvatar } from "@/hook/useHeyGenAvatar";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { useHeyGenAvatar } from "./useHeyGenAvatar";
-// import HeyGenVideo from "@/components/HeyGenVideo"; // Uncomment if needed in your tree
 
 export default function AvatarAI() {
   const {
@@ -29,16 +29,26 @@ export default function AvatarAI() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-slate-200 font-sans selection:bg-indigo-500/30 flex flex-col">
+    <div className="min-h-screen bg-navy-950 text-slate-200 font-sans selection:bg-brand-500/30 flex flex-col">
       {/* Header */}
-      <header className="w-full px-8 py-6 flex items-center justify-between z-10 relative">
-        <div className="flex items-center gap-3">
-          <div className="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center shadow-[0_0_15px_rgba(79,70,229,0.5)]">
-            <div className="w-2 h-2 bg-white rounded-full" />
+      <header className="w-full px-6 py-5 sm:px-8 lg:px-12 flex items-center justify-between z-10 relative border-b border-white/5 bg-navy-950/80 backdrop-blur-md">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Home</span>
+          </Link>
+          <span className="text-slate-700">|</span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-brand-500 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+              <div className="w-2 h-2 bg-white rounded-full" />
+            </div>
+            <h1 className="text-sm sm:text-base font-semibold tracking-tight text-white">
+              Avatar AI Live Assistant
+            </h1>
           </div>
-          <h1 className="text-lg font-medium tracking-tight text-white">
-            Avatar AI
-          </h1>
         </div>
 
         {/* System Status Indicator */}
@@ -90,7 +100,7 @@ export default function AvatarAI() {
         <div className="relative w-full aspect-video bg-black/50 rounded-2xl md:rounded-[2rem] overflow-hidden ring-1 ring-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group transition-all duration-700">
           {/* Subtle background glow when inactive */}
           {!isReady && (
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-[#09090b] to-black opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-black opacity-80" />
           )}
 
           {/* Video Element */}
@@ -120,7 +130,7 @@ export default function AvatarAI() {
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
               {isLoading ? (
                 <div className="flex flex-col items-center gap-4 text-slate-400">
-                  <div className="w-8 h-8 border-2 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-brand-500/30 border-t-brand-500 rounded-full animate-spin" />
                   <p className="font-mono text-xs uppercase tracking-widest">
                     Establishing WebRTC Link...
                   </p>
@@ -183,7 +193,7 @@ export default function AvatarAI() {
               className={`p-3 rounded-full transition-colors ${
                 isMuted
                   ? "bg-slate-800 text-slate-400 hover:text-white"
-                  : "bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/30"
+                  : "bg-brand-500/20 text-brand-300 hover:bg-brand-500/30"
               }`}
               title={isMuted ? "Unmute microphone" : "Mute microphone"}
             >
@@ -236,7 +246,7 @@ export default function AvatarAI() {
             <button
               onClick={handleSend}
               disabled={!text.trim()}
-              className="px-6 py-3 bg-indigo-600 text-white text-sm font-medium rounded-full hover:bg-indigo-700 disabled:opacity-50 disabled:hover:bg-indigo-600 transition-colors"
+              className="px-6 py-3 bg-brand-500 text-white text-sm font-medium rounded-full hover:bg-brand-600 disabled:opacity-50 disabled:hover:bg-brand-500 transition-colors"
             >
               Send
             </button>
@@ -262,7 +272,7 @@ export default function AvatarAI() {
                     <div
                       className={`px-4 py-2.5 rounded-2xl max-w-[85%] text-sm leading-relaxed ${
                         line.who === "you"
-                          ? "bg-indigo-600/20 text-indigo-100 rounded-tr-sm"
+                          ? "bg-brand-600/30 text-indigo-100 rounded-tr-sm"
                           : "bg-white/5 text-slate-200 rounded-tl-sm ring-1 ring-white/5"
                       }`}
                     >

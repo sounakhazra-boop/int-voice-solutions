@@ -115,15 +115,15 @@ export const ChatList: React.FC<ChatListProps> = ({ messages }) => {
                   ${isInterim ? "opacity-80 scale-[0.99]" : "opacity-100 scale-100 animate-fade-in-up"}
                   ${
                     isUser
-                      ? `max-w-[70%] bg-gradient-to-br from-sky-500 to-blue-600 text-white border-transparent rounded-tr-[28px]`
+                      ? `max-w-[70%] bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-transparent rounded-tr-[28px]`
                       : `bg-white text-slate-900 border-white/10 rounded-tl-[28px]`
                   }
                 `}
                 style={{ wordBreak: "break-word" }}
               >
                 {!isUser && (
-                  <div className="flex items-center gap-2 mb-2 text-[10px] font-semibold tracking-widest text-emerald-500">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <div className="flex items-center gap-2 mb-2 text-[10px] font-semibold tracking-widest text-brand-600">
+                    <span className="h-2 w-2 rounded-full bg-brand-500" />
                     INT. AI
                   </div>
                 )}

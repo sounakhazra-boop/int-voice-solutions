@@ -47,7 +47,11 @@ const questions = [
 ];
 
 const colorMap: Record<string, { text: string; glow: string; dot: string }> = {
-  blue: { text: "text-blue-600", glow: "bg-blue-500/10", dot: "bg-blue-500" },
+  blue: {
+    text: "text-brand-600",
+    glow: "bg-brand-500/10",
+    dot: "bg-brand-500",
+  },
   violet: {
     text: "text-violet-600",
     glow: "bg-violet-500/10",
@@ -118,7 +122,7 @@ export const StarterScreen: React.FC<StarterScreenProps> = ({
                 >
                   {agentText}
                   {isAgentInterim && (
-                    <span className="ml-0.5 inline-block h-[1.1em] w-0.5 translate-y-[0.15em] animate-pulse rounded-full bg-blue-500 align-middle" />
+                    <span className="ml-0.5 inline-block h-[1.1em] w-0.5 translate-y-[0.15em] animate-pulse rounded-full bg-brand-500 align-middle" />
                   )}
                 </motion.p>
               ) : (
@@ -130,10 +134,10 @@ export const StarterScreen: React.FC<StarterScreenProps> = ({
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="text-center text-2xl font-semibold leading-snug tracking-tight md:text-3xl"
                 >
-                  <span className="text-blue-600">Welcome to INT.</span>
+                  <span className="text-brand-600">Welcome to INT.</span>
                   <br />
-                  <span className="text-slate-900">I am Vani,</span>{" "}
-                  <span className="text-blue-600">
+                  <span className="text-ink-900">I am Vani,</span>{" "}
+                  <span className="text-brand-600">
                     do let me know how can I help you?
                   </span>
                 </motion.h1>
@@ -157,7 +161,7 @@ export const StarterScreen: React.FC<StarterScreenProps> = ({
                 className="group flex w-full items-center gap-3 rounded-2xl bg-white/80 px-4 py-3.5 text-left ring-1 ring-black/4 shadow-[0_10px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_40px_rgba(15,23,42,0.1)]"
               >
                 <span
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 ${colorMap[q.color].text}`}
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 ${colorMap[q.color].text}`}
                 >
                   <SmartIcon iconRef={q.icon} className="h-5 w-5" />
                 </span>

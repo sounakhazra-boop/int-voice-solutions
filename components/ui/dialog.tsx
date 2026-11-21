@@ -15,7 +15,7 @@ function DialogBackdrop({
   return (
     <DialogPrimitive.Backdrop
       className={cn(
-        "fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm",
+        "fixed inset-0 z-50 bg-navy-950/60 backdrop-blur-sm",
         className,
       )}
       {...props}
@@ -75,7 +75,7 @@ function DialogClose({ className, ...props }: DialogPrimitive.Close.Props) {
   return (
     <DialogPrimitive.Close
       className={cn(
-        "mt-6 inline-flex h-9 items-center justify-center rounded-lg bg-indigo-600 px-4 text-sm font-medium text-white transition-colors hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-200",
+        "mt-6 inline-flex h-9 items-center justify-center rounded-lg bg-brand-500 px-4 text-sm font-medium text-white transition-colors hover:bg-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-200",
         className,
       )}
       {...props}

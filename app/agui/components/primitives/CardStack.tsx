@@ -211,7 +211,7 @@ export const CardStack: React.FC<CardStackProps> = ({
                 aria-label={`Go to card ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i === index
-                    ? "w-5 bg-blue-600"
+                    ? "w-5 bg-brand-500"
                     : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
                 }`}
               />

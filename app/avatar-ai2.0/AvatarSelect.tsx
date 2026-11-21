@@ -22,7 +22,7 @@ export default function AvatarSelect({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled || avatars.length === 0}
-        className="rounded-md border border-neutral-300 bg-transparent p-2 dark:border-neutral-700"
+        className="rounded-md border border-neutral-300 bg-transparent p-2 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
       >
         {avatars.map((a) => (
           <option key={a.avatar_id} value={a.avatar_id}>

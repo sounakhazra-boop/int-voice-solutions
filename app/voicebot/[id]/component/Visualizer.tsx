@@ -13,8 +13,8 @@ export const VisualizerSection: React.FC<VisualizerSectionProps> = ({
 }) => {
   const isAgent = state === "speaking";
 
-  // Colors: Emerald (Agent) | Blue (User)
-  const themeColor = isAgent ? "#10b981" : "#3b82f6";
+  // Colors: Brand Indigo (Agent) | Cyan (User)
+  const themeColor = isAgent ? "#6366f1" : "#06b6d4";
 
   return (
     <div className="w-[300px] flex flex-col items-center justify-center relative">

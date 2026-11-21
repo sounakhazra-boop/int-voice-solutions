@@ -286,7 +286,7 @@ export const VoiceDock: React.FC<VoiceDockProps> = ({
           <button
             onClick={handleSend}
             disabled={!inputText.trim()}
-            className="shrink-0 rounded-full p-1.5 text-blue-600 transition-colors hover:bg-blue-50 disabled:text-zinc-300 disabled:hover:bg-transparent sm:p-2"
+            className="shrink-0 rounded-full p-1.5 text-brand-600 transition-colors hover:bg-brand-50 disabled:text-zinc-300 disabled:hover:bg-transparent sm:p-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -306,7 +306,7 @@ export const VoiceDock: React.FC<VoiceDockProps> = ({
             onClick={isWindow ? handleConvoPauseToggle : onDisconnect}
             className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors sm:h-11 sm:w-11 ${
               isWindow && isConvoPaused
-                ? "bg-blue-600 text-white hover:bg-blue-700"
+                ? "bg-brand-500 text-white hover:bg-brand-600"
                 : "bg-zinc-100 text-zinc-900 hover:bg-amber-50 hover:text-amber-600"
             }`}
             title={

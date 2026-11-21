@@ -16,25 +16,25 @@ export const FlashcardBlock: React.FC<FlashcardBlockProps> = ({ data }) => {
       <div
         className="
         relative overflow-hidden
-        bg-emerald-50/50 backdrop-blur-sm
-        border border-emerald-100 
+        bg-brand-50/70 backdrop-blur-sm
+        border border-brand-200 
         shadow-sm hover:shadow-md transition-shadow
         rounded-2xl p-5
       "
       >
         {/* Decorator Background */}
-        <div className="absolute -right-4 -top-4 w-20 h-20 bg-emerald-100 rounded-full blur-2xl opacity-60 pointer-events-none" />
+        <div className="absolute -right-4 -top-4 w-20 h-20 bg-brand-200 rounded-full blur-2xl opacity-60 pointer-events-none" />
 
         <div className="flex items-center gap-2 mb-3">
-          <div className="p-1.5 bg-emerald-100 rounded-lg text-emerald-600">
+          <div className="p-1.5 bg-brand-100 rounded-lg text-brand-600">
             <Lightbulb size={16} fill="currentColor" className="opacity-80" />
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
             Key Insight
           </span>
         </div>
 
-        <h3 className="text-zinc-900 font-semibold text-lg leading-tight mb-2 relative">
+        <h3 className="text-ink-900 font-semibold text-lg leading-tight mb-2 relative">
           {data.title}
         </h3>
 

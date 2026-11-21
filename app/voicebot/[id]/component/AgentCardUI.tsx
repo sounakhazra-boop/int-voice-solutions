@@ -57,7 +57,7 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
 
   return (
     <div
-      className={`pointer-events-auto bg-[#151f32]/95 backdrop-blur-3xl border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.1)] rounded-[32px] p-5 flex flex-col items-center gap-4 transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${showChat ? "w-[90vw] md:w-[420px] h-[650px]" : "w-[300px] h-auto"}`}
+      className={`pointer-events-auto bg-[#0b1120]/95 backdrop-blur-3xl border border-indigo-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(99,102,241,0.15)] rounded-[32px] p-5 flex flex-col items-center gap-4 transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${showChat ? "w-[90vw] md:w-[420px] h-[650px]" : "w-[300px] h-auto"}`}
     >
       {/* Header / Controls */}
       <div className="w-full flex justify-between items-center border-b border-white/5 pb-3">
@@ -67,7 +67,7 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
           ) : (
             <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
           )}
-          <span className="text-xs text-[#D4AF37] font-semibold tracking-wide">
+          <span className="text-xs text-indigo-300 font-semibold tracking-wide">
             {state === "active" ? "VYOM ACTIVE" : "VYOM STANDBY"}
           </span>
         </div>
@@ -84,21 +84,21 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
         <div className="relative w-24 h-24 flex items-center justify-center my-2">
           {/* Glow Effect */}
           <div
-            className={`absolute inset-0 bg-[#D4AF37]/20 rounded-full blur-xl transition-all duration-300 ${isAgentSpeaking ? "scale-125 opacity-100" : "scale-100 opacity-50"}`}
+            className={`absolute inset-0 bg-brand-500/20 rounded-full blur-xl transition-all duration-300 ${isAgentSpeaking ? "scale-125 opacity-100" : "scale-100 opacity-50"}`}
           ></div>
 
           {/* The Face / Icon */}
           <div
-            className={`relative z-10 w-20 h-20 bg-gradient-to-b from-[#D4AF37] to-[#8a7020] rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-200 ${isAgentSpeaking ? "animate-mouth-move" : ""}`}
+            className={`relative z-10 w-20 h-20 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-200 ${isAgentSpeaking ? "animate-mouth-move" : ""}`}
           >
-            <Bot size={40} className="text-[#0B1426]" />
+            <Bot size={40} className="text-white" />
           </div>
         </div>
       )}
 
       {/* CHAT AREA (Expanded only) */}
       {showChat && (
-        <div className="flex-1 w-full flex flex-col min-h-0 overflow-hidden bg-[#0B1426]/50 rounded-xl relative border border-white/5">
+        <div className="flex-1 w-full flex flex-col min-h-0 overflow-hidden bg-navy-950/70 rounded-xl relative border border-white/5">
           {/*@ts-ignore*/}
           <ChatList messages={messages} compact={true} />
         </div>
@@ -171,7 +171,7 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
                                     w-12 h-12 flex-none flex items-center justify-center rounded-2xl transition-all duration-300
                                     ${
                                       showChat
-                                        ? "bg-[#D4AF37] text-[#0B1426] shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                                        ? "bg-brand-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]"
                                         : "bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/5"
                                     }
                                 `}
@@ -188,7 +188,7 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
           <button
             onClick={onConnect}
             disabled={state === "connecting"}
-            className="w-full py-4 rounded-2xl bg-[#D4AF37] text-[#0B1426] text-sm font-bold shadow-lg shadow-[#D4AF37]/20 hover:bg-[#bfa03a] hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:pointer-events-none"
+            className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-bold shadow-lg shadow-indigo-950/40 hover:from-indigo-400 hover:to-purple-500 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:pointer-events-none"
           >
             {state === "connecting" ? (
               <>

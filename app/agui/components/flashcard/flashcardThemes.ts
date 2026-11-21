@@ -27,11 +27,11 @@ export const COLOR_PALETTE: Record<string, CardColors> = {
     gradient: "from-emerald-500 to-emerald-600",
   },
   blue: {
-    bg: "bg-blue-50",
-    text: "text-blue-600",
-    ring: "ring-blue-100",
-    glow: "bg-blue-500/10",
-    gradient: "from-blue-500 to-blue-600",
+    bg: "bg-brand-50",
+    text: "text-brand-600",
+    ring: "ring-brand-200",
+    glow: "bg-brand-500/10",
+    gradient: "from-indigo-500 to-purple-600",
   },
   amber: {
     bg: "bg-amber-50",
