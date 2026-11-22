@@ -22,11 +22,11 @@ const nextConfig: NextConfig = {
         source: "/tunnel/:path*",
         destination: "https://agui.indusnettechnologies.com/landing",
       },
-      {
-        source: "/api/avatar/:path*",
-        destination:
-          "https://only4myrealme--musetalk-webrtc-server-serve.modal.run/:path*",
-      },
+      // {
+      //   source: "/api/avatar/:path*",
+      //   destination:
+      //     "https://only4myrealme--musetalk-webrtc-server-serve.us-east.modal.run/:path*",
+      // },
     ];
   },
 };
