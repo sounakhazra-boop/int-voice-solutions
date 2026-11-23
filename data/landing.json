@@ -201,8 +201,8 @@
         "title": "Avatar AI",
         "description": "Interactive Executive AI Avatar - Digital Transformation & Enterprise Tech Assistant",
         "iconType": "blue",
-        "url": "/avatar-ai",
-        "inhouseUrl": "/avatar-ai",
+        "url": "/avatar-ai-inhouse",
+        "inhouseUrl": "/avatar-ai-inhouse",
         "referenceUrl": "",
         "referenceImage": "",
         "demoLinks": []

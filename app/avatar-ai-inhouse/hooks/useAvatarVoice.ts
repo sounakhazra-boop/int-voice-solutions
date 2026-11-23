@@ -48,6 +48,7 @@ export function useAvatarVoice({
   const loudSinceRef = useRef<number | null>(null);
   const finalBufferRef = useRef("");
   const interimBufferRef = useRef("");
+  const turnStartTimeRef = useRef<number | null>(null);
 
   const pauseRecognition = useCallback(() => {
     if (pauseTimerRef.current) {
@@ -131,6 +132,9 @@ export function useAvatarVoice({
           resumeRecognition();
         }
       }, 8000);
+      const tSend = performance.now();
+      turnStartTimeRef.current = tSend;
+      console.log("[Latency] 1. sendHumanMessage sent:", cleaned);
 
       try {
         await avatarApi.sendHumanMessage(baseUrl, {
@@ -139,6 +143,10 @@ export function useAvatarVoice({
           interrupt: shouldInterrupt,
           sessionid: sid,
         });
+        console.log(
+          "[Latency] 2. sendHumanMessage HTTP ack in",
+          `${(performance.now() - tSend).toFixed(0)}ms`,
+        );
         setLastSentText(cleaned);
       } catch (err) {
         if (thinkingTimeoutRef.current) {
@@ -282,6 +290,15 @@ export function useAvatarVoice({
             unlockTimerRef.current = null;
           }
           if (turnPhaseRef.current !== "speaking") {
+            if (turnStartTimeRef.current !== null) {
+              const totalClientWaitMs =
+                performance.now() - turnStartTimeRef.current;
+              console.log(
+                "[Latency] 3. Server reported isSpeaking=true in",
+                `${totalClientWaitMs.toFixed(0)}ms from send`,
+              );
+              turnStartTimeRef.current = null;
+            }
             turnPhaseRef.current = "speaking";
             setIsAvatarSpeaking(true);
             pauseRecognition();

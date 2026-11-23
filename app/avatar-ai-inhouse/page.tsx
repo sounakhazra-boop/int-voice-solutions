@@ -14,7 +14,7 @@ export default function Page() {
         apiBaseUrl={process.env.NEXT_PUBLIC_AVATAR_API_URL ?? "/api/avatar"}
         avatarId={process.env.NEXT_PUBLIC_AVATAR_ID ?? "sun_wav2lip_avatar"}
         language="en-IN"
-        pauseDelayMs={400}
+        pauseDelayMs={560}
       />
     </main>
   );
