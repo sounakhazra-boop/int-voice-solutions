@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs,css,json,md,yml,yaml}": "prettier --write"
@@ -50,6 +50,7 @@
     "@radix-ui/react-tooltip": "^1.4.1",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
+    "@spatialreal/web-sdk": "^1.0.0-beta.8",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
     "embla-carousel-react": "^8.6.0",

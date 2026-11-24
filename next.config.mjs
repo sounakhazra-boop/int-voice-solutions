@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
+// import type { NextConfig } from "next";
+import { withSpatialReal } from "@spatialreal/web-sdk/next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
@@ -31,4 +32,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// export default nextConfig;
+export default async function config() {
+  const { withSpatialReal } = await import("@spatialreal/web-sdk/next");
+  return withSpatialReal(nextConfig);
+}
