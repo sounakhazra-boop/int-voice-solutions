@@ -206,6 +206,17 @@
         "referenceUrl": "",
         "referenceImage": "",
         "demoLinks": []
+      },
+      {
+        "id": "hire-bot",
+        "title": "Hire Bot",
+        "description": "Platform for automating the hiring process",
+        "iconType": "blue",
+        "url": "https://hirebot.indusnettechnologies.com/int/login",
+        "inhouseUrl": "https://hirebot.indusnettechnologies.com/int/login",
+        "referenceUrl": "",
+        "referenceImage": "",
+        "demoLinks": []
       }
     ]
   },
