@@ -1,11 +1,50 @@
-export type CallViewMode = 'all' | 'mine';
-export type CallStatus = 'all' | 'completed' | 'initiated' | 'queued' | 'failed';
-export type CallPlatform = 'vapi' | 'livekit';
+export type CallViewMode = "all" | "mine";
+export type CallStatus =
+  "all" | "completed" | "initiated" | "queued" | "failed";
+export type CallPlatform = "vapi" | "livekit";
 
 export interface TranscriptEntry {
-  speaker: 'assistant' | 'user';
+  speaker: "assistant" | "user";
   text: string;
   timestamp: string;
+}
+
+export type CallSentiment = "positive" | "neutral" | "negative" | "unknown";
+
+export interface CallEmotionScores {
+  excitement: number | null;
+  hesitation: number | null;
+  urgency: number | null;
+  doubt: number | null;
+}
+
+export interface CallAnalysisTurn {
+  speaker: string;
+  text: string;
+  timestamp: string | null;
+  sentiment: CallSentiment;
+  keywords: string[];
+  emotions: CallEmotionScores;
+}
+
+export interface CallAnalysisKeyMoment {
+  title: string;
+  summary: string;
+  category: string;
+  turnIndex: number;
+  timestamp: string | null;
+}
+
+export interface CallAnalysis {
+  summary: string;
+  sentimentCounts: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+  turns: CallAnalysisTurn[];
+  keyMoments: CallAnalysisKeyMoment[];
+  analyzedAt: string | null;
 }
 
 export interface CallLog {

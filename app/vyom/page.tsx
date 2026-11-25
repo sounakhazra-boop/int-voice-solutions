@@ -57,6 +57,12 @@ export default function VyomLandingPage() {
             Demos
           </a>
           <Link
+            href="/vyom/dashboard"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-brand-600"
+          >
+            Dashboard
+          </Link>
+          <Link
             href="/vyom/call"
             className="text-sm font-medium text-slate-600 transition-colors hover:text-brand-600"
           >
@@ -85,6 +91,30 @@ export default function VyomLandingPage() {
         <ChevronRight className="mx-2 h-3.5 w-3.5 text-slate-400" />
         <span className="font-semibold text-ink-900">VYOM</span>
       </div>
+
+      <nav
+        aria-label="VYOM navigation"
+        className="flex items-center gap-1 border-b border-slate-100 bg-white px-6 py-2 text-xs md:hidden sm:px-8"
+      >
+        <span
+          aria-current="page"
+          className="rounded-md px-3 py-1.5 font-semibold text-ink-900"
+        >
+          VYOM
+        </span>
+        <Link
+          href="/vyom/dashboard"
+          className="rounded-md px-3 py-1.5 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/vyom/call"
+          className="rounded-md px-3 py-1.5 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+        >
+          Call Logs
+        </Link>
+      </nav>
 
       {/* Hero Section */}
       <section className="relative isolate overflow-hidden bg-navy-900 px-6 py-12 text-white sm:px-8 sm:py-16 lg:px-12 lg:py-20">

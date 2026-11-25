@@ -17,6 +17,8 @@ import {
   User,
   X,
 } from "lucide-react";
+import Link from "next/link";
+import { CallAnalysisView } from "./CallAnalysis";
 import { useCallLogs } from "./hooks/useCallLogs";
 import type { CallLog, CallStatus, CallViewMode } from "./types";
 
@@ -139,16 +141,22 @@ function ModalShell({
   title,
   log,
   onClose,
+  wide = false,
   children,
 }: {
   title: string;
   log: CallLog;
   onClose: () => void;
+  wide?: boolean;
   children: ReactNode;
 }) {
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-navy-950/70 p-0 backdrop-blur-sm sm:items-center sm:p-4">
-      <div className="flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl sm:max-w-2xl sm:rounded-2xl">
+      <div
+        className={`flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl sm:rounded-2xl ${
+          wide ? "sm:max-w-6xl" : "sm:max-w-2xl"
+        }`}
+      >
         <div className="flex flex-shrink-0 items-center justify-between border-b border-slate-200 px-4 py-4 sm:px-7">
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-50">
@@ -190,82 +198,9 @@ function TranscriptPopup({
   log: CallLog;
   onClose: () => void;
 }) {
-  const turns =
-    typeof log.transcript === "string"
-      ? log.transcript
-          .split("\n")
-          .filter(Boolean)
-          .map((line) => {
-            if (line.startsWith("AI:"))
-              return {
-                speaker: "assistant" as const,
-                text: line.replace(/^AI:\s*/, ""),
-                timestamp: "",
-              };
-            if (line.startsWith("User:"))
-              return {
-                speaker: "user" as const,
-                text: line.replace(/^User:\s*/, ""),
-                timestamp: "",
-              };
-            return null;
-          })
-          .filter(
-            (
-              turn,
-            ): turn is {
-              speaker: "assistant" | "user";
-              text: string;
-              timestamp: string;
-            } => Boolean(turn),
-          )
-      : Array.isArray(log.transcript)
-        ? log.transcript
-        : [];
-
   return (
-    <ModalShell title="Call Transcript" log={log} onClose={onClose}>
-      {log.summary && (
-        <div className="flex-shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 sm:px-8">
-          <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-indigo-600">
-            AI Summary
-          </p>
-          <p className="text-sm leading-relaxed text-slate-700">
-            {log.summary}
-          </p>
-        </div>
-      )}
-      <div className="flex-1 space-y-4 overflow-y-auto px-4 py-4 sm:px-8 sm:py-6">
-        {turns.length === 0 ? (
-          <div className="flex flex-col items-center gap-3 py-16">
-            <FileText className="h-10 w-10 text-slate-300" />
-            <p className="text-sm text-slate-500">
-              No transcript available for this call.
-            </p>
-          </div>
-        ) : (
-          turns.map((turn, index) => (
-            <div
-              key={index}
-              className={`flex gap-3 ${turn.speaker === "user" ? "flex-row-reverse" : ""}`}
-            >
-              <div
-                className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${turn.speaker === "assistant" ? "bg-indigo-600 text-white" : "border border-slate-200 bg-slate-100 text-slate-700"}`}
-              >
-                {turn.speaker === "assistant" ? "AI" : "U"}
-              </div>
-              <div
-                className={`max-w-[78%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${turn.speaker === "assistant" ? "bg-slate-100 text-slate-900" : "bg-navy-900 text-white"}`}
-              >
-                <span className="mb-1 block text-[10px] font-bold">
-                  {turn.speaker === "assistant" ? "AI Assistant" : "User"}
-                </span>
-                {turn.text}
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+    <ModalShell title="Call Transcript" log={log} onClose={onClose} wide>
+      <CallAnalysisView key={log._id} log={log} />
     </ModalShell>
   );
 }
@@ -479,7 +414,7 @@ export function CallLogs({
   return (
     <div className="flex min-h-screen w-full flex-col bg-[#f6f7fb] text-slate-900">
       <header className="flex-shrink-0 border-b border-white/10 bg-navy-900">
-        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-4 sm:px-7 lg:px-10">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-7 lg:px-10">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-cyan-200">
               <PhoneCall className="h-5 w-5" />
@@ -498,6 +433,29 @@ export function CallLogs({
               </p>
             </div>
           </div>
+          <nav
+            aria-label="VYOM navigation"
+            className="flex items-center gap-1 text-xs sm:text-sm"
+          >
+            <Link
+              href="/vyom"
+              className="rounded-md px-2.5 py-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200"
+            >
+              VYOM
+            </Link>
+            <Link
+              href="/vyom/dashboard"
+              className="rounded-md px-2.5 py-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200"
+            >
+              Dashboard
+            </Link>
+            <span
+              aria-current="page"
+              className="rounded-md border-b-2 border-cyan-200 px-2.5 py-2 font-semibold text-white"
+            >
+              Call logs
+            </span>
+          </nav>
           {onClose && (
             <button
               type="button"
