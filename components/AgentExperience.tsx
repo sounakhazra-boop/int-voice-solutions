@@ -63,6 +63,7 @@ import {
 
 interface AgentExperienceProps {
   agentKey: string;
+  appearance?: "default" | "minimal";
 }
 
 /* -------------------------------------------------------------------------- */
@@ -151,11 +152,15 @@ function isPrimitive(val: unknown): val is string | number | boolean {
 /* -------------------------------------------------------------------------- */
 /*                         MAIN GENERIC COMPONENT                             */
 /* -------------------------------------------------------------------------- */
-export default function AgentExperience({ agentKey }: AgentExperienceProps) {
+export default function AgentExperience({
+  agentKey,
+  appearance = "default",
+}: AgentExperienceProps) {
   const agents = agentsData as Record<string, any>;
   const agent = agents[agentKey];
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
+  const isMinimal = appearance === "minimal";
 
   if (!agent) return null;
 
@@ -208,17 +213,31 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-28">
+    <div
+      className={`min-h-screen pb-28 ${
+        isMinimal ? "bg-stone-200 text-stone-950" : "bg-slate-50 text-slate-900"
+      }`}
+    >
       {/* 1. OPTIONAL TOP UTILITY BAR */}
       {(ui.utility_bar || ui.top_bar) && (
-        <div className="bg-slate-900 text-slate-300 text-xs border-b border-slate-800">
+        <div
+          className={`text-xs ${
+            isMinimal
+              ? "border-b border-stone-300 bg-white text-stone-600"
+              : "border-b border-slate-800 bg-slate-900 text-slate-300"
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 truncate">
               {ui.utility_bar?.skip_link && (
                 <span>{ui.utility_bar.skip_link}</span>
               )}
               {ui.top_bar?.whatsapp_support && (
-                <span className="flex items-center gap-1.5 font-medium text-emerald-400">
+                <span
+                  className={`flex items-center gap-1.5 font-medium ${
+                    isMinimal ? "text-stone-700" : "text-emerald-400"
+                  }`}
+                >
                   <Phone className="w-3.5 h-3.5" />
                   {ui.top_bar.whatsapp_support}
                 </span>
@@ -227,7 +246,11 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             </div>
             <div className="flex items-center gap-3 shrink-0">
               {ui.utility_bar?.helpline && (
-                <span className="font-mono text-slate-200">
+                <span
+                  className={`font-mono ${
+                    isMinimal ? "text-stone-700" : "text-slate-200"
+                  }`}
+                >
                   Helpline: {ui.utility_bar.helpline}
                 </span>
               )}
@@ -236,7 +259,11 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                   {ui.utility_bar.font_controls.map((ctrl: string) => (
                     <span
                       key={ctrl}
-                      className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200"
+                      className={`px-1.5 py-0.5 ${
+                        isMinimal
+                          ? "text-stone-700"
+                          : "rounded bg-slate-800 text-slate-200"
+                      }`}
                     >
                       {ctrl}
                     </span>
@@ -249,11 +276,23 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
       )}
 
       {/* 2. GENERIC STICKY HEADER */}
-      <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <header
+        className={
+          isMinimal
+            ? "border-b border-stone-300 bg-white"
+            : "sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur-md"
+        }
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           {/* Brand Title */}
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-sm">
+            <div
+              className={`flex h-10 w-10 shrink-0 items-center justify-center ${
+                isMinimal
+                  ? "rounded-lg bg-stone-100 text-stone-700"
+                  : "rounded-xl bg-slate-900 text-white shadow-sm"
+              }`}
+            >
               <DynamicIcon
                 name={header.logo_icon || assistantInfo.avatar_icon}
                 className="w-5 h-5"
@@ -261,20 +300,32 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             </div>
             <div className="truncate">
               <div className="flex items-center gap-2">
-                <h1 className="font-bold text-slate-900 text-base sm:text-lg truncate">
+                <h1
+                  className={`truncate text-base sm:text-lg ${
+                    isMinimal
+                      ? "font-semibold text-stone-950"
+                      : "font-bold text-slate-900"
+                  }`}
+                >
                   {header.brand ||
                     header.company ||
                     agent.brand_name ||
                     agent.page_title}
                 </h1>
                 {(header.badge || header.portal) && (
-                  <span className="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                  <span
+                    className={`hidden items-center text-xs font-medium md:inline-flex ${
+                      isMinimal
+                        ? "text-stone-600"
+                        : "rounded-full border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-slate-700"
+                    }`}
+                  >
                     {header.badge || header.portal}
                   </span>
                 )}
               </div>
               {(header.subtitle || header.tagline || agent.route) && (
-                <p className="text-xs text-slate-500 truncate">
+                <p className="truncate text-xs text-slate-500">
                   {header.subtitle || header.tagline || agent.page_title}
                 </p>
               )}
@@ -292,10 +343,16 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                   return (
                     <span
                       key={idx}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                        active
-                          ? "bg-slate-900 text-white"
-                          : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                      className={`text-sm font-medium transition-colors ${
+                        isMinimal
+                          ? active
+                            ? "text-stone-950 underline underline-offset-8"
+                            : "text-stone-600 hover:text-stone-950"
+                          : `rounded-lg px-3 py-1.5 ${
+                              active
+                                ? "bg-slate-900 text-white"
+                                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                            }`
                       }`}
                     >
                       {label}
@@ -308,7 +365,13 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
           {/* Right User / Weather / Status Pill */}
           <div className="flex items-center gap-3 shrink-0">
             {header.weather && (
-              <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-medium text-slate-700">
+              <div
+                className={`hidden items-center gap-1.5 text-xs font-medium sm:flex ${
+                  isMinimal
+                    ? "text-stone-600"
+                    : "rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700"
+                }`}
+              >
                 <DynamicIcon
                   name={header.weather.icon || "Globe"}
                   className="w-4 h-4"
@@ -320,7 +383,11 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             )}
 
             {header.notifications?.unread && (
-              <div className="relative p-2 rounded-lg bg-slate-100 text-slate-700">
+              <div
+                className={`relative text-stone-700 ${
+                  isMinimal ? "" : "rounded-lg bg-slate-100 p-2"
+                }`}
+              >
                 <Bell className="w-4 h-4" />
                 <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-bold flex items-center justify-center">
                   {header.notifications.count ||
@@ -331,8 +398,18 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             )}
 
             {(header.user || header.member || header.customer) && (
-              <div className="flex items-center gap-2.5 pl-2 border-l border-slate-200">
-                <div className="w-8 h-8 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">
+              <div
+                className={`flex items-center gap-2.5 ${
+                  isMinimal ? "" : "border-l border-slate-200 pl-2"
+                }`}
+              >
+                <div
+                  className={`flex h-8 w-8 items-center justify-center text-xs font-bold ${
+                    isMinimal
+                      ? "text-stone-800"
+                      : "rounded-full bg-slate-900 text-white"
+                  }`}
+                >
                   {header.user?.initials ||
                     (
                       header.user?.name ||
@@ -344,7 +421,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                       .toUpperCase()}
                 </div>
                 <div className="hidden sm:block text-left">
-                  <p className="text-xs font-semibold text-slate-900 leading-none">
+                  <p className="text-xs font-semibold leading-none text-slate-900">
                     {header.user?.name ||
                       header.member?.name ||
                       header.customer}
@@ -363,17 +440,31 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 sm:space-y-10">
+      <main
+        className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${
+          isMinimal
+            ? "space-y-10 py-8 sm:py-12"
+            : "space-y-8 py-8 sm:space-y-10 sm:py-10"
+        }`}
+      >
         {/* 3. CRITICAL ALERT BANNERS */}
         {alertBanners.length > 0 && (
           <div className="space-y-3">
             {alertBanners.map((alert: any, idx: number) => (
               <div
                 key={alert.id || idx}
-                className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className={`flex flex-col justify-between gap-4 sm:flex-row sm:items-center ${
+                  isMinimal
+                    ? "py-3"
+                    : "rounded-2xl border border-rose-200 bg-rose-50 p-4"
+                }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-rose-100 text-rose-700 shrink-0 mt-0.5">
+                  <div
+                    className={`mt-0.5 shrink-0 text-rose-700 ${
+                      isMinimal ? "pt-1" : "rounded-xl bg-rose-100 p-2"
+                    }`}
+                  >
                     <AlertTriangle className="w-5 h-5" />
                   </div>
                   <div>
@@ -418,43 +509,82 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
         )}
 
         {/* 4. UNIFIED HERO & AI ASSISTANT BANNER */}
-        <section className="rounded-3xl bg-slate-900 text-white p-6 sm:p-8 shadow-sm border border-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <section
+          className={`${
+            isMinimal
+              ? "rounded-2xl bg-white p-7 sm:p-9 lg:p-10"
+              : "rounded-3xl border border-slate-800 bg-slate-900 p-6 text-white shadow-sm sm:p-8"
+          }`}
+        >
+          <div
+            className={`grid grid-cols-1 items-start lg:grid-cols-12 ${
+              isMinimal ? "gap-8" : "gap-6"
+            }`}
+          >
             {/* Left Column: Page / Hero Overview */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>
-                  {hero.badge ||
-                    hero.eyebrow ||
-                    assistantInfo.status_text ||
-                    `${agent.function?.toUpperCase()} AGENT`}
-                </span>
-              </div>
+            <div
+              className={`space-y-4 lg:col-span-7 ${
+                isMinimal ? "text-stone-950" : ""
+              }`}
+            >
+              {!isMinimal && (
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-slate-200">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+                  <span>
+                    {hero.badge ||
+                      hero.eyebrow ||
+                      assistantInfo.status_text ||
+                      `${agent.function?.toUpperCase()} AGENT`}
+                  </span>
+                </div>
+              )}
 
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              <h2
+                className={`max-w-3xl tracking-tight ${
+                  isMinimal
+                    ? "text-3xl font-semibold leading-tight sm:text-4xl"
+                    : "text-2xl font-bold text-white sm:text-3xl"
+                }`}
+              >
                 {hero.headline ||
                   hero.service_tagline ||
                   header.user?.greeting ||
                   agent.page_title}
               </h2>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+              <p
+                className={`max-w-2xl text-sm leading-7 sm:text-base ${
+                  isMinimal ? "text-stone-600" : "text-slate-300"
+                }`}
+              >
                 {hero.description ||
                   hero.subheadline ||
                   hero.tagline ||
                   summary}
               </p>
 
+              {isMinimal &&
+                (hero.badge || hero.eyebrow || assistantInfo.status_text) && (
+                  <p className="text-sm text-stone-600">
+                    {hero.badge || hero.eyebrow || assistantInfo.status_text}
+                  </p>
+                )}
+
               {/* Hero Highlights / Trust Badges */}
               {Array.isArray(hero.highlights) && (
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                <ul className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
                   {hero.highlights.map((item: string, i: number) => (
                     <li
                       key={i}
-                      className="flex items-center gap-2 text-xs text-slate-300"
+                      className={`flex items-center gap-2 text-xs ${
+                        isMinimal ? "text-stone-600" : "text-slate-300"
+                      }`}
                     >
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <CheckCircle2
+                        className={`h-4 w-4 shrink-0 ${
+                          isMinimal ? "text-stone-600" : "text-emerald-400"
+                        }`}
+                      />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -465,9 +595,23 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                 hero.trust_badge ||
                 hero.venue_name ||
                 hero.depot_status) && (
-                <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-300">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <div
+                  className={`flex flex-wrap items-center gap-3 pt-2 text-xs ${
+                    isMinimal ? "text-stone-600" : "text-slate-300"
+                  }`}
+                >
+                  <span
+                    className={`inline-flex items-center gap-1.5 ${
+                      isMinimal
+                        ? ""
+                        : "rounded-lg border border-white/10 bg-white/5 px-3 py-1.5"
+                    }`}
+                  >
+                    <ShieldCheck
+                      className={`h-4 w-4 ${
+                        isMinimal ? "text-stone-600" : "text-emerald-400"
+                      }`}
+                    />
                     {hero.trust_indicator ||
                       hero.trust_badge ||
                       hero.venue_name ||
@@ -478,25 +622,51 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             </div>
 
             {/* Right Column: Assistant Profile & Starter Prompts */}
-            <div className="lg:col-span-5 rounded-2xl bg-white/5 border border-white/10 p-5 space-y-4">
+            <div
+              className={`space-y-5 lg:col-span-5 ${
+                isMinimal
+                  ? "rounded-xl bg-stone-100 p-5 sm:p-6"
+                  : "rounded-2xl border border-white/10 bg-white/5 p-5"
+              }`}
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center ${
+                      isMinimal
+                        ? "rounded-lg bg-stone-200 text-stone-700"
+                        : "rounded-xl bg-white/10 text-white"
+                    }`}
+                  >
                     <DynamicIcon
                       name={assistantInfo.avatar_icon || "Bot"}
                       className="w-6 h-6"
                     />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white text-sm sm:text-base">
+                    <h3
+                      className={`text-sm font-semibold sm:text-base ${
+                        isMinimal ? "text-stone-950" : "text-white"
+                      }`}
+                    >
                       {assistantInfo.name || agent.hover_tooltip}
                     </h3>
-                    <p className="text-xs text-slate-300">
+                    <p
+                      className={`text-xs ${
+                        isMinimal ? "text-stone-600" : "text-slate-300"
+                      }`}
+                    >
                       {assistantInfo.role || "AI Virtual Specialist"}
                     </p>
                   </div>
                 </div>
-                <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-medium">
+                <span
+                  className={`text-[11px] font-medium ${
+                    isMinimal
+                      ? "rounded-full bg-stone-200 px-2.5 py-1 text-stone-700"
+                      : "rounded-md border border-emerald-500/30 bg-emerald-500/20 px-2.5 py-1 text-emerald-300"
+                  }`}
+                >
                   {agent.function}
                 </span>
               </div>
@@ -505,7 +675,13 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
               {Array.isArray(assistantInfo.suggested_prompts) &&
                 assistantInfo.suggested_prompts.length > 0 && (
                   <div className="space-y-2 pt-1">
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-slate-400">
+                    <p
+                      className={`text-[11px] font-medium ${
+                        isMinimal
+                          ? "text-stone-600"
+                          : "uppercase tracking-wider text-slate-400"
+                      }`}
+                    >
                       Try asking the assistant (Click to copy)
                     </p>
                     <div className="space-y-1.5">
@@ -515,15 +691,31 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                             key={idx}
                             type="button"
                             onClick={() => handleCopyPrompt(prompt)}
-                            className="w-full text-left px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-slate-200 flex items-center justify-between gap-2 transition-colors group"
+                            className={`group flex w-full items-center justify-between gap-2 text-left text-xs transition-colors ${
+                              isMinimal
+                                ? "py-1 text-stone-700 hover:text-stone-950 hover:underline"
+                                : "rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-slate-200 hover:bg-white/10"
+                            }`}
                           >
                             <span className="truncate">
                               &ldquo;{prompt}&rdquo;
                             </span>
                             {copiedPrompt === prompt ? (
-                              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                              <Check
+                                className={`h-3.5 w-3.5 shrink-0 ${
+                                  isMinimal
+                                    ? "text-stone-600"
+                                    : "text-emerald-400"
+                                }`}
+                              />
                             ) : (
-                              <Copy className="w-3.5 h-3.5 text-slate-400 group-hover:text-white shrink-0" />
+                              <Copy
+                                className={`h-3.5 w-3.5 shrink-0 ${
+                                  isMinimal
+                                    ? "text-stone-500"
+                                    : "text-slate-400 group-hover:text-white"
+                                }`}
+                              />
                             )}
                           </button>
                         ),
@@ -537,26 +729,56 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
 
         {/* 5. GENERIC KPI / METRICS GRID */}
         {metrics.length > 0 && (
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          <section
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ${
+              isMinimal
+                ? "gap-x-8 gap-y-7 border-t border-stone-400 py-7"
+                : "gap-4 sm:gap-5"
+            }`}
+          >
             {metrics.map((metric: any, idx: number) => (
               <div
                 key={metric.id || idx}
-                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex items-start justify-between gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                className={`flex items-start justify-between gap-4 ${
+                  isMinimal
+                    ? "py-1"
+                    : "rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                }`}
               >
                 <div className="space-y-1">
-                  <p className="text-xs font-medium text-slate-500">
+                  <p
+                    className={`text-xs font-medium ${
+                      isMinimal ? "text-stone-600" : "text-slate-500"
+                    }`}
+                  >
                     {metric.label}
                   </p>
-                  <p className="text-2xl font-bold tracking-tight text-slate-900">
+                  <p
+                    className={`text-2xl tracking-tight ${
+                      isMinimal
+                        ? "font-semibold text-stone-950"
+                        : "font-bold text-slate-900"
+                    }`}
+                  >
                     {metric.value}
                   </p>
                   {(metric.subtext || metric.trend || metric.change) && (
-                    <p className="text-xs font-medium text-slate-600">
+                    <p
+                      className={`text-xs font-medium ${
+                        isMinimal ? "text-stone-600" : "text-slate-600"
+                      }`}
+                    >
                       {metric.subtext || metric.trend || metric.change}
                     </p>
                   )}
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 shadow-xs">
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center ${
+                    isMinimal
+                      ? "text-stone-500"
+                      : "rounded-xl bg-slate-100 text-slate-700 shadow-xs"
+                  }`}
+                >
                   <DynamicIcon
                     name={metric.icon || "TrendingUp"}
                     className="w-5 h-5"
@@ -569,11 +791,27 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
 
         {/* 6. GENERIC QUICK ACTIONS BAR */}
         {quickActions.length > 0 && (
-          <section className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+          <section
+            className={
+              isMinimal
+                ? "border-t border-stone-400 pt-8"
+                : "rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs"
+            }
+          >
+            <h3
+              className={`mb-4 text-xs font-semibold ${
+                isMinimal
+                  ? "text-stone-600"
+                  : "uppercase tracking-wider text-slate-400"
+              }`}
+            >
               Quick Actions
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
+            <div
+              className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 ${
+                isMinimal ? "gap-x-8 gap-y-6" : "gap-3 sm:gap-4"
+              }`}
+            >
               {quickActions.map((action: any, idx: number) => {
                 const label =
                   typeof action === "string" ? action : action.label;
@@ -585,9 +823,19 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                   <button
                     key={action.id || idx}
                     type="button"
-                    className="flex flex-col items-start p-4 rounded-xl border border-slate-200/80 hover:border-slate-400 hover:bg-slate-50/80 transition-all text-left group shadow-2xs hover:shadow-xs"
+                    className={`group flex flex-col items-start text-left transition-colors ${
+                      isMinimal
+                        ? "py-2 text-stone-800 hover:text-stone-950"
+                        : "rounded-xl border border-slate-200/80 p-4 shadow-2xs transition-all hover:border-slate-400 hover:bg-slate-50/80 hover:shadow-xs"
+                    }`}
                   >
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-slate-900 group-hover:text-white text-slate-700 flex items-center justify-center mb-2.5 transition-colors shadow-2xs">
+                    <div
+                      className={`mb-2.5 flex h-8 w-8 items-center justify-center transition-colors ${
+                        isMinimal
+                          ? "text-stone-600"
+                          : "rounded-lg bg-slate-100 text-slate-700 shadow-2xs group-hover:bg-slate-900 group-hover:text-white"
+                      }`}
+                    >
                       <DynamicIcon name={icon} className="w-4 h-4" />
                     </div>
                     <span className="text-xs font-semibold text-slate-900">
@@ -614,18 +862,36 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
               return (
                 <section
                   key={sectionKey}
-                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs"
+                  className={
+                    isMinimal
+                      ? "space-y-5 border-t border-stone-400 pt-8"
+                      : "rounded-2xl border border-slate-200 bg-white p-6 shadow-xs"
+                  }
                 >
-                  <h3 className="text-base font-bold text-slate-900 mb-4">
+                  <h3
+                    className={`mb-4 ${
+                      isMinimal
+                        ? "text-lg font-semibold text-stone-950"
+                        : "text-base font-bold text-slate-900"
+                    }`}
+                  >
                     {formatKeyLabel(sectionKey)}
                   </h3>
-                  <div className="flex flex-wrap gap-2.5">
+                  <div
+                    className={`flex flex-wrap ${
+                      isMinimal ? "gap-x-8 gap-y-3" : "gap-2.5"
+                    }`}
+                  >
                     {sectionValue.map((item, idx) => (
                       <span
                         key={idx}
-                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 text-xs font-medium"
+                        className={`inline-flex items-center gap-2 text-xs font-medium ${
+                          isMinimal
+                            ? "text-stone-700"
+                            : "rounded-xl bg-slate-100 px-3.5 py-2 text-slate-800"
+                        }`}
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-600" />
+                        <CheckCircle2 className="h-3.5 w-3.5 text-stone-600" />
                         {String(item)}
                       </span>
                     ))}
@@ -641,10 +907,20 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
               return (
                 <section
                   key={sectionKey}
-                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4"
+                  className={`space-y-4 ${
+                    isMinimal
+                      ? "border-t border-stone-400 pt-8"
+                      : "rounded-2xl border border-slate-200 bg-white p-6 shadow-xs"
+                  }`}
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="text-base font-bold text-slate-900">
+                    <h3
+                      className={`${
+                        isMinimal
+                          ? "text-lg font-semibold text-stone-950"
+                          : "text-base font-bold text-slate-900"
+                      }`}
+                    >
                       Portfolio Account Selector
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -653,10 +929,16 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                           key={tab.id || idx}
                           type="button"
                           onClick={() => setActiveTabIndex(idx)}
-                          className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
-                            idx === activeTabIndex
-                              ? "bg-slate-900 text-white"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                          className={`text-xs font-semibold transition-colors ${
+                            isMinimal
+                              ? idx === activeTabIndex
+                                ? "text-stone-950 underline underline-offset-4"
+                                : "text-stone-600 hover:text-stone-900"
+                              : `rounded-xl px-3.5 py-1.5 ${
+                                  idx === activeTabIndex
+                                    ? "bg-slate-900 text-white"
+                                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                                }`
                           }`}
                         >
                           {tab.label}
@@ -665,18 +947,26 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                     </div>
                   </div>
                   {selectedPan && (
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                    <div
+                      className={`grid grid-cols-2 pt-2 sm:grid-cols-4 ${
+                        isMinimal ? "gap-x-8 gap-y-6" : "gap-4"
+                      }`}
+                    >
                       {Object.entries(selectedPan)
                         .filter(([k]) => !["id", "label", "active"].includes(k))
                         .map(([k, v]) => (
                           <div
                             key={k}
-                            className="p-4 rounded-xl bg-slate-50 border border-slate-200"
+                            className={`${
+                              isMinimal
+                                ? "border-t border-stone-400 pt-4"
+                                : "rounded-xl border border-slate-200 bg-slate-50 p-4"
+                            }`}
                           >
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-stone-600">
                               {formatKeyLabel(k)}
                             </p>
-                            <p className="text-base font-bold text-slate-900 mt-1">
+                            <p className="mt-1 text-base font-semibold text-stone-950">
                               {String(v)}
                             </p>
                           </div>
@@ -691,18 +981,36 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             return (
               <section
                 key={sectionKey}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4"
+                className={`space-y-5 ${
+                  isMinimal
+                    ? "border-t border-stone-400 pt-8"
+                    : "rounded-2xl border border-slate-200 bg-white p-6 shadow-xs"
+                }`}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-bold text-slate-900">
+                  <h3
+                    className={`${
+                      isMinimal
+                        ? "text-lg font-semibold text-stone-950"
+                        : "text-base font-bold text-slate-900"
+                    }`}
+                  >
                     {formatKeyLabel(sectionKey)}
                   </h3>
-                  <span className="text-xs font-medium text-slate-500">
+                  <span
+                    className={`text-xs font-medium ${
+                      isMinimal ? "text-stone-600" : "text-slate-500"
+                    }`}
+                  >
                     {sectionValue.length} items
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div
+                  className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${
+                    isMinimal ? "gap-x-10 gap-y-8" : "gap-4"
+                  }`}
+                >
                   {sectionValue.map(
                     (item: Record<string, any>, idx: number) => {
                       const primaryTitle =
@@ -779,44 +1087,64 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                       return (
                         <div
                           key={item.id || item.case_id || idx}
-                          className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:shadow-xs transition-all flex flex-col justify-between gap-3"
+                          className={`flex flex-col justify-between gap-3 ${
+                            isMinimal
+                              ? "border-t border-stone-400 pt-5"
+                              : "rounded-xl border border-slate-200 bg-slate-50/50 p-4 transition-all hover:bg-white hover:shadow-xs"
+                          }`}
                         >
                           <div className="space-y-2.5">
                             <div className="flex items-start justify-between gap-2">
                               <div className="flex items-center gap-2.5">
                                 {item.icon && (
-                                  <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
+                                  <div
+                                    className={`flex h-8 w-8 shrink-0 items-center justify-center ${
+                                      isMinimal
+                                        ? "text-stone-600"
+                                        : "rounded-lg bg-slate-900 text-white"
+                                    }`}
+                                  >
                                     <DynamicIcon
                                       name={item.icon}
                                       className="w-4 h-4"
                                     />
                                   </div>
                                 )}
-                                <h4 className="font-semibold text-slate-900 text-sm">
+                                <h4 className="text-sm font-semibold text-stone-950">
                                   {primaryTitle}
                                 </h4>
                               </div>
                               {badgeText && (
-                                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-200/80 text-slate-800 shrink-0">
+                                <span
+                                  className={`shrink-0 text-xs font-medium ${
+                                    isMinimal
+                                      ? "text-stone-600"
+                                      : "rounded-full bg-slate-200/80 px-2.5 py-0.5 font-semibold text-slate-800"
+                                  }`}
+                                >
                                   {badgeText}
                                 </span>
                               )}
                             </div>
 
                             {/* Render remaining key-value details cleanly */}
-                            <div className="space-y-1.5 text-xs text-slate-600">
+                            <div className="space-y-1.5 text-xs text-stone-600">
                               {detailEntries.map(([k, v]) => {
                                 if (Array.isArray(v)) {
                                   return (
                                     <div key={k} className="pt-1">
-                                      <span className="text-[11px] font-medium text-slate-400 block mb-1">
+                                      <span className="mb-1 block text-[11px] font-medium text-stone-600">
                                         {formatKeyLabel(k)}
                                       </span>
                                       <div className="flex flex-wrap gap-1.5">
                                         {v.map((subItem, sIdx) => (
                                           <span
                                             key={sIdx}
-                                            className="px-2 py-0.5 rounded bg-white border border-slate-200 text-[11px] text-slate-700"
+                                            className={`text-[11px] ${
+                                              isMinimal
+                                                ? "text-stone-600"
+                                                : "rounded border border-slate-200 bg-white px-2 py-0.5 text-slate-700"
+                                            }`}
                                           >
                                             {typeof subItem === "string"
                                               ? subItem
@@ -841,7 +1169,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                                   return (
                                     <p
                                       key={k}
-                                      className="text-xs text-slate-600 leading-relaxed"
+                                      className="text-xs leading-relaxed text-stone-600"
                                     >
                                       {String(v)}
                                     </p>
@@ -851,12 +1179,16 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                                 return (
                                   <div
                                     key={k}
-                                    className="flex items-center justify-between gap-2 py-0.5 border-b border-slate-100 last:border-0"
+                                    className={`flex items-center justify-between gap-2 ${
+                                      isMinimal
+                                        ? ""
+                                        : "border-b border-slate-100 py-0.5 last:border-0"
+                                    }`}
                                   >
                                     <span className="text-slate-500">
                                       {formatKeyLabel(k)}
                                     </span>
-                                    <span className="font-medium text-slate-800 text-right">
+                                    <span className="text-right font-medium text-stone-800">
                                       {isPrimitive(v)
                                         ? String(v)
                                         : JSON.stringify(v)}
@@ -884,10 +1216,22 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
             return (
               <section
                 key={sectionKey}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4"
+                className={`space-y-5 ${
+                  isMinimal
+                    ? "border-t border-stone-400 pt-8"
+                    : "rounded-2xl border border-slate-200 bg-white p-6 shadow-xs"
+                }`}
               >
-                <div className="border-b border-slate-100 pb-3">
-                  <h3 className="text-base font-bold text-slate-900">
+                <div
+                  className={isMinimal ? "" : "border-b border-slate-100 pb-3"}
+                >
+                  <h3
+                    className={`${
+                      isMinimal
+                        ? "text-lg font-semibold text-stone-950"
+                        : "text-base font-bold text-slate-900"
+                    }`}
+                  >
                     {obj.title ||
                       obj.headline ||
                       obj.header ||
@@ -897,7 +1241,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                     obj.description ||
                     obj.subtext ||
                     obj.prompt_hint) && (
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="mt-1 text-xs text-stone-600">
                       {obj.subtitle ||
                         obj.description ||
                         obj.subtext ||
@@ -925,7 +1269,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                 )} */}
 
                 {/* Other key-value properties on the object */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
                   {Object.entries(obj)
                     .filter(
                       ([k]) =>
@@ -946,12 +1290,16 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                     .map(([k, v]) => (
                       <div
                         key={k}
-                        className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80"
+                        className={`${
+                          isMinimal
+                            ? "border-t border-stone-400 pt-4"
+                            : "rounded-xl border border-slate-200/80 bg-slate-50 p-3.5"
+                        }`}
                       >
-                        <p className="text-[11px] font-medium uppercase tracking-wider text-slate-400">
+                        <p className="text-[11px] font-medium text-stone-600">
                           {formatKeyLabel(k)}
                         </p>
-                        <div className="text-xs font-semibold text-slate-800 mt-1">
+                        <div className="mt-1 text-xs font-semibold text-stone-800">
                           {Array.isArray(v)
                             ? v
                                 .map((item) =>
@@ -972,7 +1320,11 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                   <div className="pt-2">
                     <button
                       type="button"
-                      className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors"
+                      className={`rounded-lg px-5 py-2.5 text-xs font-semibold text-white transition-colors ${
+                        isMinimal
+                          ? "bg-indigo-600 hover:bg-indigo-700"
+                          : "bg-slate-900 hover:bg-slate-800"
+                      }`}
                     >
                       {typeof obj.cta === "string"
                         ? obj.cta
@@ -991,13 +1343,27 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
 
         {/* 8. FALLBACK RENDERER FOR ORIGINAL `page_content.sections` SCHEMA */}
         {dynamicUiSections.length === 0 && legacySections.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 ${
+              isMinimal ? "gap-x-12 gap-y-10" : "gap-6"
+            }`}
+          >
             {legacySections.map((section: any, sIdx: number) => (
               <section
                 key={sIdx}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4"
+                className={`space-y-5 ${
+                  isMinimal
+                    ? "border-t border-stone-400 pt-8"
+                    : "rounded-2xl border border-slate-200 bg-white p-6 shadow-xs"
+                }`}
               >
-                <h3 className="text-base font-bold text-slate-900 border-b border-slate-100 pb-2.5">
+                <h3
+                  className={`text-base ${
+                    isMinimal
+                      ? "font-semibold text-stone-950"
+                      : "border-b border-slate-100 pb-2.5 font-bold text-slate-900"
+                  }`}
+                >
                   {section.title}
                 </h3>
                 <div className="space-y-3">
@@ -1021,11 +1387,15 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                       return (
                         <div
                           key={iIdx}
-                          className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 flex flex-col gap-1"
+                          className={`flex flex-col gap-1 ${
+                            isMinimal
+                              ? "border-t border-stone-400 pt-4"
+                              : "rounded-xl border border-slate-200/70 bg-slate-50 p-3.5"
+                          }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             {title && (
-                              <span className="text-xs font-semibold text-slate-800">
+                              <span className="text-xs font-semibold text-stone-800">
                                 {title}
                               </span>
                             )}
@@ -1033,7 +1403,13 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                               item.trend ||
                               item.date ||
                               item.valid_until) && (
-                              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-200 text-slate-700">
+                              <span
+                                className={`text-[11px] font-medium ${
+                                  isMinimal
+                                    ? "text-stone-600"
+                                    : "rounded bg-slate-200 px-2 py-0.5 text-slate-700"
+                                }`}
+                              >
                                 {item.status ||
                                   item.trend ||
                                   item.date ||
@@ -1042,7 +1418,7 @@ export default function AgentExperience({ agentKey }: AgentExperienceProps) {
                             )}
                           </div>
                           {val !== undefined && (
-                            <div className="text-xs text-slate-600">
+                            <div className="text-xs text-stone-600">
                               {isPrimitive(val)
                                 ? String(val)
                                 : Array.isArray(val)

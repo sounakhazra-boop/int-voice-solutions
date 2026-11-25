@@ -124,7 +124,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           typeof credentials?.email === "string" ? credentials.email : "";
         const password =
           typeof credentials?.password === "string" ? credentials.password : "";
-
+          
         const user = getConfiguredUsers().find(
           (configuredUser) =>
             isValidCredential(email, configuredUser.email) &&

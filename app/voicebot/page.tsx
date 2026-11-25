@@ -1,23 +1,30 @@
 import AgentDirectory from "@/components/AgentDirectory";
+import { ArrowRight } from "lucide-react";
 
 export default function VoicebotLandingPage() {
   return (
-    <main className="min-h-screen bg-navy-950 font-sans text-white">
-      <section className="relative overflow-hidden bg-navy-900 px-6 py-20 sm:px-8 sm:py-24 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(34,211,238,0.18),_transparent_38%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.2),_transparent_35%)]" />
-        <div className="relative mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">
-            INT Voice Solutions
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-            Voice agents built for real conversations.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
-            Explore specialized voice assistants that help customers, teams, and
-            businesses complete tasks through natural, intelligent voice
-            interactions.
-          </p>
-          <div className="mt-10 grid max-w-4xl gap-5 sm:grid-cols-3">
+    <main className="min-h-screen bg-stone-50 font-sans text-stone-950">
+      <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-16 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
+          <div>
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+              Voice agents built for real conversations.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
+              Explore specialized voice assistants that help customers, teams,
+              and businesses complete tasks through natural, intelligent voice
+              interactions.
+            </p>
+            <a
+              href="#voicebot-agents-heading"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-700 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50"
+            >
+              Explore voice agents
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </a>
+          </div>
+
+          <dl className="space-y-7 lg:pl-8">
             {[
               ["Natural conversations", "Low-friction voice experiences"],
               ["Business-ready", "Designed around real workflows"],
@@ -25,15 +32,15 @@ export default function VoicebotLandingPage() {
             ].map(([label, detail]) => (
               <div
                 key={label}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-sm backdrop-blur-sm"
+                className="grid gap-1.5 sm:grid-cols-[11rem_1fr] sm:gap-6"
               >
-                <p className="font-bold text-white">{label}</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  {detail}
-                </p>
+                <dt className="text-sm font-semibold text-stone-900">
+                  {label}
+                </dt>
+                <dd className="text-sm leading-6 text-stone-600">{detail}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
@@ -41,6 +48,7 @@ export default function VoicebotLandingPage() {
         category="voicebot"
         title="Choose a voice agent"
         description="Open an agent to start its dedicated voice experience."
+        appearance="light"
       />
     </main>
   );

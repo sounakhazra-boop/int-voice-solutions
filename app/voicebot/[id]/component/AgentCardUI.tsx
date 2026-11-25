@@ -14,10 +14,11 @@ import { VisualizerSection } from "./Visualizer";
 // import { ChatList } from '../Chatlist';
 import { ChatList } from "./Chatlist";
 // import type { ChatMessage } from '../Chatlist';
-import { ChatMessage } from "livekit-client";
+import type { ChatMessage } from "../hook/useChatTranscriptions";
 
 interface AgentCardUIProps {
   state: "standby" | "connecting" | "active";
+  appearance?: "default" | "minimal";
   onClose: () => void;
   onConnect?: () => void;
   onDisconnect?: () => void;
@@ -34,6 +35,7 @@ interface AgentCardUIProps {
 
 export const AgentCardUI: React.FC<AgentCardUIProps> = ({
   state,
+  appearance = "default",
   onClose,
   onConnect,
   onDisconnect,
@@ -49,6 +51,7 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
 }) => {
   // Scroll to bottom of chat
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const isMinimal = appearance === "minimal";
   useEffect(() => {
     if (showChat && chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -57,23 +60,49 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
 
   return (
     <div
-      className={`pointer-events-auto bg-[#0b1120]/95 backdrop-blur-3xl border border-indigo-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(99,102,241,0.15)] rounded-[32px] p-5 flex flex-col items-center gap-4 transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${showChat ? "w-[90vw] md:w-[420px] h-[650px]" : "w-[300px] h-auto"}`}
+      className={`pointer-events-auto flex flex-col items-center gap-4 transition-all duration-300 ${
+        isMinimal
+          ? `rounded-2xl bg-white p-5 text-stone-950 shadow-[0_12px_32px_rgba(28,25,23,0.14)] ${showChat ? "h-[min(650px,80vh)] w-[90vw] md:w-[420px]" : "h-auto w-[300px]"}`
+          : `rounded-[32px] border border-indigo-500/30 bg-[#0b1120]/95 p-5 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(99,102,241,0.15)] ${showChat ? "h-[650px] w-[90vw] md:w-[420px]" : "h-auto w-[300px]"}`
+      }`}
     >
       {/* Header / Controls */}
-      <div className="w-full flex justify-between items-center border-b border-white/5 pb-3">
+      <div
+        className={`flex w-full items-center justify-between ${
+          isMinimal ? "pb-1" : "border-b border-white/5 pb-3"
+        }`}
+      >
         <div className="flex items-center gap-2">
           {state === "active" ? (
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <div
+              className={`h-2 w-2 rounded-full ${
+                isMinimal ? "bg-stone-500" : "animate-pulse bg-green-500"
+              }`}
+            />
           ) : (
-            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+            <div
+              className={`h-2 w-2 rounded-full ${
+                isMinimal ? "bg-stone-400" : "bg-yellow-500"
+              }`}
+            />
           )}
-          <span className="text-xs text-indigo-300 font-semibold tracking-wide">
+          <span
+            className={`text-xs font-semibold tracking-wide ${
+              isMinimal ? "text-stone-600" : "text-indigo-300"
+            }`}
+          >
             {state === "active" ? "VYOM ACTIVE" : "VYOM STANDBY"}
           </span>
         </div>
         <button
+          type="button"
           onClick={onClose}
-          className="text-slate-400 hover:text-white transition-colors p-1"
+          aria-label="Close voice assistant"
+          className={`p-1 transition-colors ${
+            isMinimal
+              ? "text-stone-500 hover:text-stone-950"
+              : "text-slate-400 hover:text-white"
+          }`}
         >
           <X size={16} />
         </button>
@@ -82,47 +111,74 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
       {/* Agent Visual / Animation (Compact only) */}
       {!showChat && (
         <div className="relative w-24 h-24 flex items-center justify-center my-2">
-          {/* Glow Effect */}
-          <div
-            className={`absolute inset-0 bg-brand-500/20 rounded-full blur-xl transition-all duration-300 ${isAgentSpeaking ? "scale-125 opacity-100" : "scale-100 opacity-50"}`}
-          ></div>
-
           {/* The Face / Icon */}
           <div
-            className={`relative z-10 w-20 h-20 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-200 ${isAgentSpeaking ? "animate-mouth-move" : ""}`}
+            className={`relative z-10 flex h-20 w-20 items-center justify-center ${
+              isMinimal
+                ? "text-stone-700"
+                : `rounded-2xl bg-gradient-to-b from-indigo-500 to-purple-600 shadow-lg ${
+                    isAgentSpeaking ? "animate-mouth-move" : ""
+                  }`
+            }`}
           >
-            <Bot size={40} className="text-white" />
+            <Bot
+              size={isMinimal ? 36 : 40}
+              className={isMinimal ? "" : "text-white"}
+            />
           </div>
         </div>
       )}
 
       {/* CHAT AREA (Expanded only) */}
       {showChat && (
-        <div className="flex-1 w-full flex flex-col min-h-0 overflow-hidden bg-navy-950/70 rounded-xl relative border border-white/5">
-          {/*@ts-ignore*/}
-          <ChatList messages={messages} compact={true} />
+        <div
+          className={`relative flex min-h-0 w-full flex-1 flex-col overflow-hidden ${
+            isMinimal
+              ? "rounded-lg bg-stone-50"
+              : "rounded-xl border border-white/5 bg-navy-950/70"
+          }`}
+        >
+          <ChatList messages={messages} appearance={appearance} />
         </div>
       )}
 
       {/* Status Text & Waveform / Connect Button */}
       <div
-        className={`w-full flex flex-col items-center gap-2 justify-center ${showChat ? "min-h-[60px] pt-2 border-t border-white/5" : "min-h-[64px]"}`}
+        className={`flex w-full flex-col items-center justify-center gap-2 ${
+          showChat
+            ? isMinimal
+              ? "min-h-[60px] pt-2"
+              : "min-h-[60px] border-t border-white/5 pt-2"
+            : "min-h-[64px]"
+        }`}
       >
         {state === "active" ? (
           <>
             {!showChat && (
-              <span className="text-sm font-medium text-slate-200 text-center w-full px-2 break-words">
+              <span
+                className={`w-full break-words px-2 text-center text-sm font-medium ${
+                  isMinimal ? "text-stone-700" : "text-slate-200"
+                }`}
+              >
                 {statusText ||
                   (isAgentSpeaking ? "Speaking..." : "Listening...")}
               </span>
             )}
             <div className="h-8 w-full flex items-center justify-center">
-              <VisualizerSection state={visualizerState} trackRef={trackRef} />
+              <VisualizerSection
+                state={visualizerState}
+                trackRef={trackRef}
+                appearance={appearance}
+              />
             </div>
           </>
         ) : (
           <div className="flex flex-col items-center gap-2 w-full">
-            <span className="text-xs text-slate-400 text-center px-4 leading-tight">
+            <span
+              className={`px-4 text-center text-xs leading-tight ${
+                isMinimal ? "text-stone-600" : "text-slate-400"
+              }`}
+            >
               Start a voice session to manage your account.
             </span>
           </div>
@@ -136,14 +192,17 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
             {/* Mute Button */}
             <button
               onClick={onToggleMic}
-              className={`
-                                flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-semibold transition-all duration-300
-                                ${
-                                  isMicMuted
-                                    ? "bg-white text-[#0B1426] shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-[1.02]"
-                                    : "bg-white/5 hover:bg-white/10 text-slate-200 border border-white/5 hover:border-white/10"
-                                }
-                            `}
+              className={`flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold transition-colors ${
+                isMinimal
+                  ? isMicMuted
+                    ? "text-stone-950 underline underline-offset-4"
+                    : "text-stone-600 hover:text-stone-950"
+                  : `rounded-2xl transition-all duration-300 ${
+                      isMicMuted
+                        ? "scale-[1.02] bg-white text-[#0B1426] shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                        : "border border-white/5 bg-white/5 text-slate-200 hover:border-white/10 hover:bg-white/10"
+                    }`
+              }`}
             >
               {isMicMuted ? <MicOff size={18} /> : <Mic size={18} />}
               <span>{isMicMuted ? "Unmute" : "Mute"}</span>
@@ -152,12 +211,11 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
             {/* Disconnect Button */}
             <button
               onClick={onDisconnect}
-              className="
-                                flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-semibold 
-                                bg-gradient-to-br from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500 text-white 
-                                shadow-[0_4px_16px_rgba(239,68,68,0.3)] 
-                                transition-all duration-300 hover:scale-[1.02] active:scale-95 border border-red-400/20
-                            "
+              className={`flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold transition-colors ${
+                isMinimal
+                  ? "bg-stone-950 text-white hover:bg-stone-800"
+                  : "rounded-2xl border border-red-400/20 bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-[0_4px_16px_rgba(239,68,68,0.3)] transition-all duration-300 hover:scale-[1.02] hover:from-red-400 hover:to-rose-500 active:scale-95"
+              }`}
             >
               <PhoneOff size={18} />
               <span>End</span>
@@ -168,11 +226,17 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
               <button
                 onClick={onToggleChat}
                 className={`
-                                    w-12 h-12 flex-none flex items-center justify-center rounded-2xl transition-all duration-300
+                                    w-12 h-12 flex-none items-center justify-center rounded-2xl transition-all duration-300
                                     ${
-                                      showChat
-                                        ? "bg-brand-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]"
-                                        : "bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/5"
+                                      isMinimal
+                                        ? showChat
+                                          ? "flex text-stone-950"
+                                          : "flex text-stone-500 hover:text-stone-950"
+                                        : `flex ${
+                                            showChat
+                                              ? "bg-brand-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                                              : "border border-white/5 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
+                                          }`
                                     }
                                 `}
               >
@@ -188,7 +252,11 @@ export const AgentCardUI: React.FC<AgentCardUIProps> = ({
           <button
             onClick={onConnect}
             disabled={state === "connecting"}
-            className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-bold shadow-lg shadow-indigo-950/40 hover:from-indigo-400 hover:to-purple-500 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:pointer-events-none"
+            className={`flex w-full items-center justify-center gap-2 py-4 text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-70 ${
+              isMinimal
+                ? "rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
+                : "rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 font-bold text-white shadow-lg shadow-indigo-950/40 transition-all hover:scale-[1.02] hover:from-indigo-400 hover:to-purple-500 active:scale-95"
+            }`}
           >
             {state === "connecting" ? (
               <>

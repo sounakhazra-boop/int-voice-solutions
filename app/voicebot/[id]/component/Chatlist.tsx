@@ -22,6 +22,7 @@ export interface ChatMessage {
 
 interface ChatListProps {
   messages: ChatMessage[];
+  appearance?: "default" | "minimal";
 }
 
 // --------------------------------------------------------------------------
@@ -55,8 +56,12 @@ const TypewriterText: React.FC<{ text: string; speed?: number }> = ({
 // --------------------------------------------------------------------------
 // Main ChatList Component
 // --------------------------------------------------------------------------
-export const ChatList: React.FC<ChatListProps> = ({ messages }) => {
+export const ChatList: React.FC<ChatListProps> = ({
+  messages,
+  appearance = "default",
+}) => {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const isMinimal = appearance === "minimal";
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -71,11 +76,25 @@ export const ChatList: React.FC<ChatListProps> = ({ messages }) => {
         WebkitMaskImage: "none",
       }}
     >
-      <div className="w-full max-w-[95%] mx-auto flex flex-col pt-20 pb-32 gap-6">
+      <div
+        className={`mx-auto flex w-full max-w-[95%] flex-col ${
+          isMinimal ? "gap-5 py-6" : "gap-6 pt-20 pb-32"
+        }`}
+      >
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4 opacity-30">
+          <div
+            className={`flex min-h-[50vh] flex-col items-center justify-center space-y-4 ${
+              isMinimal ? "text-stone-500" : "opacity-30"
+            }`}
+          >
             <div className="w-12 h-1 bg-zinc-300 rounded-full" />
-            <p className="text-sm text-zinc-500 font-medium font-mono uppercase tracking-widest">
+            <p
+              className={`text-sm font-medium ${
+                isMinimal
+                  ? ""
+                  : "font-mono uppercase tracking-widest text-zinc-500"
+              }`}
+            >
               System Ready
             </p>
           </div>
@@ -110,20 +129,35 @@ export const ChatList: React.FC<ChatListProps> = ({ messages }) => {
             >
               <div
                 className={`
-                  relative max-w-[78%] px-5 py-4 text-base leading-relaxed rounded-3xl
-                  shadow-[0_12px_35px_rgba(0,0,0,0.22)] transition-all duration-300 border
+                  relative max-w-[78%] px-5 py-4 text-base leading-relaxed transition-all duration-300
                   ${isInterim ? "opacity-80 scale-[0.99]" : "opacity-100 scale-100 animate-fade-in-up"}
                   ${
-                    isUser
-                      ? `max-w-[70%] bg-gradient-to-r from-indigo-500 to-purple-600 text-white border-transparent rounded-tr-[28px]`
-                      : `bg-white text-slate-900 border-white/10 rounded-tl-[28px]`
+                    isMinimal
+                      ? isUser
+                        ? "max-w-[70%] rounded-2xl rounded-tr-sm bg-stone-900 text-white"
+                        : "rounded-2xl rounded-tl-sm bg-white text-stone-900"
+                      : `rounded-3xl shadow-[0_12px_35px_rgba(0,0,0,0.22)] border ${
+                          isUser
+                            ? "max-w-[70%] rounded-tr-[28px] border-transparent bg-gradient-to-r from-indigo-500 to-purple-600 text-white"
+                            : "rounded-tl-[28px] border-white/10 bg-white text-slate-900"
+                        }`
                   }
                 `}
                 style={{ wordBreak: "break-word" }}
               >
                 {!isUser && (
-                  <div className="flex items-center gap-2 mb-2 text-[10px] font-semibold tracking-widest text-brand-600">
-                    <span className="h-2 w-2 rounded-full bg-brand-500" />
+                  <div
+                    className={`mb-2 flex items-center gap-2 text-[10px] font-semibold tracking-wide ${
+                      isMinimal
+                        ? "text-stone-500"
+                        : "tracking-widest text-brand-600"
+                    }`}
+                  >
+                    <span
+                      className={`h-2 w-2 rounded-full ${
+                        isMinimal ? "bg-stone-400" : "bg-brand-500"
+                      }`}
+                    />
                     INT. AI
                   </div>
                 )}

@@ -1,33 +1,43 @@
 import AgentDirectory from "@/components/AgentDirectory";
+import { ArrowRight } from "lucide-react";
 
 export default function ChatbotLandingPage() {
   return (
-    <main className="min-h-screen bg-navy-950 font-sans text-white">
-      <section className="relative overflow-hidden bg-navy-900 px-6 py-20 sm:px-8 sm:py-24 lg:px-16 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(34,211,238,0.18),_transparent_38%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.2),_transparent_35%)]" />
-        <div className="relative mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">
-            INT Conversational AI
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-            Chat experiences that move work forward.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
-            Discover focused AI assistants for support, operations, finance,
-            travel, and more. Each agent is designed to understand context and
-            help users get to the right answer faster.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
-            <span className="rounded-full border border-indigo-400/30 bg-indigo-500/10 px-4 py-2 text-indigo-200">
-              Context-aware support
-            </span>
-            <span className="rounded-full border border-indigo-400/30 bg-indigo-500/10 px-4 py-2 text-indigo-200">
-              Voice and text ready
-            </span>
-            <span className="rounded-full border border-indigo-400/30 bg-indigo-500/10 px-4 py-2 text-indigo-200">
-              Built for business workflows
-            </span>
+    <main className="min-h-screen bg-stone-200 font-sans text-stone-950">
+      <section className="px-6 py-10 sm:px-8 sm:py-12 lg:px-16 lg:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 rounded-2xl bg-white p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:p-12">
+          <div>
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+              Chat experiences that move work forward.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-stone-600 sm:text-lg sm:leading-8">
+              Discover focused AI assistants for support, operations, finance,
+              travel, and more. Each agent is designed to understand context and
+              help users get to the right answer faster.
+            </p>
+            <a
+              href="#chatbot-agents-heading"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-700 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            >
+              Explore chat agents
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </a>
           </div>
+
+          <ul className="divide-y divide-stone-300 rounded-xl bg-stone-100 px-5 sm:px-7">
+            {[
+              "Context-aware support",
+              "Voice and text ready",
+              "Built for business workflows",
+            ].map((benefit) => (
+              <li
+                key={benefit}
+                className="py-5 text-base font-semibold text-stone-900 first:pt-6 last:pb-6"
+              >
+                {benefit}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -35,7 +45,8 @@ export default function ChatbotLandingPage() {
         category="chatbot"
         title="Choose a conversational agent"
         description="Open an agent to explore its dedicated chat experience."
-        className="bg-navy-950"
+        appearance="light"
+        className="border-t border-stone-400"
       />
     </main>
   );

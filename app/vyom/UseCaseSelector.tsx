@@ -294,6 +294,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
           placeholder="Search prompts by name, description, or company..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          className="focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-100"
           style={styles.searchInput}
         />
         {searchQuery && (
@@ -309,6 +310,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
           value={selectedId ?? ""}
           onChange={(e) => handleSelectUseCase(e.target.value)}
           disabled={loading}
+          className="focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-100"
           style={styles.select}
         >
           <option value="">
@@ -337,7 +339,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          marginBottom: 32,
+          marginBottom: 20,
         }}
       >
         <button style={styles.addLink}>
@@ -356,7 +358,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
             style={{ display: "flex", flexDirection: "column", gap: 16 }}
           >
             {/* Title + description */}
-            <div style={{ textAlign: "center" }}>
+            <div>
               <h2 style={styles.ucTitle}>{selectedUseCase.usecase}</h2>
               {selectedUseCase.description && (
                 <div style={styles.descBox}>
@@ -457,6 +459,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
                     placeholder="Acme Corp"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
+                    className="focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-100"
                     style={styles.input}
                   />
                 </div>
@@ -466,6 +469,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
                     placeholder="Full Name"
                     value={recipientName}
                     onChange={(e) => setRecipientName(e.target.value)}
+                    className="focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-100"
                     style={styles.input}
                   />
                 </div>
@@ -480,6 +484,7 @@ export const UseCaseSelector: React.FC<UseCaseSelectorProps> = ({
                       else if (val.startsWith("+")) setPhoneNumber(val);
                       else setPhoneNumber("+" + val);
                     }}
+                    className="focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-100"
                     style={styles.input}
                   />
                 </div>
@@ -549,10 +554,10 @@ export default UseCaseSelector;
 // ---------------------------------------------------------------------------
 const styles: Record<string, React.CSSProperties> = {
   wrapper: {
-    maxWidth: 672,
+    maxWidth: 960,
     margin: "0 auto",
-    padding: "0 16px",
-    fontFamily: "system-ui, -apple-system, sans-serif",
+    padding: 0,
+    fontFamily: "inherit",
   },
   searchWrap: {
     position: "relative",
@@ -560,27 +565,26 @@ const styles: Record<string, React.CSSProperties> = {
   },
   searchIcon: {
     position: "absolute",
-    left: 12,
+    left: 14,
     top: "50%",
     transform: "translateY(-50%)",
     pointerEvents: "none",
   },
   searchInput: {
     width: "100%",
-    height: 44,
-    paddingLeft: 36,
-    paddingRight: 36,
-    border: "1px solid #e2e8f0",
-    borderRadius: 8,
+    height: 48,
+    paddingLeft: 42,
+    paddingRight: 42,
+    border: "1px solid #dbe2ed",
+    borderRadius: 10,
     fontSize: 15,
     backgroundColor: "#fff",
-    outline: "none",
     boxSizing: "border-box",
     color: "#0f172a",
   },
   clearBtn: {
     position: "absolute",
-    right: 12,
+    right: 14,
     top: "50%",
     transform: "translateY(-50%)",
     background: "none",
@@ -592,19 +596,18 @@ const styles: Record<string, React.CSSProperties> = {
   },
   select: {
     width: "100%",
-    height: 56,
-    padding: "0 14px",
-    border: "1px solid #e2e8f0",
-    borderRadius: 8,
+    height: 52,
+    padding: "0 16px",
+    border: "1px solid #dbe2ed",
+    borderRadius: 10,
     fontSize: 15,
     backgroundColor: "#fff",
     color: "#0f172a",
-    outline: "none",
     boxSizing: "border-box",
     cursor: "pointer",
   },
-  helperRow: { display: "flex", justifyContent: "flex-end", marginBottom: 8 },
-  helperText: { fontSize: 13, color: "#94a3b8", margin: 0 },
+  helperRow: { display: "flex", justifyContent: "flex-start", marginBottom: 6 },
+  helperText: { fontSize: 13, color: "#64748b", margin: 0, lineHeight: 1.5 },
   addLink: {
     display: "inline-flex",
     alignItems: "center",
@@ -618,35 +621,29 @@ const styles: Record<string, React.CSSProperties> = {
     textUnderlineOffset: 3,
   },
   ucTitle: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 800,
     color: "#1e1b4b",
-    marginBottom: 12,
+    marginBottom: 8,
   },
   descBox: {
-    display: "inline-block",
-    borderRadius: 12,
-    border: "1px solid rgba(99,102,241,0.25)",
-    backgroundColor: "rgba(99,102,241,0.05)",
-    padding: "10px 20px",
+    display: "block",
     maxWidth: 560,
   },
-  descText: { fontSize: 14, color: "#475569", margin: 0, lineHeight: 1.6 },
+  descText: { fontSize: 15, color: "#475569", margin: 0, lineHeight: 1.65 },
   personalizedCard: {
-    padding: 20,
-    borderRadius: 16,
+    padding: 18,
+    borderRadius: 14,
     border: "1px solid #e2e8f0",
-    backgroundColor: "rgba(248,250,252,0.8)",
+    backgroundColor: "#f8fafc",
   },
   personalizedTitle: {
     display: "flex",
     alignItems: "center",
     gap: 7,
     margin: "0 0 12px",
-    fontSize: 11,
-    fontWeight: 800,
-    letterSpacing: "0.12em",
-    textTransform: "uppercase",
+    fontSize: 13,
+    fontWeight: 700,
     color: "#4f46e5",
   },
   loadingRow: {
@@ -658,7 +655,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   personalizedGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: 8,
   },
   personalizedItem: {
@@ -724,40 +721,37 @@ const styles: Record<string, React.CSSProperties> = {
     WebkitBoxOrient: "vertical",
     overflow: "hidden",
     margin: 0,
-    padding: 6,
-    borderRadius: 6,
-    backgroundColor: "rgba(255,255,255,0.7)",
+    padding: 0,
     color: "#64748b",
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-    fontSize: 10,
-    lineHeight: 1.4,
+    fontSize: 12,
+    lineHeight: 1.5,
   },
   callCard: {
-    padding: 24,
+    padding: 20,
     borderRadius: 16,
-    border: "1px solid #e2e8f0",
+    border: "1px solid #dbe2ed",
     backgroundColor: "#fff",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
   },
   callCardHeader: {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "space-between",
+    flexWrap: "wrap",
     gap: 16,
-    marginBottom: 20,
+    marginBottom: 18,
   },
   callCardTitle: {
     fontSize: 18,
     fontWeight: 700,
     color: "#1e1b4b",
-    marginBottom: 20,
+    marginBottom: 8,
     marginTop: 0,
   },
   activeBadge: {
     display: "inline-flex",
     alignItems: "center",
     gap: 7,
-    padding: "6px 10px",
+    padding: "6px 9px",
     border: "1px solid #c7d2fe",
     borderRadius: 999,
     background: "#eef2ff",
@@ -772,9 +766,9 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     gap: 7,
     flexShrink: 0,
-    padding: "11px 14px",
-    border: "1px solid #c7d2fe",
-    borderRadius: 10,
+    padding: "10px 12px",
+    border: "1px solid #dbe2ed",
+    borderRadius: 11,
     background: "#fff",
     color: "#1e1b4b",
     fontWeight: 700,
@@ -783,30 +777,29 @@ const styles: Record<string, React.CSSProperties> = {
   callGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: 16,
-    marginBottom: 20,
+    gap: 14,
+    marginBottom: 18,
   },
-  fieldWrap: { display: "flex", flexDirection: "column", gap: 4 },
-  fieldLabel: { fontSize: 13, fontWeight: 500, color: "#475569" },
+  fieldWrap: { display: "flex", flexDirection: "column", gap: 5 },
+  fieldLabel: { fontSize: 13, fontWeight: 600, color: "#334155" },
   input: {
-    height: 44,
+    height: 46,
     padding: "0 12px",
-    borderRadius: 8,
-    border: "1px solid #e2e8f0",
-    fontSize: 15,
+    borderRadius: 9,
+    border: "1px solid #dbe2ed",
+    fontSize: 16,
     color: "#0f172a",
     backgroundColor: "#fff",
-    outline: "none",
   },
   callBtn: {
     width: "100%",
-    height: 52,
+    height: 50,
     borderRadius: 10,
     border: "none",
     backgroundColor: "#6366f1",
     color: "#fff",
-    fontSize: 17,
-    fontWeight: 600,
+    fontSize: 15,
+    fontWeight: 700,
     cursor: "pointer",
     display: "flex",
     alignItems: "center",

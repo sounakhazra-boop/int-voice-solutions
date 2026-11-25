@@ -23,11 +23,12 @@ async function ChatbotContent({ params }: ChatbotPageProps) {
 
   return (
     <>
-      <AgentExperience agentKey={agentKey} />
+      <AgentExperience agentKey={agentKey} appearance="minimal" />
       <Assistant
         assistantId={id}
         label={agent.hover_tooltip}
         textOnly={agent.function === "chat"}
+        appearance="minimal"
       />
     </>
   );

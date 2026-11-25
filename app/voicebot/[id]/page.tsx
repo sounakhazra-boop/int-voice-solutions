@@ -21,8 +21,12 @@ async function VoicebotContent({ params }: VoicebotPageProps) {
 
   return (
     <>
-      <AgentExperience agentKey={agentKey} />
-      <Assistant assistantId={id} label={agent.hover_tooltip} />
+      <AgentExperience agentKey={agentKey} appearance="minimal" />
+      <Assistant
+        assistantId={id}
+        label={agent.hover_tooltip}
+        appearance="minimal"
+      />
     </>
   );
 }

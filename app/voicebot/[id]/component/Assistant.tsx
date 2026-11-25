@@ -25,6 +25,7 @@ export interface AssistantProps {
   assistantId: string;
   label?: string;
   textOnly?: boolean;
+  appearance?: "default" | "minimal";
 }
 
 function mapAgentToVisualizerState(state: string): VisualizerState {
@@ -42,10 +43,12 @@ function mapAgentToVisualizerState(state: string): VisualizerState {
 
 interface AssistantSessionProps {
   onDisconnect: () => void;
+  appearance: "default" | "minimal";
 }
 
 const AssistantSession: React.FC<AssistantSessionProps> = ({
   onDisconnect,
+  appearance,
 }) => {
   const { state, audioTrack: agentTrack } = useVoiceAssistant();
   const { localParticipant, microphoneTrack } = useLocalParticipant();
@@ -99,6 +102,7 @@ const AssistantSession: React.FC<AssistantSessionProps> = ({
         }`}
       >
         <AgentCardUI
+          appearance={appearance}
           state="active"
           onClose={onDisconnect}
           onDisconnect={onDisconnect}
@@ -109,7 +113,6 @@ const AssistantSession: React.FC<AssistantSessionProps> = ({
           trackRef={activeTrack}
           showChat={showChat}
           onToggleChat={() => setShowChat((visible) => !visible)}
-          //@ts-ignore
           messages={messages}
         />
       </div>
@@ -123,6 +126,7 @@ export const Assistant: React.FC<AssistantProps> = ({
   assistantId,
   label = "Ask Vyom",
   textOnly = false,
+  appearance = "default",
 }) => {
   const { token, connecting, connect, disconnect } = useAssistant({
     assistantId,
@@ -163,11 +167,15 @@ export const Assistant: React.FC<AssistantProps> = ({
       onDisconnected={handleDisconnect}
     >
       {token ? (
-        <AssistantSession onDisconnect={handleDisconnect} />
+        <AssistantSession
+          appearance={appearance}
+          onDisconnect={handleDisconnect}
+        />
       ) : (
         <div className="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-4 md:bottom-6 md:right-6">
           {isCardOpen && (
             <AgentCardUI
+              appearance={appearance}
               state={connecting ? "connecting" : "standby"}
               onClose={() => setIsCardOpen(false)}
               onConnect={handleConnect}
@@ -179,15 +187,25 @@ export const Assistant: React.FC<AssistantProps> = ({
               type="button"
               onClick={() => setIsCardOpen(true)}
               disabled={connecting}
-              className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-[0_4px_20px_rgba(99,102,241,0.4)] transition-transform hover:scale-110 active:scale-95 disabled:scale-100 disabled:opacity-80"
+              className={`group relative flex items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-700 focus-visible:ring-offset-2 ${
+                appearance === "minimal"
+                  ? "h-14 w-14 bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-60"
+                  : "h-16 w-16 bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-[0_4px_20px_rgba(99,102,241,0.4)] transition-transform hover:scale-110 active:scale-95 disabled:scale-100 disabled:opacity-80"
+              }`}
             >
-              <div className="pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-lg border border-indigo-500/20 bg-navy-900 px-3 py-1.5 text-xs font-bold text-indigo-200 opacity-0 transition-opacity group-hover:opacity-100">
+              <span
+                className={`pointer-events-none absolute right-full mr-4 whitespace-nowrap px-3 py-1.5 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100 ${
+                  appearance === "minimal"
+                    ? "text-stone-700"
+                    : "rounded-lg border border-indigo-500/20 bg-navy-900 text-indigo-200"
+                }`}
+              >
                 {label}
-              </div>
-              <div className="relative z-10">
-                <Bot size={32} className="text-white" />
-              </div>
-              <div className="absolute inset-0 animate-ping rounded-full bg-brand-500 opacity-50" />
+              </span>
+              <Bot
+                size={appearance === "minimal" ? 24 : 32}
+                className="relative z-10"
+              />
             </button>
           )}
         </div>
