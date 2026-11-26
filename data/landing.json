@@ -217,6 +217,17 @@
         "referenceUrl": "",
         "referenceImage": "",
         "demoLinks": []
+      },
+      {
+        "id": "makemytrip-poc",
+        "title": "MakeMyTrip PoC",
+        "description": "Proof of concept for MakeMyTrip",
+        "iconType": "blue",
+        "url": "https://adam-smithsonian-continuity-acceptance.trycloudflare.com/",
+        "inhouseUrl": "https://adam-smithsonian-continuity-acceptance.trycloudflare.com/",
+        "referenceUrl": "",
+        "referenceImage": "",
+        "demoLinks": []
       }
     ]
   },
